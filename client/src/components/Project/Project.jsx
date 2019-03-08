@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { formatAcc } from '../../services/utils';
 import Tabs from '../Tabs/Tabs';
+import ProjectFinance from './ProjectFinance/ProjectFinance';
 
 import './Project.scss';
 
 const Project = ({
   data: {
-    name, description, cover, supporters, ethRaised, daysPassed, creator,
+    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance,
   },
 }) => (
   <div className="project-wrapper">
@@ -47,13 +48,15 @@ const Project = ({
 
     <Tabs>
       <div label="About">
-        About
-        {/* <ProjectAbout /> */}
+        <div className="about-wrapper">
+          {
+            about.split(':').map(t => (<div className="row">{t}</div>))
+          }
+        </div>
       </div>
 
       <div label="Finance">
-        Finance
-        {/* <ProjectFinance /> */}
+        <ProjectFinance data={finance} />
       </div>
 
       <div label="FAQ">

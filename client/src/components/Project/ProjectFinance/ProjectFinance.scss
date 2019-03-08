@@ -1,0 +1,39 @@
+@import "../../../common/colors";
+@import "../../../common/text";
+
+.project-finance-wrapper {
+
+  .funds-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 45px;
+    border-bottom: 1px solid $light-gray;
+    margin-bottom: 15px;
+
+    .column-wrapper {
+
+      &:not(:last-child) { margin-right: 60px; }
+      .label {
+        margin-bottom: 4px;
+      }
+
+      .col-item {
+        &:not(:last-child) { margin-bottom: 3px; }
+
+        font-size: $font-size-heading-4;
+        font-family: $bold-font;
+      }
+    }
+  }
+
+  .total-wrapper {
+    font-size: $font-size-heading-4;
+
+    .label { margin-bottom: 4px }
+
+    .value {
+      font-size: $font-size-heading-3;
+      font-family: $bold-font;
+    }
+  }
+}

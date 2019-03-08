@@ -62,4 +62,8 @@
       margin: 8px 0;
     }
   }
+
+  .about-wrapper .row:not(:last-child) {
+    margin-bottom: 30px;
+  }
 }
