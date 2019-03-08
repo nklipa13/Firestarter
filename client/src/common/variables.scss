@@ -1,0 +1,16 @@
+@mixin hover-transition {
+  transition: all 420ms cubic-bezier(.165,.84,.44,1);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-items: center;
+  white-space: nowrap;
+}

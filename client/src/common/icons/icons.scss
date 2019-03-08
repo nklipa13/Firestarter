@@ -1,0 +1,76 @@
+@import "./icon-variables";
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?73a396');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?73a396#iefix') format('embedded-opentype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?73a396') format('truetype'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?73a396') format('woff'),
+  url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?73a396##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-Info-circle {
+  &:before {
+    content: $icon-Info-circle;
+    color: #fff;
+  }
+}
+.icon-chevron-right {
+  &:before {
+    content: $icon-chevron-right;
+    color: #939da7;
+  }
+}
+.icon-empty {
+  &:before {
+    content: $icon-empty;
+    color: #37b06f;
+  }
+}
+.icon-laptop-gear {
+  &:before {
+    content: $icon-laptop-gear;
+    color: #939da7;
+  }
+}
+.icon-life-saver {
+  &:before {
+    content: $icon-life-saver;
+    color: #37b06f;
+  }
+}
+.icon-magnifying-glass {
+  &:before {
+    content: $icon-magnifying-glass;
+    color: #999;
+  }
+}
+.icon-squares {
+  &:before {
+    content: $icon-squares;
+    color: #37b06f;
+  }
+}
+.icon-success-circle {
+  &:before {
+    content: $icon-success-circle;
+    color: #fff;
+  }
+}

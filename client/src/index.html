@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="Description" content="Firestarter">
+
+  <link rel="preload" href="<%=htmlWebpackPlugin.files.chunks.main.css %>" as="style" onload="this.rel='stylesheet'">
+
+  <title>Firestarter</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <link rel="preload" href="<%= htmlWebpackPlugin.files.chunks.main.entry %>" as="script">
+  <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+</body>
+</html>
