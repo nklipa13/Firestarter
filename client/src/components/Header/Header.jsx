@@ -12,7 +12,7 @@ const Header = () => (
       </Link>
 
       <div className="links-wrapper">
-        <NavLink to="/">Explore</NavLink>
+        <NavLink activeClassName="never-active" to="/">Explore</NavLink>
         <NavLink activeClassName="active" to="/start-project">Start a project</NavLink>
       </div>
     </div>
