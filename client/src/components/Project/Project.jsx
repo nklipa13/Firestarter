@@ -1,15 +1,21 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import './Project.scss';
 
-const Project = () => (
+const Project = ({ data }) => (
   <div className="project-wrapper">
-    <div className="width-wrapper">
-      Single Project
-    </div>
+    {data.name}
   </div>
 );
 
-Project.propTypes = {};
+Project.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
-export default Project;
+const mapStateToProps = ({ project }) => ({
+  data: project.data,
+});
+
+export default connect(mapStateToProps)(Project);

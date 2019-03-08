@@ -34,4 +34,10 @@ a {
   max-width: 984px;
   padding: 0 10px;
   margin: 0 auto;
+
+  &.flex {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }
