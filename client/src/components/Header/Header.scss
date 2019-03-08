@@ -1,0 +1,36 @@
+@import "../../common/text";
+@import "../../common/colors";
+@import "../../common/variables";
+
+.header-wrapper {
+  padding: 19px 0;
+  box-shadow: 0px -10px 20px rgba(0, 0, 0, 0.5);
+
+  .width-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo-wrapper {
+    @include hover-transition;
+
+    &:hover img {
+      opacity: 0.7;
+    }
+  }
+
+  .links-wrapper a {
+    @include hover-transition;
+    color: $black;
+
+    &:not(:last-child) { margin-right: 30px; }
+
+    &:hover {
+      opacity: 0.5;
+      text-decoration: underline;
+    }
+
+    &.active { text-decoration: underline; }
+  }
+}
