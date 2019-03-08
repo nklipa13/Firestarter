@@ -49,6 +49,32 @@ module.exports.listProjects = async (req, res) => {
     }
 };
 
+module.exports.updateProjectFunds = async (req, res) => {
+    try {
+        let project = await Project.findById(req.params.projectId).exec();
+
+        // action = 'add'|'remove' u zavisnosti da li zoves kad korisnik funduje ili sklanja funding
+        // type = 1 -> direktno placanje | 2 -> vesting | 3 -> compound
+        // amount = 1 -> koliko ether je uplatio | 2 -> koliko ethera je ubacio/izvadio | 
+        // 3 -> koliko ethera je ubacio/izvadio
+        const { type, action, amount } = req.params;
+
+        if (action === 'add') {
+            project[getParamName(type)] += amount;
+        } else if (action === 'remove') {
+            project[getParamName(type)] -= amount;
+        }
+
+        await project.save();
+
+        res.status(200);
+        res.json({status: 'OK'});
+        
+    } catch(err) {
+        console.log(err);
+    }
+};
+
 module.exports.addProjectLog = async (req, res) => {
     try {
         const { address, sig, msg } = req.params;
@@ -127,7 +153,18 @@ module.exports.addProjectFaq = async (req, res) => {
 };
 
 
-// Helper
+// Helper functions
+
 function onlyWithSig(address, sig, msg) {
     return signature.isValidSignature(address, sig, msg);
+}
+
+function getParamName(type) {
+    if (type === 1) {
+        return 'oneTimePaymentAmount';
+    } else if (type === 2) {
+        return 'lockedInVesting';
+    } else if (type === 3) {
+        return 'lockedInCompund';
+    }
 }
