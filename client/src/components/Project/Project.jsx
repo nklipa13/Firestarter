@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { formatAcc } from '../../services/utils';
+import Tabs from '../Tabs/Tabs';
 
 import './Project.scss';
 
@@ -43,6 +44,28 @@ const Project = ({
 
       <button type="button" className="button uppercase no-wrap">Support the project</button>
     </div>
+
+    <Tabs>
+      <div label="About">
+        About
+        {/* <ProjectAbout /> */}
+      </div>
+
+      <div label="Finance">
+        Finance
+        {/* <ProjectFinance /> */}
+      </div>
+
+      <div label="FAQ">
+        FAQ
+        {/* <ProjectFAQ /> */}
+      </div>
+
+      <div label="Changelog">
+        Changelog
+        {/* <ProjectChangelog /> */}
+      </div>
+    </Tabs>
   </div>
 );
 
