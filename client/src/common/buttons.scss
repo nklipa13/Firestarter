@@ -1,0 +1,30 @@
+@import "../common/text";
+@import "../common/colors";
+@import "../common/variables";
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 7px 34px;
+  font-size: $font-size-regular;
+  @include hover-transition;
+  background: $orange;
+  border-radius: 3px;
+  color: $white;
+  text-align: center;
+  border: 2px solid $orange;
+
+  &:disabled {
+    user-select: none;
+    cursor: not-allowed;
+    background: rgba($orange, 0.6);
+    border: 2px solid rgba($orange, 0.1);
+  }
+
+  &:hover:not(:disabled), &:focus:not(:disabled) {
+    background: $white;
+    color: $orange;
+  }
+}
