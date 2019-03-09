@@ -42,13 +42,14 @@ class HomePage extends Component {
           hasData && (
             <div className="projects">
               {
-                data.map(({
+                data.map((d, index) => ({ ...d, id: index })).map(({
                   projectId,
                   name,
                   description,
                   imageUrl,
+                  id,
                 }) => (
-                  <Link to={`/project/0${projectId}`} className="project">
+                  <Link to={`/project/0${projectId}`} key={id} className="project">
                     <h3>{name}</h3>
                     <img src={imageUrl} alt={name} />
                     <h4>{description}</h4>
