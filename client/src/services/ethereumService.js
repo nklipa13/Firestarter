@@ -81,9 +81,23 @@ export const oneTimeFundContractCall = (sendTxFunc, from, projectId, _amount) =>
   try {
     const contract = await FirestarterContract();
     const value = window._web3.utils.toWei(_amount, 'ether');
-    console.log(contract.methods);
 
     const promise = contract.methods.fundProjectDirectly(projectId).send({ from, value });
+
+    await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const vestFundContractCall = (sendTxFunc, from, projectId, _amount, weeks) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+    const value = window._web3.utils.toWei(_amount, 'ether');
+    const numBlocks = (parseInt(weeks, 10) * 604800) / 15;
+    const promise = contract.methods.fundProjectByVesting(projectId, numBlocks).send({ from, value });
 
     await sendTxFunc(promise);
 

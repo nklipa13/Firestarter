@@ -24,9 +24,9 @@ import {
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
-import { getProjectApiCall, oneTimeFundApiCall } from '../services/api';
+import { getProjectApiCall, oneTimeFundApiCall, vestFundApiCall } from '../services/api';
 import { sendTx } from './notificationsActions';
-import { oneTimeFundContractCall } from '../services/ethereumService';
+import { oneTimeFundContractCall, vestFundContractCall } from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
   {
@@ -254,6 +254,31 @@ const oneTimeFund = (formData, projectId, account, dispatch, getState) => new Pr
 });
 
 /**
+ * Handles the contract and api call for the vesting fund method
+ *
+ * @param formData
+ * @param projectId
+ * @param account
+ * @param dispatch
+ * @param getState
+ *
+ * @return {Promise<any>}
+ */
+const vestFund = (formData, projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => {
+  const proxySendHandler = promise => sendTx(promise, 'Vesting', dispatch, getState);
+
+  try {
+    await vestFundContractCall(proxySendHandler, account, projectId, formData.ethAmount, formData.weeks);
+    const payload = await vestFundApiCall(projectId, parseFloat(formData.ethAmount));
+
+    resolve(payload);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+
+/**
  * Adss funds to the project via 3 types.
  *
  * @param formData {Object}
@@ -271,7 +296,7 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
     let payload = {};
 
     if (type === 'one-time') payload = await oneTimeFund(formData, projectId, account, dispatch, getState);
-    if (type === 'vest') payload = await wait(MOCK_PROJECTS[projectId], 500);
+    if (type === 'vest') payload = await vestFund(formData, projectId, account, dispatch, getState);
     if (type === 'compound') payload = await wait(MOCK_PROJECTS[projectId], 500);
 
     dispatch({ type: PROJECT_FUND_SUCCESS, payload });
