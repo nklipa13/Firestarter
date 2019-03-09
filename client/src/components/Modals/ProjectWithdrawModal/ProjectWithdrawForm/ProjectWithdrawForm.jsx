@@ -15,7 +15,7 @@ const ProjectWithdrawForm = ({
   <form onSubmit={handleSubmit((e) => { onSubmit(e, projectId, closeModal); })} className="form-wrapper">
     <Field
       focus
-      type="number"
+      type="text"
       normalize={val => notGraterThan(val, maxEth)}
       additional={{ min: 0, max: maxEth }}
       id="ethAmount"
@@ -27,13 +27,13 @@ const ProjectWithdrawForm = ({
     />
 
     <Field
-      type="number"
+      type="text"
       normalize={val => notGraterThan(val, maxDai)}
       additional={{ min: 0, max: maxDai }}
       id="daiAmount"
       name="daiAmount"
       labelText={`Withdraw DAI - ${maxDai} DAI available`}
-      placeholder="ETH amount"
+      placeholder="DAI amount"
       component={InputComponent}
       showErrorText
     />

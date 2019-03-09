@@ -9,6 +9,7 @@
   cursor: pointer;
   padding: 7px 34px;
   font-size: $font-size-regular;
+  outline: none;
   @include hover-transition;
   background: $orange;
   border-radius: 3px;
