@@ -5,12 +5,13 @@ import { formatAcc } from '../../services/utils';
 import Tabs from '../Tabs/Tabs';
 import ProjectFinance from './ProjectFinance/ProjectFinance';
 import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
+import ProjectChangelog from './ProjectChangelog/ProjectChangelog';
 
 import './Project.scss';
 
 const Project = ({
   data: {
-    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs,
+    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs, changelog,
   },
 }) => (
   <div className="project-wrapper">
@@ -59,13 +60,8 @@ const Project = ({
       </div>
 
       <div label="Finance"><ProjectFinance data={finance} /></div>
-
       <div label="FAQ"><ProjectFAQ data={faqs} /></div>
-
-      <div label="Changelog">
-        Changelog
-        {/* <ProjectChangelog /> */}
-      </div>
+      <div label="Changelog"><ProjectChangelog data={changelog} /></div>
     </Tabs>
   </div>
 );

@@ -46,6 +46,26 @@ const MOCK_PROJECTS = [
         answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',  // eslint-disable-line
       },
     ],
+    changelog: [
+      {
+        version: 'v2.0.0-alpha',
+        date: '20 October 2019',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', // eslint-disable-line
+        changes: [
+          ' Lorem ipsum dolor sit amet, consectetur.', 'Dolor sit amet, consectetur.',
+          'Consectetur ipsum consectetur sit amet, mipsuminsectetur.', 'Mipsum dolor sit amet, consectetur.',
+        ],
+      },
+      {
+        version: 'v1.9.4',
+        date: '17 September 2019',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', // eslint-disable-line
+        changes: [
+          ' Lorem ipsum dolor sit amet, consectetur.', 'Dolor sit amet, consectetur.',
+          'Consectetur ipsum consectetur sit amet, mipsuminsectetur.', 'Mipsum dolor sit amet, consectetur.',
+        ],
+      },
+    ],
   },
 ];
 

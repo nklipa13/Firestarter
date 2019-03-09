@@ -1,0 +1,14 @@
+.project-changelog-wrapper {
+
+  .item:not(:last-child) {
+    margin-bottom: 30px;
+  }
+
+  .changes-wrapper {
+    padding-left: 25px;
+
+    .change:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
