@@ -12,14 +12,13 @@ import ProjectRoutes from '../Project/ProjectRoutes';
 import StartProject from '../StartProject/StartProject';
 import Loader from '../Loader/Loader';
 import Notification from '../Notification/Notification';
-
+import TxNotifications from '../TxNotifications/TxNotifications';
 
 import '../../common/fonts.scss';
 import './App.scss';
 
 class RoutesWrapper extends Component {
   componentWillMount() {
-    console.log('');
     this.props.silentLogin();
   }
 
@@ -36,6 +35,7 @@ class RoutesWrapper extends Component {
           <div className="app">
             <Header />
             <Notification />
+            <TxNotifications />
 
             <Switch>
               <Route exact path="/" component={HomePage} />

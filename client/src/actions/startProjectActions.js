@@ -14,16 +14,13 @@ import { startProjectApiCall } from '../services/api';
  *
  * @return {Function}
  */
-export const startProject = (formData, history) => async (dispatch) => {
+export const startProject = (formData, history) => async (dispatch, getState) => {
   dispatch({ type: START_PROJECT_REQUEST });
+  const { account } = getState().account;
 
   try {
-    const data = {
-      ...formData,
-      creator: '0x45002669Ad051fd899331328E5F38f97feD075Bc',
-    };
 
-    const payload = await startProjectApiCall(data);
+    const payload = await startProjectApiCall({ ...formData, creator: account });
 
     console.log('payload', payload);
 
