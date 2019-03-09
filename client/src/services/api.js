@@ -53,3 +53,9 @@ export const projectAddQuestionApiCall = (id, formData) => fetch(`${API_URL}/pro
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(formData),
 }).then(res => handleResponse(res));
+
+export const projectAddChangelogApiCall = (id, formData) => fetch(`${API_URL}/project/${id}/log`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData),
+}).then(res => handleResponse(res));

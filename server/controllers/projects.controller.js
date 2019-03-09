@@ -110,6 +110,7 @@ module.exports.addProjectLog = async (req, res) => {
 
         project.logs.push({
             versionNumber: req.body.versionNumber,
+            date: req.body.versionDate,
             description: req.body.description,
             versionChanges: req.body.versionChanges,
         });

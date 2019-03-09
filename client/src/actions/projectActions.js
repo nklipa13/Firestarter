@@ -35,6 +35,7 @@ import {
   getProjectApiCall,
   oneTimeFundApiCall,
   projectAddQuestionApiCall,
+  projectAddChangelogApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
 import {
@@ -207,14 +208,14 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
   dispatch({ type: PROJECT_ADD_CHANGE_REQUEST });
 
   try {
-    const payload = await wait(MOCK_PROJECTS[projectId], 500);
-
-    payload.changelog.unshift({
-      version: formData.version,
-      date: formData.date,
+    const data = {
+      versionNumber: formData.version,
+      versionDate: formData.date,
       description: formData.description, // eslint-disable-line
-      changes: formData.changes.map(c => c.change),
-    });
+      versionChanges: formData.changes.map(c => c.change),
+    };
+
+    const payload = await projectAddChangelogApiCall(projectId, data);
 
     dispatch({ type: PROJECT_ADD_CHANGE_SUCCESS, payload });
     closeModal();
