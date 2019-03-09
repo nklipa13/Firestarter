@@ -8296,9 +8296,10 @@ web3-utils@1.0.0-beta.48:
     randomhex "0.1.5"
     utf8 "2.1.1"
 
-web3@^1.0.0-beta.36:
+web3@^1.0.0-beta.37:
   version "1.0.0-beta.48"
   resolved "https://registry.yarnpkg.com/web3/-/web3-1.0.0-beta.48.tgz#66a3d29cdb40a0d2015cd7e5af081defaa2ec270"
+  integrity sha512-/HfIaRQVScZv0iy6fnEZCsXQbbOmtEB08sa2YaCkRo8nqUQo1C+55VC5sXqjrwKaDs9Xf9qxVTiUUeTbKD+KYg==
   dependencies:
     "@babel/runtime" "^7.3.1"
     "@types/node" "^10.12.18"

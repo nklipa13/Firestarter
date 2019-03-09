@@ -1,3 +1,5 @@
+import { FirestarterContract } from './contractRegistryService';
+
 export const weiToEth = weiVal => window._web3.utils.fromWei(new window._web3.utils.BN(`${weiVal}`));
 
 export const ethToWei = ethVal => window._web3.utils.toWei(`${ethVal}`);
@@ -61,3 +63,16 @@ export const getBalance = async (_account) => {
   // return new window._web3.utils.BN(balanceEth);
   return balanceEth;
 };
+
+export const startProjectContractCall = (sendTxFunc, from, name) => new Promise(async (resolve, reject) => {
+  try {
+    const contract = await FirestarterContract();
+
+    const promise = contract.methods['addProject(string)'](name).send({ from });
+    const receipt = await sendTxFunc(promise);
+
+    resolve(window._web3.utils.hexToNumber(receipt.logs[0].topics[1]));
+  } catch (err) {
+    reject(err);
+  }
+});
