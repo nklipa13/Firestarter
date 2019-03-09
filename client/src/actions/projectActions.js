@@ -278,7 +278,7 @@ const vestFund = (formData, projectId, account, dispatch, getState) => new Promi
 
   try {
     await vestFundContractCall(proxySendHandler, account, projectId, formData.ethAmount, formData.weeks);
-    const payload = await vestFundApiCall(projectId, parseFloat(formData.ethAmount));
+    const payload = await vestFundApiCall(projectId, parseFloat(formData.ethAmount), account);
 
     resolve(payload);
   } catch (err) {
@@ -303,7 +303,7 @@ const compoundFund = (formData, projectId, account, dispatch, getState) => new P
 
   try {
     await compoundFundContractCall(proxySendHandler1, proxySendHandler2, account, projectId, formData.daiAmount);
-    const payload = await compoundFundApiCall(projectId, parseFloat(formData.daiAmount));
+    const payload = await compoundFundApiCall(projectId, parseFloat(formData.daiAmount), account);
 
     resolve(payload);
   } catch (err) {

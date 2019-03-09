@@ -13,7 +13,7 @@ import './Project.scss';
 const Project = ({
   data, account,
   data: {
-    name, description, imageUrl, ethCollected, date,
+    name, description, imageUrl, ethCollected, date, daiCollected,
     numSupporters, creator, aboutProject, faq, projectId, ethWithdraw, daiWithdraw, aboutCreator, logs,
   },
   openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
@@ -48,7 +48,7 @@ const Project = ({
       <div className="action-wrapper">
         <div className="stats-wrapper">
           <div className="stat text-bold heading-4">{numSupporters} supporters</div>
-          <div className="stat text-bold heading-4">{ethCollected} ETH collected</div>
+          <div className="stat text-bold heading-4">{ethCollected} ETH / {daiCollected} DAI earned</div>
           <div className="stat text-bold heading-4">{ calcDaysPassed(date) } days passed</div>
         </div>
 

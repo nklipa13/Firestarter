@@ -15,6 +15,7 @@ const projectSchema = new mongoose.Schema({
     supportersAddresses: [String],
     numSupporters: {type: Number, default: '0'},
     ethCollected: {type: Number, default: 0},
+    daiCollected: {type: Number, default: 0},
     oneTimePaymentAmount: {type: Number, default: 0},
     lockedInVesting: {type: Number, default: 0},
     earnedInVesting: {type: String, default: '0'}, // contract info

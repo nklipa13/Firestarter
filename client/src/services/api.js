@@ -28,14 +28,18 @@ export const oneTimeFundApiCall = (id, amount, account) => fetch(`${API_URL}/pro
   }),
 }).then(res => handleResponse(res));
 
-export const vestFundApiCall = (id, amount) => fetch(`${API_URL}/project/${id}/funds`, {
+export const vestFundApiCall = (id, amount, account) => fetch(`${API_URL}/project/${id}/funds`, {
   method: 'PUT',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ action: 'add', type: 2, amount }),
+  body: JSON.stringify({
+    action: 'add', type: 2, amount, account,
+  }),
 }).then(res => handleResponse(res));
 
-export const compoundFundApiCall = (id, amount) => fetch(`${API_URL}/project/${id}/funds`, {
+export const compoundFundApiCall = (id, amount, account) => fetch(`${API_URL}/project/${id}/funds`, {
   method: 'PUT',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ action: 'add', type: 3, amount }),
+  body: JSON.stringify({
+    action: 'add', type: 3, amount, account,
+  }),
 }).then(res => handleResponse(res));
