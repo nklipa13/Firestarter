@@ -64,19 +64,18 @@ module.exports.updateProjectFunds = async (req, res) => {
         // 3 -> koliko ethera je ubacio/izvadio
         const { type, action, amount } = req.params;
 
-        const numAmount = web3.utils.toBN(amount);
-        const numValue = web3.utils.toBN(project[getParamName(type)]);
+        const numAmount = parseFloat(amount);
 
         if (action === 'add') {
-            project[getParamName(type)] = (numAmount.add(numValue)).toString();
+            project[getParamName(type)] += numAmount;
         } else if (action === 'remove') {
-            project[getParamName(type)] = (numAmount.sub(numValue)).toString();
+            project[getParamName(type)] -= numAmount;
         }
 
         await project.save();
 
         res.status(200);
-        res.json({status: 'OK'});
+        res.json(project);
         
     } catch(err) {
         console.log(err);
