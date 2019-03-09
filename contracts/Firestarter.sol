@@ -3,6 +3,7 @@ pragma solidity ^0.5.0;
 import "./Vesting.sol";
 import "./CompoundInterface.sol";
 import "./ERC20.sol";
+import "./VotingMachineCallback.sol";
 
 contract Firestarter is Vesting {
 
@@ -17,6 +18,8 @@ contract Firestarter is Vesting {
 	struct Fund {
 		uint amount;
 		FundType fundType;
+		uint canceled;
+		uint end;
 	}
 
 	struct Project {
@@ -33,6 +36,7 @@ contract Firestarter is Vesting {
 		uint vestRate;
 		uint ethWithdrawn;
 		uint daiWithdrawn;
+		address votingMachineCallback;
 	}
 
 	Project[] public projects;
@@ -46,7 +50,7 @@ contract Firestarter is Vesting {
 	event ProjectWithdraw(uint indexed id, uint ethAmount, uint daiAmount, string message);
 
 	constructor() public {
-		// ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
+		ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
 	}
 
 	function addProject(string memory _name) public {
@@ -54,6 +58,7 @@ contract Firestarter is Vesting {
 		Project memory project;
 		project.owner = msg.sender;
 		project.name = _name;
+		project.votingMachineCallback = address(new VotingMachineCallback(totalProjects()));
 
 		projects.push(project);
 
@@ -68,7 +73,9 @@ contract Firestarter is Vesting {
 
 		projects[_id].allFunds[msg.sender].push(Fund({
 				amount: msg.value,
-				fundType: FundType.DirectType
+				fundType: FundType.DirectType,
+				canceled: 0,
+				end: 0
 			}));
 
 		emit ProjectFunded(_id, msg.value, msg.sender, FundType.DirectType);
@@ -79,7 +86,9 @@ contract Firestarter is Vesting {
 
 		projects[_id].allFunds[msg.sender].push(Fund({
 				amount: msg.value,
-				fundType: FundType.VestingType
+				fundType: FundType.VestingType,
+				canceled: 0,
+				end: block.number + _numOfBlocks
 			}));
 
 		addVestingRecord(msg.value / _numOfBlocks, block.number + _numOfBlocks);
@@ -104,7 +113,9 @@ contract Firestarter is Vesting {
 
 		projects[_id].allFunds[msg.sender].push(Fund({
 			amount: _daiAmount,
-			fundType: FundType.CompoundType
+			fundType: FundType.CompoundType,
+			canceled: 0,
+			end: 0
 		}));
         
         emit ProjectFunded(_id, _daiAmount, msg.sender, FundType.CompoundType);
@@ -117,7 +128,7 @@ contract Firestarter is Vesting {
 		updateBalance(_projectId);
 		Project memory project = projects[_projectId];
 
-		require(project.owner == msg.sender);
+		require(project.owner == msg.sender || project.votingMachineCallback == msg.sender);
 		require(_ethBalance <= (project.funds - project.ethWithdrawn));
 		require(_daiBalance <= (currentFullBalance - project.daiFunds - project.daiWithdrawn));
 
@@ -140,6 +151,19 @@ contract Firestarter is Vesting {
 		projects[_projectId].totalWithdraws++;
 
 		emit ProjectWithdraw(_projectId, _ethBalance, _daiBalance, _message);
+	}
+
+	function getMaxWithdraws(uint _projectId) public view returns(uint maxEth, uint maxDai) {
+		uint currentFullBalance = compound.getSupplyBalance(address(this), DAI_ADDRESS);
+
+		// update before we try to get it
+		uint balance;
+		uint rate;
+		(balance, rate) = getNewBalanceAndRateView(_projectId);
+		Project memory project = projects[_projectId];
+
+		maxEth = (balance - project.ethWithdrawn);
+		maxDai = (currentFullBalance - project.daiFunds - project.daiWithdrawn);
 	}
 	
 
@@ -221,6 +245,18 @@ contract Firestarter is Vesting {
 		if (projects[_projectId].allFunds[_user].length == 0) {
 			projects[_projectId].investors.push(_user);
 		}
+	}
+
+	function userFundedProject(uint _projectId, address _user) public view returns(uint) {
+		Fund[] memory userFunds = projects[_projectId].allFunds[_user];
+
+		uint count = userFunds.length;
+		uint balance = 0;
+		for (uint i=0; i<count; i++) {
+			balance += userFunds[i].amount;
+		}
+
+		return balance;
 	}
 
 	function totalProjects() public view returns(uint) {

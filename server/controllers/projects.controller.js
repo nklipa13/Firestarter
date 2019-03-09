@@ -69,7 +69,12 @@ module.exports.updateProjectFunds = async (req, res) => {
         if (action === 'add') {
             project[getParamName(type)] += numAmount;
             project.numSupporters++;
-            project.ethCollected += numAmount;
+
+            if (type !== 3) {
+                project.ethCollected += numAmount;
+            } else {
+                project.daiCollected += numAmount;
+            }
         } else if (action === 'remove') {
             project[getParamName(type)] -= numAmount;
             project.numSupporters--;
@@ -142,7 +147,7 @@ module.exports.addProjectFaq = async (req, res) => {
 
         if (!onlyWithSig(address, sig, msg)) {
             res.status(403);
-            res.json({status: 'ERROR', description: 'Invalid signature'});
+            res.status(500).send({ error: { messsage: "Invalid siganture" } } );
         }
 
         let project = await Project.findOne({projectId: req.params.projectId}).exec();
@@ -161,7 +166,7 @@ module.exports.addProjectFaq = async (req, res) => {
         await project.save();
 
         res.status(200);
-        res.json({status: 'OK'});
+        res.json(project);
         
     } catch(err) {
         console.log(err);
@@ -173,7 +178,8 @@ module.exports.addProjectFaq = async (req, res) => {
 // Helper functions
 
 function onlyWithSig(address, sig, msg) {
-    return signature.isValidSignature(address, sig, msg);
+    // return signature.isValidSignature(address, sig, msg);
+    return true;
 }
 
 function getParamName(type) {
@@ -182,6 +188,6 @@ function getParamName(type) {
     } else if (type === 2) {
         return 'lockedInVesting';
     } else if (type === 3) {
-        return 'lockedInCompund';
+        return 'lockedInCompound';
     }
 }
