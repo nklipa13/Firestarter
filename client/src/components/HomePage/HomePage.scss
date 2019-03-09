@@ -1,0 +1,42 @@
+@import "../../common/text";
+@import "../../common/colors";
+@import "../../common/variables";
+@import "../../common/buttons";
+
+.home {
+  &.width-container {
+    margin: 9rem auto;
+  }
+  .heading-2, .heading-3, .heading-4  {
+    text-align: center;
+  }
+  .projects {
+    margin: 9rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 3rem;
+    grid-row-gap: 4.5rem;
+    .project {
+      h3 {
+        margin-bottom: 1.5rem;
+        font-family: $bold-light;
+      }
+      h4 {
+        font-family: $bold-light;
+      }
+      img {
+        width: 100%;
+        height: 272px;
+        object-fit: cover;
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+  .cta {
+    text-align: center;
+    .button {
+      margin-top: 3rem;
+    }
+  }
+}
+
