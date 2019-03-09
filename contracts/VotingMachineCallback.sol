@@ -22,12 +22,20 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
 
 	event ProposalCreated(bytes32 indexed proposalId, address indexed proposer);
 	event ProposalFinished(bytes32 indexed proposalId, int decision);
+	event ProposalVote(bytes32 indexed proposalId, uint vote, address indexed voter);
 
 	constructor(uint _projectId) public {
 		projectId = _projectId;
 		firestarter = msg.sender;
 		absoluteVote = new AbsoluteVote();
 		paramsHash = absoluteVote.setParameters(51, address(this)); 
+	}
+
+	function vote(bytes32 _proposalId, bool yes) public {
+
+        absoluteVote.vote(_proposalId, yes?1:0, 0, msg.sender);
+
+        emit ProposalVote(_proposalId, yes?1:0, msg.sender);
 	}
 
 	function createProposal() public {
