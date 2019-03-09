@@ -28,7 +28,13 @@ import {
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
-import { getProjectApiCall, oneTimeFundApiCall } from '../services/api';
+import {
+  compoundFundApiCall,
+  vestFundApiCall,
+  getAllProjectsApiCall,
+  getProjectApiCall,
+  oneTimeFundApiCall,
+} from '../services/api';
 import { sendTx } from './notificationsActions';
 import {
   oneTimeFundContractCall,

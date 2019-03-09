@@ -20,7 +20,6 @@ class HomePage extends Component {
       data,
       hasData,
     } = this.props;
-    console.log(data);
     return (
       <div className="home width-container flex">
         <h1 className="heading-2 text-large-margin">
