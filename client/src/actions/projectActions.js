@@ -18,6 +18,9 @@ import {
   PROJECT_WITHDRAW_FAILURE,
   PROJECT_WITHDRAW_RESET,
 
+  PROJECT_FUND_REQUEST,
+  PROJECT_FUND_SUCCESS,
+  PROJECT_FUND_FAILURE,
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
@@ -220,6 +223,31 @@ export const projectWithdraw = (formData, projectId, closeModal) => async (dispa
  * @return {Function}
  */
 export const resetProjectWithdraw = () => (dispatch) => { dispatch({ type: PROJECT_WITHDRAW_RESET }); };
+
+/**
+ * Adss funds to the project via 3 types.
+ *
+ * @param formData {Object}
+ * @param projectId {String}
+ * @param closeModal {Function}
+ * @param type {String}
+ *
+ * @return {Function}
+ */
+export const fundProject = (formData, projectId, closeModal, type) => async (dispatch) => {
+  dispatch({ type: PROJECT_FUND_REQUEST });
+
+  try {
+    let payload = {};
+
+    if (type === 'one-time') payload = await wait(MOCK_PROJECTS[projectId], 500);
+
+    dispatch({ type: PROJECT_FUND_SUCCESS, payload });
+    closeModal();
+  } catch (err) {
+    dispatch({ type: PROJECT_FUND_FAILURE, payload: err.message });
+  }
+};
 
 /**
  * Resets the fund project forms

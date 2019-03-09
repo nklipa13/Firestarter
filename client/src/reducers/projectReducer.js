@@ -18,6 +18,9 @@ import {
   PROJECT_WITHDRAW_FAILURE,
   PROJECT_WITHDRAW_RESET,
 
+  PROJECT_FUND_REQUEST,
+  PROJECT_FUND_SUCCESS,
+  PROJECT_FUND_FAILURE,
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 
@@ -135,6 +138,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         withdrawing: false,
         withdrawingError: '',
+      };
+
+    case PROJECT_FUND_REQUEST:
+      return { ...state, funding: true, fundingError: '' };
+
+    case PROJECT_FUND_SUCCESS:
+      return {
+        ...state,
+        funding: false,
+        fundingError: '',
+        data: payload,
+      };
+
+    case PROJECT_FUND_FAILURE:
+      return {
+        ...state,
+        funding: false,
+        fundingError: payload,
       };
 
     case PROJECT_FUND_RESET:

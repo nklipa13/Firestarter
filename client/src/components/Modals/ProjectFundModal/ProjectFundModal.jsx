@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import ModalHeader from '../ModalHeader';
 import Tabs from '../../Tabs/Tabs';
 import { resetProjectFundForms } from '../../../actions/projectActions';
+import ProjectOneTimeForm from './ProjectOneTimeForm/ProjectOneTimeForm';
+
+import './ProjectFundModal.scss';
 
 class ProjectFundModal extends Component {
   componentWillUnmount() {
@@ -18,7 +21,9 @@ class ProjectFundModal extends Component {
         <ModalHeader closeModal={closeModal} />
 
         <Tabs>
-          <div label="One time">One time</div>
+          <div label="One time">
+            <ProjectOneTimeForm projectId={projectId} closeModal={closeModal} />
+          </div>
           <div label="Vest">Vest</div>
           <div label="Compound">Compound</div>
         </Tabs>
