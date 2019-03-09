@@ -62,21 +62,22 @@ module.exports.updateProjectFunds = async (req, res) => {
         // type = 1 -> direktno placanje | 2 -> vesting | 3 -> compound
         // amount = 1 -> koliko ether je uplatio | 2 -> koliko ethera je ubacio/izvadio | 
         // 3 -> koliko ethera je ubacio/izvadio
-        const { type, action, amount } = req.params;
+        const { type, action, amount } = req.body;
 
-        const numAmount = web3.utils.toBN(amount);
-        const numValue = web3.utils.toBN(project[getParamName(type)]);
+        const numAmount = parseFloat(amount);
 
         if (action === 'add') {
-            project[getParamName(type)] = (numAmount.add(numValue)).toString();
+            project[getParamName(type)] += numAmount;
+            project.numSupporters++;
         } else if (action === 'remove') {
-            project[getParamName(type)] = (numAmount.sub(numValue)).toString();
+            project[getParamName(type)] -= numAmount;
+            project.numSupporters--;
         }
 
         await project.save();
 
         res.status(200);
-        res.json({status: 'OK'});
+        res.json(project);
         
     } catch(err) {
         console.log(err);
