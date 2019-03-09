@@ -4,6 +4,8 @@ const Project = mongoose.model('Project');
 
 const signature = require('../services/signature');
 
+const web3 = require('web3');
+
 require('../models/projects.model');
 
 module.exports.addProject = async (req, res) => {
@@ -21,7 +23,7 @@ module.exports.addProject = async (req, res) => {
 
 module.exports.getProject = async (req, res) => {
     try {
-        const id = req.params.id;
+        const id = req.params.projectId;
 
         console.log(id);
 
@@ -59,10 +61,13 @@ module.exports.updateProjectFunds = async (req, res) => {
         // 3 -> koliko ethera je ubacio/izvadio
         const { type, action, amount } = req.params;
 
+        const numAmount = web3.utils.toBN(amount);
+        const numValue = web3.utils.toBN(project[getParamName(type)]);
+
         if (action === 'add') {
-            project[getParamName(type)] += amount;
+            project[getParamName(type)] = (numAmount.add(numValue)).toString();
         } else if (action === 'remove') {
-            project[getParamName(type)] -= amount;
+            project[getParamName(type)] = (numAmount.sub(numValue)).toString();
         }
 
         await project.save();

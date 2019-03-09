@@ -12,12 +12,12 @@ const projectSchema = new mongoose.Schema({
     imageUrl: {type: String},
     date: {type: Date, default: Date.now, required: true},
     numSupporters: {type: Number},
-    ethCollected: {type: Number},
-    oneTimePaymentAmount: {type: Number},
-    lockedInVesting: {type: Number},
-    earnedInVesting: {type: Number}, // contract info
-    lockedInCompound: {type: Number},
-    earnedInCompund: {type: Number}, // contract info
+    ethCollected: {type: String, default: '0'},
+    oneTimePaymentAmount: {type: String, default: '0'},
+    lockedInVesting: {type: String, default: '0'},
+    earnedInVesting: {type: String, default: '0'}, // contract info
+    lockedInCompound: {type: String, default: '0'},
+    earnedInCompund: {type: String, default: '0'}, // contract info
     logs: [logsSchema],
     faq: [faqSchema],
 });
