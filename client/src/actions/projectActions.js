@@ -241,6 +241,7 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
     let payload = {};
 
     if (type === 'one-time') payload = await wait(MOCK_PROJECTS[projectId], 500);
+    if (type === 'vest') payload = await wait(MOCK_PROJECTS[projectId], 500);
 
     dispatch({ type: PROJECT_FUND_SUCCESS, payload });
     closeModal();

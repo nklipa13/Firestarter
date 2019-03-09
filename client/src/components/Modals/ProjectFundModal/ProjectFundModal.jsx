@@ -5,6 +5,7 @@ import ModalHeader from '../ModalHeader';
 import Tabs from '../../Tabs/Tabs';
 import { resetProjectFundForms } from '../../../actions/projectActions';
 import ProjectOneTimeForm from './ProjectOneTimeForm/ProjectOneTimeForm';
+import ProjectVestForm from './ProjectVestForm/ProjectVestForm';
 
 import './ProjectFundModal.scss';
 
@@ -24,7 +25,11 @@ class ProjectFundModal extends Component {
           <div label="One time">
             <ProjectOneTimeForm projectId={projectId} closeModal={closeModal} />
           </div>
-          <div label="Vest">Vest</div>
+
+          <div label="Vest">
+            <ProjectVestForm projectId={projectId} closeModal={closeModal} />
+          </div>
+
           <div label="Compound">Compound</div>
         </Tabs>
       </div>
