@@ -1,4 +1,8 @@
 // Register modal types here
-export const TEST_MODAL = 'TEST_MODAL';
+import ProjectAddQuestionModal from './ProjectAddQuestionModal/ProjectAddQuestionModal';
 
-export default {};
+export const PROJECT_ADD_QUESTION_MODAL = 'PROJECT_ADD_QUESTION_MODAL';
+
+export default {
+  [PROJECT_ADD_QUESTION_MODAL]: ProjectAddQuestionModal,
+};

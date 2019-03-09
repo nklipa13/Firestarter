@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { openProjectAddQuestionModal } from '../../../actions/modalActions';
 
 import './ProjectFAQ.scss';
 
-const ProjectFAQ = ({ data }) => (
+const ProjectFAQ = ({
+  data, openProjectAddQuestionModal,
+}) => (
   <div className="project-faq-wrapper">
+    <button
+      className="button uppercase text-large-margin"
+      type="button"
+      onClick={openProjectAddQuestionModal}
+    >
+      Add a question
+    </button>
+
     {
       data.map(({ question, answer }) => (
         <div className="item" key={question}>
@@ -18,6 +30,11 @@ const ProjectFAQ = ({ data }) => (
 
 ProjectFAQ.propTypes = {
   data: PropTypes.array.isRequired,
+  openProjectAddQuestionModal: PropTypes.func.isRequired,
 };
 
-export default ProjectFAQ;
+const mapDispatchToProps = {
+  openProjectAddQuestionModal,
+};
+
+export default connect(null, mapDispatchToProps)(ProjectFAQ);
