@@ -83,7 +83,6 @@ export const oneTimeFundContractCall = (sendTxFunc, from, projectId, _amount) =>
     const value = window._web3.utils.toWei(_amount, 'ether');
     console.log(contract.methods);
 
-    // KUCO MORA VALUE A NE AMOUNT!!!!!!!!!!!!!!!!!
     const promise = contract.methods.fundProjectDirectly(projectId).send({ from, value });
 
     await sendTxFunc(promise);
