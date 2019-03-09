@@ -3,6 +3,10 @@ import {
   GET_PROJECT_SUCCESS,
   GET_PROJECT_FAILURE,
 
+  GET_ALL_PROJECTS_REQUEST,
+  GET_ALL_PROJECTS_SUCCESS,
+  GET_ALL_PROJECTS_FAILURE,
+
   PROJECT_ADD_QUESTION_REQUEST,
   PROJECT_ADD_QUESTION_SUCCESS,
   PROJECT_ADD_QUESTION_FAILURE,
@@ -24,9 +28,19 @@ import {
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
-import { getProjectApiCall, oneTimeFundApiCall } from '../services/api';
+import {
+  compoundFundApiCall,
+  vestFundApiCall,
+  getAllProjectsApiCall,
+  getProjectApiCall,
+  oneTimeFundApiCall,
+} from '../services/api';
 import { sendTx } from './notificationsActions';
-import { oneTimeFundContractCall } from '../services/ethereumService';
+import {
+  oneTimeFundContractCall,
+  vestFundContractCall,
+  compoundFundContractCall,
+} from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
   {
@@ -127,6 +141,25 @@ export const getProject = id => async (dispatch) => {
     dispatch({ type: GET_PROJECT_SUCCESS, payload: payload[0] });
   } catch (err) {
     dispatch({ type: GET_PROJECT_FAILURE, payload: err.message });
+  }
+};
+
+/**
+ * Gets all projects
+ *
+ * @return {Function}
+ */
+export const getAllProjects = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_PROJECTS_REQUEST });
+
+  try {
+    const payload = await getAllProjectsApiCall();
+
+    if (payload.length === 0) throw new Error('Projects not found');
+
+    dispatch({ type: GET_ALL_PROJECTS_SUCCESS, payload });
+  } catch (err) {
+    dispatch({ type: GET_ALL_PROJECTS_FAILURE, payload: err.message });
   }
 };
 
@@ -245,7 +278,56 @@ const oneTimeFund = (formData, projectId, account, dispatch, getState) => new Pr
 
   try {
     await oneTimeFundContractCall(proxySendHandler, account, projectId, formData.ethAmount);
-    const payload = await oneTimeFundApiCall(projectId, parseFloat(formData.ethAmount));
+    const payload = await oneTimeFundApiCall(projectId, parseFloat(formData.ethAmount), account);
+
+    resolve(payload);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+/**
+ * Handles the contract and api call for the vesting fund method
+ *
+ * @param formData
+ * @param projectId
+ * @param account
+ * @param dispatch
+ * @param getState
+ *
+ * @return {Promise<any>}
+ */
+const vestFund = (formData, projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => {
+  const proxySendHandler = promise => sendTx(promise, 'Vest', dispatch, getState);
+
+  try {
+    await vestFundContractCall(proxySendHandler, account, projectId, formData.ethAmount, formData.weeks);
+    const payload = await vestFundApiCall(projectId, parseFloat(formData.ethAmount), account);
+
+    resolve(payload);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+/**
+ * Handles the contract and api call for the compound fund method
+ *
+ * @param formData
+ * @param projectId
+ * @param account
+ * @param dispatch
+ * @param getState
+ *
+ * @return {Promise<any>}
+ */
+const compoundFund = (formData, projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => {
+  const proxySendHandler1 = promise => sendTx(promise, 'Approve dai', dispatch, getState);
+  const proxySendHandler2 = promise => sendTx(promise, 'Compound', dispatch, getState);
+
+  try {
+    await compoundFundContractCall(proxySendHandler1, proxySendHandler2, account, projectId, formData.daiAmount);
+    const payload = await compoundFundApiCall(projectId, parseFloat(formData.daiAmount), account);
 
     resolve(payload);
   } catch (err) {
@@ -271,8 +353,8 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
     let payload = {};
 
     if (type === 'one-time') payload = await oneTimeFund(formData, projectId, account, dispatch, getState);
-    if (type === 'vest') payload = await wait(MOCK_PROJECTS[projectId], 500);
-    if (type === 'compound') payload = await wait(MOCK_PROJECTS[projectId], 500);
+    if (type === 'vest') payload = await vestFund(formData, projectId, account, dispatch, getState);
+    if (type === 'compound') payload = await compoundFund(formData, projectId, account, dispatch, getState);
 
     dispatch({ type: PROJECT_FUND_SUCCESS, payload });
     closeModal();

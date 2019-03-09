@@ -3,6 +3,10 @@ import {
   GET_PROJECT_SUCCESS,
   GET_PROJECT_FAILURE,
 
+  GET_ALL_PROJECTS_REQUEST,
+  GET_ALL_PROJECTS_SUCCESS,
+  GET_ALL_PROJECTS_FAILURE,
+
   PROJECT_ADD_QUESTION_REQUEST,
   PROJECT_ADD_QUESTION_SUCCESS,
   PROJECT_ADD_QUESTION_FAILURE,
@@ -65,6 +69,24 @@ export default (state = INITIAL_STATE, action) => {
       };
 
     case GET_PROJECT_FAILURE:
+      return {
+        ...state,
+        gettingProject: false,
+        gettingProjectError: payload,
+      };
+
+    case GET_ALL_PROJECTS_REQUEST:
+      return { ...state, gettingProject: true, gettingProjectError: '' };
+
+    case GET_ALL_PROJECTS_SUCCESS:
+      return {
+        ...state,
+        gettingProject: false,
+        gettingProjectError: '',
+        data: payload,
+      };
+
+    case GET_ALL_PROJECTS_FAILURE:
       return {
         ...state,
         gettingProject: false,

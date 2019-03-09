@@ -62,17 +62,25 @@ module.exports.updateProjectFunds = async (req, res) => {
         // type = 1 -> direktno placanje | 2 -> vesting | 3 -> compound
         // amount = 1 -> koliko ether je uplatio | 2 -> koliko ethera je ubacio/izvadio | 
         // 3 -> koliko ethera je ubacio/izvadio
-        const { type, action, amount } = req.body;
+        const { type, action, amount, account } = req.body;
 
         const numAmount = parseFloat(amount);
 
         if (action === 'add') {
             project[getParamName(type)] += numAmount;
             project.numSupporters++;
+
+            if (type !== 3) {
+                project.ethCollected += numAmount;
+            } else {
+                project.daiCollected += numAmount;
+            }
         } else if (action === 'remove') {
             project[getParamName(type)] -= numAmount;
             project.numSupporters--;
         }
+
+        project.supportersAddresses.indexOf(account) === -1 ? project.supportersAddresses.push(account) : null;
 
         await project.save();
 
@@ -139,7 +147,7 @@ module.exports.addProjectFaq = async (req, res) => {
 
         if (!onlyWithSig(address, sig, msg)) {
             res.status(403);
-            res.json({status: 'ERROR', description: 'Invalid signature'});
+            res.status(500).send({ error: { messsage: "Invalid siganture" } } );
         }
 
         let project = await Project.findOne({projectId: req.params.projectId}).exec();
@@ -158,7 +166,7 @@ module.exports.addProjectFaq = async (req, res) => {
         await project.save();
 
         res.status(200);
-        res.json({status: 'OK'});
+        res.json(project);
         
     } catch(err) {
         console.log(err);
@@ -170,7 +178,8 @@ module.exports.addProjectFaq = async (req, res) => {
 // Helper functions
 
 function onlyWithSig(address, sig, msg) {
-    return signature.isValidSignature(address, sig, msg);
+    // return signature.isValidSignature(address, sig, msg);
+    return true;
 }
 
 function getParamName(type) {
@@ -179,6 +188,6 @@ function getParamName(type) {
     } else if (type === 2) {
         return 'lockedInVesting';
     } else if (type === 3) {
-        return 'lockedInCompund';
+        return 'lockedInCompound';
     }
 }
