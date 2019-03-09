@@ -37,7 +37,9 @@ export const openProjectAddQuestionModal = id => (dispatch) => {
 
 /**
  * Opens project add change modal for the owner to add a version to the changelog
+ *
+ * @param id {Number}
  */
-export const openProjectAddChangeModal = () => (dispatch) => {
-  dispatch(toggleModal(PROJECT_ADD_CHANGE_MODAL, { width: 647 }, true));
+export const openProjectAddChangeModal = id => (dispatch) => {
+  dispatch(toggleModal(PROJECT_ADD_CHANGE_MODAL, { width: 647, projectId: id }, true));
 };

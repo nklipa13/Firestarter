@@ -59,7 +59,7 @@ ProjectAddQuestionForm.propTypes = {
 };
 
 const ProjectAddQuestionFormComp = reduxForm({
-  form: 'projectAddQuestionFormComp',
+  form: 'projectAddQuestionForm',
   validate: projectAddQuestionFormValidator,
 })(ProjectAddQuestionForm);
 

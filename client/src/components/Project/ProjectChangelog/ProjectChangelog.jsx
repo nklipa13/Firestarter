@@ -6,13 +6,13 @@ import { openProjectAddChangeModal } from '../../../actions/modalActions';
 import './ProjectChangelog.scss';
 
 const ProjectChangelog = ({
-  data, openProjectAddChangeModal,
+  data, openProjectAddChangeModal, id,
 }) => (
   <div className="project-changelog-wrapper">
     <button
       className="button uppercase text-large-margin"
       type="button"
-      onClick={openProjectAddChangeModal}
+      onClick={() => { openProjectAddChangeModal(id); }}
     >
       Add a new version
     </button>
@@ -43,6 +43,7 @@ const ProjectChangelog = ({
 
 ProjectChangelog.propTypes = {
   data: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
   openProjectAddChangeModal: PropTypes.func.isRequired,
 };
 

@@ -61,7 +61,7 @@ const Project = ({
 
       <div label="Finance"><ProjectFinance data={finance} /></div>
       <div label="FAQ"><ProjectFAQ data={faqs} id={id} /></div>
-      <div label="Changelog"><ProjectChangelog data={changelog} /></div>
+      <div label="Changelog"><ProjectChangelog data={changelog} id={id} /></div>
     </Tabs>
   </div>
 );
