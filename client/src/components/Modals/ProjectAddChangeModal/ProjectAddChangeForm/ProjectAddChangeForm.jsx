@@ -45,8 +45,6 @@ const ProjectAddChangeForm = ({
     { !submittingForm && submittingError && <div className="submit-error-wrapper">{submittingError}</div> }
 
     <div className="buttons-wrapper">
-      <button type="button" className="button" onClick={closeModal}>Cancel</button>
-
       <button
         type="submit"
         className="button uppercase"

@@ -12,6 +12,8 @@ import {
   PROJECT_ADD_CHANGE_SUCCESS,
   PROJECT_ADD_CHANGE_FAILURE,
   PROJECT_ADD_CHANGE_RESET,
+
+  PROJECT_WITHDRAW_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 
@@ -179,3 +181,10 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
  * @return {Function}
  */
 export const resetProjectAddChange = () => (dispatch) => { dispatch({ type: PROJECT_ADD_CHANGE_RESET }); };
+
+/**
+ * Resets the withdraw funds from project form state
+ *
+ * @return {Function}
+ */
+export const resetProjectWithdraw = () => (dispatch) => { dispatch({ type: PROJECT_WITHDRAW_RESET }); };

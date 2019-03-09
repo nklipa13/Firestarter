@@ -12,6 +12,8 @@ import {
   PROJECT_ADD_CHANGE_SUCCESS,
   PROJECT_ADD_CHANGE_FAILURE,
   PROJECT_ADD_CHANGE_RESET,
+
+  PROJECT_WITHDRAW_RESET,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -23,6 +25,9 @@ const INITIAL_STATE = {
 
   addingChange: false,
   addingChangeError: '',
+
+  withdrawing: false,
+  withdrawingError: '',
 
   data: {},
 };
@@ -97,6 +102,13 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         addingChange: false,
         addingChangeError: '',
+      };
+
+    case PROJECT_WITHDRAW_RESET:
+      return {
+        ...state,
+        withdrawing: false,
+        withdrawingError: '',
       };
 
     default:

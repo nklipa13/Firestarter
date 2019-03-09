@@ -8,7 +8,7 @@ import ModalHeader from '../ModalHeader';
 import './ProjectAddChangeModal.scss';
 
 class ProjectAddChangeModal extends Component {
-  componentWillMount() {
+  componentWillUnmount() {
     this.props.resetProjectAddChange();
   }
 
