@@ -9,7 +9,11 @@ import { fundProject } from '../../../../actions/projectActions';
 const ProjectVestForm = ({
   handleSubmit, pristine, invalid, submittingForm, submittingError, closeModal, onSubmit, projectId,
 }) => (
-  <form onSubmit={handleSubmit((e) => { onSubmit(e, projectId, closeModal, 'vest'); })} className="form-wrapper">
+  <form
+    onSubmit={handleSubmit((e) => { onSubmit(e, projectId, closeModal, 'vest'); })}
+    className="form-wrapper"
+    noValidate
+  >
     <Field
       focus
       type="number"

@@ -62,17 +62,20 @@ module.exports.updateProjectFunds = async (req, res) => {
         // type = 1 -> direktno placanje | 2 -> vesting | 3 -> compound
         // amount = 1 -> koliko ether je uplatio | 2 -> koliko ethera je ubacio/izvadio | 
         // 3 -> koliko ethera je ubacio/izvadio
-        const { type, action, amount } = req.body;
+        const { type, action, amount, account } = req.body;
 
         const numAmount = parseFloat(amount);
 
         if (action === 'add') {
             project[getParamName(type)] += numAmount;
             project.numSupporters++;
+            project.ethCollected += numAmount;
         } else if (action === 'remove') {
             project[getParamName(type)] -= numAmount;
             project.numSupporters--;
         }
+
+        project.supportersAddresses.indexOf(account) === -1 ? project.supportersAddresses.push(account) : null;
 
         await project.save();
 

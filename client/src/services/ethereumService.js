@@ -1,6 +1,10 @@
-import { FirestarterContract } from './contractRegistryService';
+import {
+  DaiErc20Contract,
+  FirestarterContract,
+  fireStarterContractAddress,
+} from './contractRegistryService';
 
-export const weiToEth = weiVal => window._web3.utils.fromWei(new window._web3.utils.BN(`${weiVal}`));
+export const weiToEth = weiVal => window._web3.utils.fromWei(weiVal);
 
 export const ethToWei = ethVal => window._web3.utils.toWei(`${ethVal}`);
 
@@ -81,11 +85,82 @@ export const oneTimeFundContractCall = (sendTxFunc, from, projectId, _amount) =>
   try {
     const contract = await FirestarterContract();
     const value = window._web3.utils.toWei(_amount, 'ether');
-    console.log(contract.methods);
 
     const promise = contract.methods.fundProjectDirectly(projectId).send({ from, value });
 
     await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const vestFundContractCall = (sendTxFunc, from, projectId, _amount, weeks) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+    const value = window._web3.utils.toWei(_amount, 'ether');
+    const numBlocks = (parseInt(weeks, 10) * 604800) / 15;
+    const promise = contract.methods.fundProjectByVesting(projectId, numBlocks).send({ from, value });
+
+    await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+/**
+ * Gets dai allowance for the users address from the dai erc20 contract
+ *
+ * @param address {String}
+ * @return {Promise<Number>}
+ */
+export const getDaiAllowance = address => new Promise(async (resolve, reject) => {
+  const contract = await DaiErc20Contract();
+
+  try {
+    const data = await contract.methods.allowance(address, fireStarterContractAddress).call();
+
+    resolve(parseFloat(weiToEth(data)));
+  } catch (err) {
+    reject(err);
+  }
+});
+
+/**
+ * Approves that dai can be used for the users address on the dai erc20 contract
+ *
+ * @param address {String}
+ * @param sendTxFunc {Function}
+ * @return {Promise<Boolean>}
+ */
+export const approveDai = (sendTxFunc, address) => new Promise(async (resolve, reject) => {
+  const contract = await DaiErc20Contract();
+
+  const num = ethToWei(Number.MAX_SAFE_INTEGER.toString());
+
+  try {
+    const promise = contract.methods.approve(fireStarterContractAddress, num).send({ from: address });
+    await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const compoundFundContractCall = (sendTxFunc1, sendTxFunc2, from, projectId, _amount) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+    const value = window._web3.utils.toWei(_amount, 'ether');
+
+    const daiAllowance = await getDaiAllowance(from);
+    if (daiAllowance === 0) await approveDai(sendTxFunc1, from);
+
+    const promise2 = contract.methods.fundProjectByCompound(projectId, value).send({ from });
+    await sendTxFunc2(promise2);
 
     resolve(true);
   } catch (err) {
