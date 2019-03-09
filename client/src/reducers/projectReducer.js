@@ -26,6 +26,10 @@ import {
   PROJECT_FUND_SUCCESS,
   PROJECT_FUND_FAILURE,
   PROJECT_FUND_RESET,
+
+  PROJECT_WITHDRAW_HISTORY_REQUEST,
+  PROJECT_WITHDRAW_HISTORY_SUCCESS,
+  PROJECT_WITHDRAW_HISTORY_FAILURE,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -43,6 +47,10 @@ const INITIAL_STATE = {
 
   funding: false,
   fundingError: '',
+
+  gettingProjectWithdrawHistory: false,
+  gettingProjectWithdrawHistoryError: '',
+  projectWithdrawHistory: [],
 
   data: {},
 };
@@ -190,6 +198,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         funding: false,
         fundingError: '',
+      };
+
+    case PROJECT_WITHDRAW_HISTORY_REQUEST:
+      return { ...state, gettingProjectWithdrawHistory: true, gettingProjectWithdrawHistoryError: '' };
+
+    case PROJECT_WITHDRAW_HISTORY_SUCCESS:
+      return {
+        ...state,
+        gettingProjectWithdrawHistory: false,
+        gettingProjectWithdrawHistoryError: '',
+        projectWithdrawHistory: payload,
+      };
+
+    case PROJECT_WITHDRAW_HISTORY_FAILURE:
+      return {
+        ...state,
+        gettingProjectWithdrawHistory: false,
+        gettingProjectWithdrawHistoryError: payload,
       };
 
     default:

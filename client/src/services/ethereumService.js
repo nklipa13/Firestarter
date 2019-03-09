@@ -1,3 +1,4 @@
+import moment from 'moment/moment';
 import {
   DaiErc20Contract,
   FirestarterContract,
@@ -193,4 +194,55 @@ export const projectWithdrawContractCall = (sendTxFunc, from, projectId, formDat
   } catch (err) {
     reject(err);
   }
+});
+
+export const getProjectWithdrawHistoryContractCall = (projectId) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    contract.getPastEvents('ProjectWithdraw', {
+      fromBlock: 0,
+      filter: { id: projectId },
+      toBlock: 'latest',
+    }, (error, events) => {
+      if (error) reject(error);
+
+      const formatted = events.map(({ blockNumber, returnValues }) => ({
+        blockNumber,
+        daiAmount: weiToEth(returnValues.daiAmount),
+        ethAmount: weiToEth(returnValues.ethAmount),
+        purpose: returnValues.message,
+      }));
+
+      const promises = formatted.map(({ blockNumber }) => window._web3.eth.getBlock(blockNumber));
+
+      Promise.all(promises).then((blocks) => {
+        const final = blocks.map(({ timestamp }, index) => ({
+          ...formatted[index],
+          date: moment.unix(timestamp).format('D MMMM gggg'),
+        }));
+
+        resolve(final);
+      }).catch((err) => { reject(err); });
+    });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const signString = (stringToSign, address) => new Promise((resolve, reject) => {
+  const msgParams = [{
+    type: 'string',
+    name: 'Message',
+    value: stringToSign,
+  }];
+
+  window.web3.currentProvider.sendAsync({
+    method: 'eth_signTypedData',
+    params: [msgParams, address],
+    from: address,
+  }, (err, data) => {
+    if (err || data.error) return reject(data.error);
+    return resolve(data.result);
+  });
 });

@@ -1,4 +1,5 @@
 @import "../../../../common/colors";
+@import "../../../../common/text";
 
 .project-finance-withdraw-history-wrapper {
   margin-top: 90px;
@@ -21,6 +22,10 @@
       span:not(:last-child) {
         margin-right: 30px;
       }
+    }
+
+    .purpose {
+      font-family: $bold-light;
     }
   }
 }
