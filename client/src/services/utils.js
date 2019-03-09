@@ -5,3 +5,9 @@ export const wait = (returnVal = {}, time = 500) => new Promise((resolve) => {
 });
 
 export const formatAcc = (acc, sLen = 6, eLen = 4) => `${acc.substring(0, sLen)}...${acc.substr(acc.length - eLen)}`;
+
+export const notGraterThan = (val, max) => {
+  if (val > max) return max;
+
+  return val;
+};

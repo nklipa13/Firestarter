@@ -51,7 +51,11 @@ export const openProjectAddChangeModal = id => (dispatch) => {
  * Opens project withdraw modal for the owner to withdraw available funds
  *
  * @param id {Number}
+ * @param maxEth {Number}
+ * @param maxDai {Number}
  */
-export const openProjectWithdrawModal = id => (dispatch) => {
-  dispatch(toggleModal(PROJECT_WITHDRAW_MODAL, { width: 647, projectId: id }, true));
+export const openProjectWithdrawModal = (id, maxEth, maxDai) => (dispatch) => {
+  dispatch(toggleModal(PROJECT_WITHDRAW_MODAL, {
+    width: 647, maxEth, maxDai, projectId: id,
+  }, true));
 };

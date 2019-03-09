@@ -13,6 +13,9 @@ import {
   PROJECT_ADD_CHANGE_FAILURE,
   PROJECT_ADD_CHANGE_RESET,
 
+  PROJECT_WITHDRAW_REQUEST,
+  PROJECT_WITHDRAW_SUCCESS,
+  PROJECT_WITHDRAW_FAILURE,
   PROJECT_WITHDRAW_RESET,
 } from '../actionTypes/projectActionTypes';
 
@@ -102,6 +105,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         addingChange: false,
         addingChangeError: '',
+      };
+
+    case PROJECT_WITHDRAW_REQUEST:
+      return { ...state, withdrawing: true, withdrawingError: '' };
+
+    case PROJECT_WITHDRAW_SUCCESS:
+      return {
+        ...state,
+        withdrawing: false,
+        withdrawingError: '',
+        data: payload,
+      };
+
+    case PROJECT_WITHDRAW_FAILURE:
+      return {
+        ...state,
+        withdrawing: false,
+        withdrawingError: payload,
       };
 
     case PROJECT_WITHDRAW_RESET:

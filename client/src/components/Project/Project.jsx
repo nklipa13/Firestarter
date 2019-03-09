@@ -13,6 +13,7 @@ import './Project.scss';
 const Project = ({
   data: {
     name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs, changelog, id,
+    ethWithdraw, daiWithdraw,
   },
   openProjectWithdrawModal,
 }) => {
@@ -57,7 +58,7 @@ const Project = ({
             <button
               type="button"
               className="button uppercase no-wrap"
-              onClick={() => { openProjectWithdrawModal(id); }}
+              onClick={() => { openProjectWithdrawModal(id, ethWithdraw, daiWithdraw); }}
             >
               Withdraw
             </button>

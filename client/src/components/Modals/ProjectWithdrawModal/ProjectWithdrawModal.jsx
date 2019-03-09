@@ -13,13 +13,15 @@ class ProjectWithdrawModal extends Component {
   }
 
   render() {
-    const { closeModal, projectId } = this.props;
+    const {
+      closeModal, projectId, maxEth, maxDai,
+    } = this.props;
 
     return (
       <div className="project-withdraw-modal-wrapper">
         <ModalHeader closeModal={closeModal} />
 
-        <ProjectWithdrawForm closeModal={closeModal} projectId={projectId} />
+        <ProjectWithdrawForm closeModal={closeModal} projectId={projectId} maxEth={maxEth} maxDai={maxDai} />
       </div>
     );
   }
@@ -29,6 +31,8 @@ ProjectWithdrawModal.propTypes = {
   closeModal: PropTypes.func.isRequired,
   resetProjectWithdraw: PropTypes.func.isRequired,
   projectId: PropTypes.number.isRequired,
+  maxEth: PropTypes.number.isRequired,
+  maxDai: PropTypes.number.isRequired,
 };
 
 const mapDispatchToProps = {

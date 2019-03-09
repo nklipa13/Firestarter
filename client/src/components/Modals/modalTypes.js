@@ -10,5 +10,5 @@ export const PROJECT_WITHDRAW_MODAL = 'PROJECT_WITHDRAW_MODAL';
 export default {
   [PROJECT_ADD_QUESTION_MODAL]: ProjectAddQuestionModal,
   [PROJECT_ADD_CHANGE_MODAL]: ProjectAddChangeModal,
-  [PROJECT_ADD_CHANGE_MODAL]: ProjectWithdrawModal,
+  [PROJECT_WITHDRAW_MODAL]: ProjectWithdrawModal,
 };

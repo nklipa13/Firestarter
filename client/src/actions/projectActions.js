@@ -13,6 +13,9 @@ import {
   PROJECT_ADD_CHANGE_FAILURE,
   PROJECT_ADD_CHANGE_RESET,
 
+  PROJECT_WITHDRAW_REQUEST,
+  PROJECT_WITHDRAW_SUCCESS,
+  PROJECT_WITHDRAW_FAILURE,
   PROJECT_WITHDRAW_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
@@ -32,6 +35,8 @@ const MOCK_PROJECTS = [
       about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.' // eslint-disable-line
     },
     about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel.', // eslint-disable-line
+    ethWithdraw: 69,
+    daiWithdraw: 10,
     finance: {
       oneTimePayments: {
         eth: 31,
@@ -181,6 +186,31 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
  * @return {Function}
  */
 export const resetProjectAddChange = () => (dispatch) => { dispatch({ type: PROJECT_ADD_CHANGE_RESET }); };
+
+/**
+ * Withdraws funds in either or both eth, dai from the project.
+ *
+ * @param formData {Object}
+ * @param projectId {String}
+ * @param closeModal {Function}
+ *
+ * @return {Function}
+ */
+export const projectWithdraw = (formData, projectId, closeModal) => async (dispatch) => {
+  dispatch({ type: PROJECT_WITHDRAW_REQUEST });
+
+  try {
+    const payload = await wait(MOCK_PROJECTS[projectId], 500);
+
+    payload.ethWithdraw -= formData.ethAmount;
+    payload.daiWithdraw -= formData.daiAmount;
+
+    dispatch({ type: PROJECT_WITHDRAW_SUCCESS, payload });
+    closeModal();
+  } catch (err) {
+    dispatch({ type: PROJECT_WITHDRAW_FAILURE, payload: err.message });
+  }
+};
 
 /**
  * Resets the withdraw funds from project form state
