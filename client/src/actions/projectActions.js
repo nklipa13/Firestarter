@@ -36,6 +36,16 @@ const MOCK_PROJECTS = [
       },
       total: 69,
     },
+    faqs: [
+      {
+        question: 'How about answering some questions now?',
+        answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',  // eslint-disable-line
+      },
+      {
+        question: 'How about some more?',
+        answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',  // eslint-disable-line
+      },
+    ],
   },
 ];
 

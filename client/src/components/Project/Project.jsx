@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { formatAcc } from '../../services/utils';
 import Tabs from '../Tabs/Tabs';
 import ProjectFinance from './ProjectFinance/ProjectFinance';
+import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
 
 import './Project.scss';
 
 const Project = ({
   data: {
-    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance,
+    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs,
   },
 }) => (
   <div className="project-wrapper">
@@ -50,19 +51,16 @@ const Project = ({
       <div label="About">
         <div className="about-wrapper">
           {
-            about.split(':').map(t => (<div className="row">{t}</div>))
+            about.split(':').map((t, index) => ({ text: t, id: index })).map(t => (
+              <div className="row" key={t.id}>{t.text}</div>
+            ))
           }
         </div>
       </div>
 
-      <div label="Finance">
-        <ProjectFinance data={finance} />
-      </div>
+      <div label="Finance"><ProjectFinance data={finance} /></div>
 
-      <div label="FAQ">
-        FAQ
-        {/* <ProjectFAQ /> */}
-      </div>
+      <div label="FAQ"><ProjectFAQ data={faqs} /></div>
 
       <div label="Changelog">
         Changelog
