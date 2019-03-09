@@ -46,6 +46,20 @@ const MOCK_PROJECTS = [
         locked: 10000,
       },
       total: 69,
+      withdrawHistory: [
+        {
+          date: '12 September 2019',
+          daiAmount: 0,
+          ethAmount: 20,
+          purpose: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.', // eslint-disable-line
+        },
+        {
+          date: '13 September 2019',
+          daiAmount: 10,
+          ethAmount: 1,
+          purpose: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.', // eslint-disable-line
+        },
+      ],
     },
     faqs: [
       {
