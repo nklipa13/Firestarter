@@ -151,7 +151,6 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         withdrawing: false,
         withdrawingError: '',
-        data: formatNewProject(payload),
       };
 
     case PROJECT_WITHDRAW_FAILURE:

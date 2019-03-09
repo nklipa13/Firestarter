@@ -1,6 +1,12 @@
+@import "../../../common/text";
+
 .project-faq-wrapper {
 
   .item:not(:last-child) {
     margin-bottom: 30px;
+  }
+
+  .answer {
+    font-family: $bold-light;
   }
 }

@@ -27,7 +27,7 @@ const ProjectFAQ = ({
     {
       data.map(({ question, answer }) => (
         <div className="item" key={question}>
-          <div className="question text-medium-margin text-bold">{question}</div>
+          <div className="question text-medium-margin">{question}</div>
           <div className="answer">{answer}</div>
         </div>
       ))

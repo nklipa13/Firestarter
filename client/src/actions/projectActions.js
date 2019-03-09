@@ -34,12 +34,14 @@ import {
   getAllProjectsApiCall,
   getProjectApiCall,
   oneTimeFundApiCall,
+  projectAddQuestionApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
 import {
   oneTimeFundContractCall,
   vestFundContractCall,
   compoundFundContractCall,
+  projectWithdrawContractCall,
 } from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
@@ -176,9 +178,7 @@ export const projectAddQuestion = (formData, projectId, closeModal) => async (di
   dispatch({ type: PROJECT_ADD_QUESTION_REQUEST });
 
   try {
-    const payload = await wait(MOCK_PROJECTS[projectId], 500);
-
-    payload.faqs.push(formData);
+    const payload = await projectAddQuestionApiCall(projectId, formData);
 
     dispatch({ type: PROJECT_ADD_QUESTION_SUCCESS, payload });
     closeModal();
@@ -239,16 +239,17 @@ export const resetProjectAddChange = () => (dispatch) => { dispatch({ type: PROJ
  *
  * @return {Function}
  */
-export const projectWithdraw = (formData, projectId, closeModal) => async (dispatch) => {
+export const projectWithdraw = (formData, projectId, closeModal) => async (dispatch, getState) => {
   dispatch({ type: PROJECT_WITHDRAW_REQUEST });
 
+  const { account } = getState().account;
+  const proxySendHandler = promise => sendTx(promise, 'Withdraw', dispatch, getState);
+
   try {
-    const payload = await wait(MOCK_PROJECTS[projectId], 500);
+    await projectWithdrawContractCall(proxySendHandler, account, projectId, formData);
 
-    payload.ethWithdraw -= formData.ethAmount;
-    payload.daiWithdraw -= formData.daiAmount;
-
-    dispatch({ type: PROJECT_WITHDRAW_SUCCESS, payload });
+    // TODO call get project withdraw history here
+    dispatch({ type: PROJECT_WITHDRAW_SUCCESS });
     closeModal();
   } catch (err) {
     dispatch({ type: PROJECT_WITHDRAW_FAILURE, payload: err.message });

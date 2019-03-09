@@ -14,7 +14,7 @@ const Project = ({
   data, account,
   data: {
     name, description, imageUrl, ethCollected, date, daiCollected,
-    numSupporters, creator, aboutProject, faq, projectId, ethWithdraw, daiWithdraw, aboutCreator, logs,
+    numSupporters, creator, aboutProject, faq, projectId, aboutCreator, logs,
   },
   openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
 }) => {
@@ -71,7 +71,7 @@ const Project = ({
               type="button"
               className="button uppercase no-wrap"
               disabled={withdrawing}
-              onClick={() => { openProjectWithdrawModal(projectId, ethWithdraw, daiWithdraw); }}
+              onClick={() => { openProjectWithdrawModal(projectId); }}
             >
               Withdraw
             </button>

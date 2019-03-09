@@ -47,3 +47,9 @@ export const compoundFundApiCall = (id, amount, account) => fetch(`${API_URL}/pr
     action: 'add', type: 3, amount, account,
   }),
 }).then(res => handleResponse(res));
+
+export const projectAddQuestionApiCall = (id, formData) => fetch(`${API_URL}/project/${id}/faq`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(formData),
+}).then(res => handleResponse(res));
