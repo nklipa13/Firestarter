@@ -1,6 +1,8 @@
 pragma solidity ^0.5.0;
 
 import "./Vesting.sol";
+import "./CompoundInterface.sol";
+import "./ERC20.sol";
 
 contract Firestarter is Vesting {
 
@@ -16,6 +18,7 @@ contract Firestarter is Vesting {
 		string name;
 		uint funds;
 		mapping(address => Fund[]) allFunds;
+		uint daiFunds;
 		address[] investors;
 		uint lastUpdate;
 		uint vestRate;
@@ -23,8 +26,16 @@ contract Firestarter is Vesting {
 
 	Project[] public projects;
 
+	// Rinkeby test deployment
+	CompoundInterface compound = CompoundInterface(0x61bbd7Bd5EE2A202d7e62519750170A52A8DFD45);
+	address public DAI_ADDRESS = 0x4e17c87c52d0E9a0cAd3Fbc53b77d9514F003807;
+
 	event ProjectCreated(uint id, string name, address owner);
 	event ProjectFunded(uint id, uint amount, address from, FundType fundType);
+
+	constructor() public {
+		// ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
+	}
 
 	function addProject(string memory _name) public {
 		projects.push(Project({
@@ -67,6 +78,26 @@ contract Firestarter is Vesting {
 		projects[_id].vestRate += msg.value / _numOfBlocks;
 
 		emit ProjectFunded(_id, msg.value, msg.sender, FundType.DirectType);
+	}
+
+	///@dev Before calling must approve contract to transferFrom Dai
+	function fundProjectByCompound(uint _id, uint _daiAmount) public {
+		addInvestorIfNeeded(msg.sender, _id);
+
+		ERC20(DAI_ADDRESS).transferFrom(msg.sender, address(this), _daiAmount);
+
+		uint errCode = compound.supply(DAI_ADDRESS, _daiAmount);
+
+		assert(errCode == 0);
+
+		projects[_id].daiFunds += _daiAmount;
+
+		projects[_id].allFunds[msg.sender].push(Fund({
+			amount: _daiAmount,
+			fundType: FundType.CompoundType
+		}));
+        
+        emit ProjectFunded(_id, _daiAmount, msg.sender, FundType.CompoundType);
 	}
 
 	function updateBalance(uint _id) public {
