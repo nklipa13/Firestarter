@@ -96,8 +96,9 @@ module.exports.addProjectLog = async (req, res) => {
         }
 
         project.logs.push({
-            title: req.body.title,
-            description: req.body.description
+            versionNumber: req.body.versionNumber,
+            description: req.body.description,
+            versionChanges: req.body.versionChanges,
         });
 
         await project.save();

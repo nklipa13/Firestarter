@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
 
 const logSchema = new mongoose.Schema({
-    title: {type: String, required: true},
+    versionNumber: {type: String, required: true},
     description: {type: String, required: true},
+    versionChanges: [String],
     date: {type: Date, default: Date.now, required: true},
 });
 
