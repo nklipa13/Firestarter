@@ -35,7 +35,7 @@ const TxNotifications = ({ notifications, closeNotification, network }) => (
                     target="_blank"
                     rel="noopener noreferrer"
                     className="description"
-                    href={`https://${network === 42 ? 'kovan.' : ''}etherscan.io/tx/${tx}`}
+                    href={`https://${network === 4 ? 'rinkeby.' : ''}etherscan.io/tx/${tx}`}
                   >
                     { description }
                   </a>
@@ -55,9 +55,9 @@ TxNotifications.propTypes = {
   network: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = ({ notifications, general }) => ({
+const mapStateToProps = ({ notifications, account }) => ({
   notifications: notifications.notifications,
-  network: general.network,
+  network: account.network,
 });
 
 const mapDispatchToProps = {

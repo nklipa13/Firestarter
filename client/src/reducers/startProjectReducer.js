@@ -22,7 +22,6 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         startingProject: false,
         startingProjectError: '',
-        data: payload,
       };
 
     case START_PROJECT_FAILURE:
