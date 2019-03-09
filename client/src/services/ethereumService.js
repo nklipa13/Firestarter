@@ -173,7 +173,6 @@ export const getMaxEthDaiForProject = id => new Promise(async (resolve, reject) 
     const contract = await FirestarterContract();
 
     const res = await contract.methods.getMaxWithdraws(id).call();
-    console.log('res', res);
 
     resolve({ maxDai: parseFloat(window._web3.utils.fromWei(res.maxDai)), maxEth: parseFloat(window._web3.utils.fromWei(res.maxEth)) }); // eslint-disable-line
   } catch (err) {
@@ -184,15 +183,11 @@ export const getMaxEthDaiForProject = id => new Promise(async (resolve, reject) 
 export const projectWithdrawContractCall = (sendTxFunc, from, projectId, formData) => new Promise(async (resolve, reject) => { // eslint-disable-line
   try {
     const contract = await FirestarterContract();
-    const ethAmount = window._web3.utils.toWei(formData.ethAmount, 'ether');
-    const daiAmount = window._web3.utils.toWei(formData.daiAmount, 'ether');
-
-    console.log('ethAmount', ethAmount);
-    console.log('ethAmount', daiAmount);
+    const ethAmount = window._web3.utils.toWei(formData.ethAmount || '0', 'ether');
+    const daiAmount = window._web3.utils.toWei(formData.daiAmount || '0', 'ether');
 
     const promise = contract.methods.withdraw(projectId, ethAmount, daiAmount, formData.purpose).send({ from });
-    //
-    // await sendTxFunc(promise);
+    await sendTxFunc(promise);
 
     resolve(true);
   } catch (err) {
