@@ -25,7 +25,7 @@ import {
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 
-const MOCK_PROJECTS = [
+export const MOCK_PROJECTS = [
   {
     id: 0,
     name: 'Community-driven Dapps on the Ethereum blockchain',

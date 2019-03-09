@@ -12,10 +12,20 @@ class StartProject extends Component {
   }
 
   render() {
+    const { history } = this.props;
+
     return (
       <div className="start-project-wrapper">
         <div className="width-container">
-          <StartProjectForm />
+          <div className="main-title heading-2 text-large-margin text-light">
+            Start a project
+          </div>
+
+          <div className="sub-title heading-4 text-light">
+            Complete this simple form to start your project on Firestarter
+          </div>
+
+          <StartProjectForm history={history} />
         </div>
       </div>
     );
@@ -24,6 +34,7 @@ class StartProject extends Component {
 
 StartProject.propTypes = {
   resetStartProjectForm: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 const mapDispatchToProps = {
