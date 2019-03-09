@@ -3,6 +3,10 @@ import {
   GET_PROJECT_SUCCESS,
   GET_PROJECT_FAILURE,
 
+  GET_ALL_PROJECTS_REQUEST,
+  GET_ALL_PROJECTS_SUCCESS,
+  GET_ALL_PROJECTS_FAILURE,
+
   PROJECT_ADD_QUESTION_REQUEST,
   PROJECT_ADD_QUESTION_SUCCESS,
   PROJECT_ADD_QUESTION_FAILURE,
@@ -25,10 +29,11 @@ import {
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 import {
+  compoundFundApiCall,
+  vestFundApiCall,
+  getAllProjectsApiCall,
   getProjectApiCall,
   oneTimeFundApiCall,
-  vestFundApiCall,
-  compoundFundApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
 import {
@@ -136,6 +141,25 @@ export const getProject = id => async (dispatch) => {
     dispatch({ type: GET_PROJECT_SUCCESS, payload: payload[0] });
   } catch (err) {
     dispatch({ type: GET_PROJECT_FAILURE, payload: err.message });
+  }
+};
+
+/**
+ * Gets all projects
+ *
+ * @return {Function}
+ */
+export const getAllProjects = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_PROJECTS_REQUEST });
+
+  try {
+    const payload = await getAllProjectsApiCall();
+
+    if (payload.length === 0) throw new Error('Projects not found');
+
+    dispatch({ type: GET_ALL_PROJECTS_SUCCESS, payload });
+  } catch (err) {
+    dispatch({ type: GET_ALL_PROJECTS_FAILURE, payload: err.message });
   }
 };
 
@@ -310,7 +334,6 @@ const compoundFund = (formData, projectId, account, dispatch, getState) => new P
     reject(err);
   }
 });
-
 
 /**
  * Adss funds to the project via 3 types.
