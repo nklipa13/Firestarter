@@ -98,9 +98,13 @@ module.exports.addProjectLog = async (req, res) => {
     try {
         const { address, sig, msg } = req.body;
 
+        console.log(address, sig, msg );
+
         if (!onlyWithSig(address, sig, msg )) {
             res.status(500).send({ error: { messsage: "Invalid siganture" } } );
         }
+
+        console.log("Prosao sig");
 
         let project = await Project.findOne({projectId: req.params.projectId}).exec();
 
@@ -110,6 +114,7 @@ module.exports.addProjectLog = async (req, res) => {
 
         project.logs.push({
             versionNumber: req.body.versionNumber,
+            date: req.body.versionDate,
             description: req.body.description,
             versionChanges: req.body.versionChanges,
         });
@@ -117,7 +122,7 @@ module.exports.addProjectLog = async (req, res) => {
         await project.save();
 
         res.status(200);
-        res.json({status: 'OK'});
+        res.json(project);
         
     } catch(err) {
         console.log(err);
@@ -177,8 +182,7 @@ module.exports.addProjectFaq = async (req, res) => {
 // Helper functions
 
 function onlyWithSig(address, sig, msg) {
-    return true;
-    // return signature.isValidSignature(address, sig, msg);
+    return signature.isValidSignature(address, sig, msg);
 }
 
 function getParamName(type) {

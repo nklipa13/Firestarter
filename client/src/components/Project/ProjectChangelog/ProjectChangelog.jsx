@@ -26,18 +26,18 @@ const ProjectChangelog = ({
 
     {
       data.map(({
-        version, date, description, changes,
+        versionNumber, date, description, versionChanges,
       }) => (
-        <div className="item" key={version}>
+        <div className="item" key={versionNumber}>
           <div className="version-wrapper text-medium-margin">
-            <span className="text-bold">{version}</span> - <span>{date}</span>
+            <span className="text-bold">{versionNumber}</span> - <span>{date}</span>
           </div>
 
           <div className="description text-medium-margin">{description}</div>
 
           <ul className="changes-wrapper">
             {
-              changes.map((c, index) => ({ text: c, id: index })).map(c => (
+              versionChanges.map((c, index) => ({ text: c, id: index })).map(c => (
                 <li className="change" key={c.id}>{c.text}</li>
               ))
             }

@@ -26,6 +26,10 @@ import {
   PROJECT_FUND_SUCCESS,
   PROJECT_FUND_FAILURE,
   PROJECT_FUND_RESET,
+
+  PROJECT_WITHDRAW_HISTORY_REQUEST,
+  PROJECT_WITHDRAW_HISTORY_SUCCESS,
+  PROJECT_WITHDRAW_HISTORY_FAILURE,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 import {
@@ -35,6 +39,7 @@ import {
   getProjectApiCall,
   oneTimeFundApiCall,
   projectAddQuestionApiCall,
+  projectAddChangelogApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
 import {
@@ -43,6 +48,7 @@ import {
   compoundFundContractCall,
   projectWithdrawContractCall,
   signString,
+  getProjectWithdrawHistoryContractCall,
 } from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
@@ -216,14 +222,14 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
   dispatch({ type: PROJECT_ADD_CHANGE_REQUEST });
 
   try {
-    const payload = await wait(MOCK_PROJECTS[projectId], 500);
-
-    payload.changelog.unshift({
-      version: formData.version,
-      date: formData.date,
+    const data = {
+      versionNumber: formData.version,
+      versionDate: formData.date,
       description: formData.description, // eslint-disable-line
-      changes: formData.changes.map(c => c.change),
-    });
+      versionChanges: formData.changes.map(c => c.change),
+    };
+
+    const payload = await projectAddChangelogApiCall(projectId, data);
 
     dispatch({ type: PROJECT_ADD_CHANGE_SUCCESS, payload });
     closeModal();
@@ -379,3 +385,21 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
  * @return {Function}
  */
 export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJECT_FUND_RESET }); };
+
+/**
+ * Fetches withdraw history for a project
+ *
+ * @param projectId {Number}
+ * @return {Function}
+ */
+export const getProjectWithdrawHistory = projectId => async (dispatch) => {
+  dispatch({ type: PROJECT_WITHDRAW_HISTORY_REQUEST });
+
+  try {
+    const payload = await getProjectWithdrawHistoryContractCall(projectId);
+
+    dispatch({ type: PROJECT_WITHDRAW_HISTORY_SUCCESS, payload });
+  } catch (err) {
+    dispatch({ type: PROJECT_WITHDRAW_HISTORY_FAILURE, payload: err.message });
+  }
+};
