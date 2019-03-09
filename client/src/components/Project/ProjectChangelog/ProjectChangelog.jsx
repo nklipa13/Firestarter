@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { openProjectAddChangeModal } from '../../../actions/modalActions';
 
 import './ProjectChangelog.scss';
 
-const ProjectChangelog = ({ data }) => (
+const ProjectChangelog = ({
+  data, openProjectAddChangeModal,
+}) => (
   <div className="project-changelog-wrapper">
+    <button
+      className="button uppercase text-large-margin"
+      type="button"
+      onClick={openProjectAddChangeModal}
+    >
+      Add a new version
+    </button>
+
     {
       data.map(({
         version, date, description, changes,
@@ -31,6 +43,11 @@ const ProjectChangelog = ({ data }) => (
 
 ProjectChangelog.propTypes = {
   data: PropTypes.array.isRequired,
+  openProjectAddChangeModal: PropTypes.func.isRequired,
 };
 
-export default ProjectChangelog;
+const mapDispatchToProps = {
+  openProjectAddChangeModal,
+};
+
+export default connect(null, mapDispatchToProps)(ProjectChangelog);
