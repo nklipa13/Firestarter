@@ -50,6 +50,23 @@ contract Vesting {
 
 		totalVestings--;
 	}
+
+	function removeVestingRecordWithRateAndBlock(uint _rate, uint _block) public {
+		uint curr = firstVestingRecord;
+		uint found = 0;
+		while (allVestings[curr].next != 0) {
+			if (allVestings[curr].rate == _rate && allVestings[curr].block == _block) {
+				found = curr;
+				break;
+			}
+
+			curr = allVestings[curr].next;
+		}
+
+		if (found > 0) {
+			removeVestingRecord(found);
+		}
+	}
 	
 
 	function findPrevious(uint _block) public view returns(uint) {
