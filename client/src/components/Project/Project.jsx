@@ -18,7 +18,7 @@ const Project = ({
   },
   openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
 }) => {
-  const isOwner = account === creator; // TODO change this
+  const isOwner = account === creator;
 
   return (
     <div className="project-wrapper">
@@ -48,7 +48,7 @@ const Project = ({
       <div className="action-wrapper">
         <div className="stats-wrapper">
           <div className="stat text-bold heading-4">{numSupporters} supporters</div>
-          <div className="stat text-bold heading-4">{ethCollected} ETH / {daiCollected} DAI earned</div>
+          <div className="stat text-bold heading-4">{ethCollected} ETH earned</div>
           <div className="stat text-bold heading-4">{ calcDaysPassed(date) } days passed</div>
         </div>
 
