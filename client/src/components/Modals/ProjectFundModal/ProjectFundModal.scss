@@ -3,6 +3,10 @@
   .form-wrapper {
     margin-top: 15px;
 
+    .submit-error-wrapper {
+      padding-top: 0;
+    }
+
     .form-item-wrapper .second-label {
       max-width: 226px;
     }

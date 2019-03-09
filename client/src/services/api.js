@@ -1,4 +1,4 @@
-const API_URL = 'https://aeb1eeed.ngrok.io/api';
+const API_URL = 'http://e3fd672f.ngrok.io/api';
 
 const handleResponse = response => response.text().then((text) => {
   const data = text && JSON.parse(text);
@@ -30,4 +30,10 @@ export const vestFundApiCall = (id, amount) => fetch(`${API_URL}/project/${id}/f
   method: 'PUT',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({ action: 'add', type: 2, amount }),
+}).then(res => handleResponse(res));
+
+export const compoundFundApiCall = (id, amount) => fetch(`${API_URL}/project/${id}/funds`, {
+  method: 'PUT',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ action: 'add', type: 3, amount }),
 }).then(res => handleResponse(res));
