@@ -3,6 +3,7 @@ import {
   PROJECT_ADD_QUESTION_MODAL,
   PROJECT_ADD_CHANGE_MODAL,
   PROJECT_WITHDRAW_MODAL,
+  PROJECT_FUND_MODAL,
 } from '../components/Modals/modalTypes';
 
 /**
@@ -58,4 +59,13 @@ export const openProjectWithdrawModal = (id, maxEth, maxDai) => (dispatch) => {
   dispatch(toggleModal(PROJECT_WITHDRAW_MODAL, {
     width: 647, maxEth, maxDai, projectId: id,
   }, true));
+};
+
+/**
+ * Opens project fund modal where the user can contribute to the project
+ *
+ * @param id {Number}
+ */
+export const openProjectFundModal = id => (dispatch) => {
+  dispatch(toggleModal(PROJECT_FUND_MODAL, { width: 647, projectId: id }, true));
 };

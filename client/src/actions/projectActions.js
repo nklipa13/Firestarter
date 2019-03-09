@@ -17,6 +17,8 @@ import {
   PROJECT_WITHDRAW_SUCCESS,
   PROJECT_WITHDRAW_FAILURE,
   PROJECT_WITHDRAW_RESET,
+
+  PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 
@@ -218,3 +220,10 @@ export const projectWithdraw = (formData, projectId, closeModal) => async (dispa
  * @return {Function}
  */
 export const resetProjectWithdraw = () => (dispatch) => { dispatch({ type: PROJECT_WITHDRAW_RESET }); };
+
+/**
+ * Resets the fund project forms
+ *
+ * @return {Function}
+ */
+export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJECT_FUND_RESET }); };

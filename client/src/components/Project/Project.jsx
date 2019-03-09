@@ -6,7 +6,7 @@ import Tabs from '../Tabs/Tabs';
 import ProjectFinance from './ProjectFinance/ProjectFinance';
 import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
 import ProjectChangelog from './ProjectChangelog/ProjectChangelog';
-import { openProjectWithdrawModal } from '../../actions/modalActions';
+import { openProjectWithdrawModal, openProjectFundModal } from '../../actions/modalActions';
 
 import './Project.scss';
 
@@ -15,9 +15,9 @@ const Project = ({
     name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs, changelog, id,
     ethWithdraw, daiWithdraw,
   },
-  openProjectWithdrawModal,
+  openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
 }) => {
-  const isOwner = true;
+  const isOwner = false; // TODO change this
 
   return (
     <div className="project-wrapper">
@@ -51,13 +51,25 @@ const Project = ({
           <div className="stat text-bold heading-4">{daysPassed} days passed</div>
         </div>
 
-        { !isOwner && (<button type="button" className="button uppercase no-wrap">Support the project</button>) }
+        {
+          !isOwner && (
+            <button
+              type="button"
+              onClick={() => { openProjectFundModal(id); }}
+              className="button  uppercase no-wrap"
+              disabled={funding}
+            >
+              Support the project
+            </button>
+          )
+        }
 
         {
           isOwner && (
             <button
               type="button"
               className="button uppercase no-wrap"
+              disabled={withdrawing}
               onClick={() => { openProjectWithdrawModal(id, ethWithdraw, daiWithdraw); }}
             >
               Withdraw
@@ -88,14 +100,20 @@ const Project = ({
 Project.propTypes = {
   data: PropTypes.object.isRequired,
   openProjectWithdrawModal: PropTypes.func.isRequired,
+  openProjectFundModal: PropTypes.func.isRequired,
+  funding: PropTypes.bool.isRequired,
+  withdrawing: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({ project }) => ({
   data: project.data,
+  funding: project.funding,
+  withdrawing: project.withdrawing,
 });
 
 const mapDispatchToProps = {
   openProjectWithdrawModal,
+  openProjectFundModal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);
