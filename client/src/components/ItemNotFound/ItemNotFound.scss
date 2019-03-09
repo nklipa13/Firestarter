@@ -1,0 +1,28 @@
+@import "../../common/text";
+
+.no-item-wrapper {
+  margin: 140px 0;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .error {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .big-num {
+    font-family: $bold-font;
+    margin-bottom: 10px;
+    font-size: 122px;
+  }
+
+  .message {
+    text-align: center;
+    line-height: 35px;
+    font-size: 20px;
+    margin-bottom: 50px;
+  }
+}

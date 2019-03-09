@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import HomePage from '../HomePage/HomePage';
 import Page404 from '../Page404/Page404';
 import ModalRoot from '../Modals/ModalRoot';
+import Header from '../Header/Header';
+import ProjectRoutes from '../Project/ProjectRoutes';
 
 import '../../common/fonts.scss';
 import './App.scss';
@@ -21,9 +23,11 @@ class RoutesWrapper extends Component {
       <Provider store={store}>
         <BrowserRouter>
           <div className="app">
+            <Header />
 
             <Switch>
               <Route exact path="/" component={HomePage} />
+              <Route exact path="/project/:id" component={ProjectRoutes} />
               <Route path="*" component={Page404} />
             </Switch>
 

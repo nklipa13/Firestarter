@@ -27,4 +27,7 @@
     background: $white;
     color: $orange;
   }
+
+  &.uppercase { text-transform: uppercase; }
+  &.no-wrap { white-space: nowrap; }
 }
