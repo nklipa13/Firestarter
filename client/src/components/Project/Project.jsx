@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { formatAcc } from '../../services/utils';
+import { formatAcc, calcDaysPassed } from '../../services/utils';
 import Tabs from '../Tabs/Tabs';
 import ProjectFinance from './ProjectFinance/ProjectFinance';
 import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
@@ -12,8 +12,8 @@ import './Project.scss';
 
 const Project = ({
   data: {
-    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs, changelog, id,
-    ethWithdraw, daiWithdraw,
+    name, description, imageUrl, ethCollected, date,
+    numSupporters, creator, aboutProject, finance, faqs, changelog, id, ethWithdraw, daiWithdraw, aboutCreator,
   },
   openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
 }) => {
@@ -28,27 +28,27 @@ const Project = ({
       </div>
 
       <div className="main-wrapper">
-        <img src={cover} alt="Project cover" className="cover-image" />
+        <img src={imageUrl} alt="Project cover" className="cover-image" />
 
         <div className="creator-section">
           <div className="creator-data-wrapper">
-            <img src={creator.avatar} alt="Creator avatar" className="avatar-image" />
+            <img src="https://bit.ly/2NPKKEz" alt="Creator avatar" className="avatar-image" />
 
             <div className="creator-data">
               <div className="label">Created by</div>
-              <div className="value text-bold">{ formatAcc(creator.address) }</div>
+              <div className="value text-bold">{ formatAcc(creator) }</div>
             </div>
           </div>
 
-          <div className="creator-about">{creator.about}</div>
+          <div className="creator-about">{aboutCreator}</div>
         </div>
       </div>
 
       <div className="action-wrapper">
         <div className="stats-wrapper">
-          <div className="stat text-bold heading-4">{supporters} supporters</div>
-          <div className="stat text-bold heading-4">{ethRaised} ETH raised</div>
-          <div className="stat text-bold heading-4">{daysPassed} days passed</div>
+          <div className="stat text-bold heading-4">{numSupporters} supporters</div>
+          <div className="stat text-bold heading-4">{ethCollected} ETH collected</div>
+          <div className="stat text-bold heading-4">{ calcDaysPassed(date) } days passed</div>
         </div>
 
         {
@@ -82,7 +82,7 @@ const Project = ({
         <div label="About">
           <div className="about-wrapper">
             {
-              about.split(':').map((t, index) => ({ text: t, id: index })).map(t => (
+              aboutProject.split(':').map((t, index) => ({ text: t, id: index })).map(t => (
                 <div className="row" key={t.id}>{t.text}</div>
               ))
             }

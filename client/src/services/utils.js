@@ -1,3 +1,5 @@
+import moment from 'moment/moment';
+
 export const wait = (returnVal = {}, time = 500) => new Promise((resolve) => {
   setTimeout(() => {
     resolve(returnVal);
@@ -18,3 +20,10 @@ export const imageExists = url => new Promise((resolve, reject) => {
   img.onerror = () => { reject(); };
   img.src = url;
 });
+
+export const calcDaysPassed = (val) => {
+  const currDate = moment(new Date());
+  const dateToTest = moment(val);
+
+  return currDate.diff(dateToTest, 'days');
+};
