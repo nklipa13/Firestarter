@@ -23,16 +23,16 @@
     line-height: 24px;
     background-color: #eee;
     padding: 10px;
-    box-shadow: 0 2px 2px 0 rgba(black, .2);
+    box-shadow: 0 2px 25px -10px rgba(0, 0, 0, 0.6);
 
     &.success {
-      background-color: green;
-      color: white;
+      background-color: white;
+      color: #1beb1b;
     }
 
     &.error {
-      background-color: darkred;
-      color: white;
+      background-color: white;
+      color: #eb1b1b;
     }
   }
 }
