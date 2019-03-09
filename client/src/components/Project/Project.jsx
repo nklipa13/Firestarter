@@ -90,7 +90,7 @@ const Project = ({
           </div>
         </div>
 
-        <div label="Finance"><ProjectFinance data={data} /></div>
+        <div label="Finance"><ProjectFinance projectId={projectId} data={data} /></div>
         <div label="FAQ"><ProjectFAQ isOwner={isOwner} data={faq} projectId={projectId} /></div>
         <div label="Changelog"><ProjectChangelog isOwner={isOwner} data={logs} projectId={projectId} /></div>
       </Tabs>

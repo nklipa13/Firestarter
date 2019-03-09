@@ -7,8 +7,7 @@ import './ProjectFinance.scss';
 const ProjectFinance = ({
   data: {
     lockedInVesting, earnedInVesting, earnedInCompund, lockedInCompound, oneTimePaymentAmount, ethCollected,
-    withdrawHistory = [],
-  },
+  }, projectId,
 }) => (
   <div className="project-finance-wrapper">
     <div className="funds-wrapper">
@@ -34,12 +33,13 @@ const ProjectFinance = ({
       <div className="value">{ethCollected} ETH</div>
     </div>
 
-    { withdrawHistory.length > 0 && (<ProjectFinanceWithdrawHistory data={withdrawHistory} />) }
+    <ProjectFinanceWithdrawHistory projectId={projectId} />
   </div>
 );
 
 ProjectFinance.propTypes = {
   data: PropTypes.object.isRequired,
+  projectId: PropTypes.number.isRequired,
 };
 
 export default ProjectFinance;

@@ -26,6 +26,10 @@ import {
   PROJECT_FUND_SUCCESS,
   PROJECT_FUND_FAILURE,
   PROJECT_FUND_RESET,
+
+  PROJECT_WITHDRAW_HISTORY_REQUEST,
+  PROJECT_WITHDRAW_HISTORY_SUCCESS,
+  PROJECT_WITHDRAW_HISTORY_FAILURE,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 import {
@@ -42,6 +46,7 @@ import {
   vestFundContractCall,
   compoundFundContractCall,
   projectWithdrawContractCall,
+  getProjectWithdrawHistoryContractCall,
 } from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
@@ -370,3 +375,21 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
  * @return {Function}
  */
 export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJECT_FUND_RESET }); };
+
+/**
+ * Fetches withdraw history for a project
+ *
+ * @param projectId {Number}
+ * @return {Function}
+ */
+export const getProjectWithdrawHistory = projectId => async (dispatch) => {
+  dispatch({ type: PROJECT_WITHDRAW_HISTORY_REQUEST });
+
+  try {
+    const payload = await getProjectWithdrawHistoryContractCall(projectId);
+
+    dispatch({ type: PROJECT_WITHDRAW_HISTORY_SUCCESS, payload });
+  } catch (err) {
+    dispatch({ type: PROJECT_WITHDRAW_HISTORY_FAILURE, payload: err.message });
+  }
+};
