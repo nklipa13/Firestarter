@@ -170,12 +170,12 @@ export const compoundFundContractCall = (sendTxFunc1, sendTxFunc2, from, project
 
 export const getMaxEthDaiForProject = id => new Promise(async (resolve, reject) => {
   try {
-    // const contract = await FirestarterContract();
-    //
-    // const res = await contract.methods.projects(id).call();
-    // console.log('res', res);
+    const contract = await FirestarterContract();
 
-    resolve({ maxDai: 100, maxEth: 100 });
+    const res = await contract.methods.getMaxWithdraws(id).call();
+    console.log('res', res);
+
+    resolve({ maxDai: parseFloat(window._web3.utils.fromWei(res.maxDai)), maxEth: parseFloat(window._web3.utils.fromWei(res.maxEth)) }); // eslint-disable-line
   } catch (err) {
     reject(err);
   }
