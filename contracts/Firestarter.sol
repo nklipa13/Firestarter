@@ -130,7 +130,7 @@ contract Firestarter is Vesting {
 
 		require(project.owner == msg.sender || project.votingMachineCallback == msg.sender);
 		require(_ethBalance <= (project.funds - project.ethWithdrawn));
-		require(_daiBalance <= (currentFullBalance - project.daiFunds - project.daiWithdrawn));
+		require(_daiBalance <= (currentFullBalance - project.daiFunds));
 
 		if (_ethBalance > 0) {
 			msg.sender.transfer(_ethBalance);
@@ -163,7 +163,17 @@ contract Firestarter is Vesting {
 		Project memory project = projects[_projectId];
 
 		maxEth = (balance - project.ethWithdrawn);
-		maxDai = (currentFullBalance - project.daiFunds - project.daiWithdrawn);
+		maxDai = (currentFullBalance - project.daiFunds);
+	}
+
+	function getFullEarnings(uint _projectId) public view returns(uint fullEth, uint fullDai) {
+		uint currentFullBalance = compound.getSupplyBalance(address(this), DAI_ADDRESS);
+
+		// update before we try to get it
+		uint rate;
+		(fullEth, rate) = getNewBalanceAndRateView(_projectId);
+		Project memory project = projects[_projectId];
+		fullDai = (currentFullBalance - project.daiFunds) + project.daiWithdrawn;
 	}
 	
 

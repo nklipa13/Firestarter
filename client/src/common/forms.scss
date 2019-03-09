@@ -2,6 +2,8 @@
 @import './variables';
 @import './text';
 
+
+
 .form-wrapper {
   width: 100%;
   position: relative;
@@ -58,6 +60,11 @@
       border: 2px solid #c4c4c4;
       padding: 9px 13px;
       border-radius: 3px;
+      outline: none;
+      @include hover-transition;
+      &:focus {
+        border-color:  darken(#c4c4c4, 10%);
+      }
 
       &::placeholder {
         color: $light-gray;

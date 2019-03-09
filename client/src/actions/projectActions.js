@@ -46,6 +46,7 @@ import {
   vestFundContractCall,
   compoundFundContractCall,
   projectWithdrawContractCall,
+  signString,
   getProjectWithdrawHistoryContractCall,
 } from '../services/ethereumService';
 
@@ -179,11 +180,19 @@ export const getAllProjects = () => async (dispatch) => {
  *
  * @return {Function}
  */
-export const projectAddQuestion = (formData, projectId, closeModal) => async (dispatch) => {
+export const projectAddQuestion = (formData, projectId, closeModal) => async (dispatch, getState) => {
   dispatch({ type: PROJECT_ADD_QUESTION_REQUEST });
 
   try {
-    const payload = await projectAddQuestionApiCall(projectId, formData);
+    const { account } = getState().account;
+
+    console.log(account, formData.question);
+
+    const sig = await signString(formData.question, account);
+
+    console.log(sig);
+
+    const payload = await projectAddQuestionApiCall(projectId, formData, account, sig);
 
     dispatch({ type: PROJECT_ADD_QUESTION_SUCCESS, payload });
     closeModal();

@@ -68,7 +68,6 @@ module.exports.updateProjectFunds = async (req, res) => {
 
         if (action === 'add') {
             project[getParamName(type)] += numAmount;
-            project.numSupporters++;
 
             if (type !== 3) {
                 project.ethCollected += numAmount;
@@ -81,6 +80,8 @@ module.exports.updateProjectFunds = async (req, res) => {
         }
 
         project.supportersAddresses.indexOf(account) === -1 ? project.supportersAddresses.push(account) : null;
+
+        project.numSupporters = project.supportersAddresses.length;
 
         await project.save();
 
@@ -95,11 +96,10 @@ module.exports.updateProjectFunds = async (req, res) => {
 
 module.exports.addProjectLog = async (req, res) => {
     try {
-        const { address, sig, msg } = req.params;
+        const { address, sig, msg } = req.body;
 
         if (!onlyWithSig(address, sig, msg )) {
-            res.status(403);
-            res.json({status: 'ERROR', description: 'Invalid signature'});
+            res.status(500).send({ error: { messsage: "Invalid siganture" } } );
         }
 
         let project = await Project.findOne({projectId: req.params.projectId}).exec();
@@ -143,10 +143,11 @@ module.exports.getProjectLogs = async (req, res) => {
 
 module.exports.addProjectFaq = async (req, res) => {
     try {
-        const { address, sig, msg } = req.params;
+        const { address, sig, msg } = req.body;
+
+        console.log(address, sig, msg);
 
         if (!onlyWithSig(address, sig, msg)) {
-            res.status(403);
             res.status(500).send({ error: { messsage: "Invalid siganture" } } );
         }
 
@@ -155,8 +156,6 @@ module.exports.addProjectFaq = async (req, res) => {
         if(!project.faq) {
             project.faq = [];
         }
-
-        console.log(project.faq);
 
         project.faq.push({
             question: req.body.question,
@@ -178,8 +177,8 @@ module.exports.addProjectFaq = async (req, res) => {
 // Helper functions
 
 function onlyWithSig(address, sig, msg) {
-    // return signature.isValidSignature(address, sig, msg);
     return true;
+    // return signature.isValidSignature(address, sig, msg);
 }
 
 function getParamName(type) {
