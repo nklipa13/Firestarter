@@ -152,6 +152,19 @@ contract Firestarter is Vesting {
 
 		emit ProjectWithdraw(_projectId, _ethBalance, _daiBalance, _message);
 	}
+
+	function getMaxWithdraws(uint _projectId) public view returns(uint maxEth, uint maxDai) {
+		uint currentFullBalance = compound.getSupplyBalance(address(this), DAI_ADDRESS);
+
+		// update before we try to get it
+		uint balance;
+		uint rate;
+		(balance, rate) = getNewBalanceAndRateView(_projectId);
+		Project memory project = projects[_projectId];
+
+		maxEth = (balance - project.ethWithdrawn);
+		maxDai = (currentFullBalance - project.daiFunds - project.daiWithdrawn);
+	}
 	
 
 	function updateBalance(uint _id) public {
