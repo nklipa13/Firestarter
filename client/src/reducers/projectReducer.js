@@ -43,6 +43,12 @@ const INITIAL_STATE = {
   data: {},
 };
 
+const formatNewProject = newProject => ({
+  ...newProject,
+  faq: [...newProject.faq],
+  logs: [...newProject.logs],
+});
+
 export default (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
 
@@ -73,7 +79,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         addingQuestion: false,
         addingQuestionError: '',
-        data: payload,
+        data: formatNewProject(payload),
       };
 
     case PROJECT_ADD_QUESTION_FAILURE:
@@ -98,7 +104,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         addingChange: false,
         addingChangeError: '',
-        data: payload,
+        data: formatNewProject(payload),
       };
 
     case PROJECT_ADD_CHANGE_FAILURE:
@@ -123,7 +129,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         withdrawing: false,
         withdrawingError: '',
-        data: payload,
+        data: formatNewProject(payload),
       };
 
     case PROJECT_WITHDRAW_FAILURE:
@@ -148,7 +154,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         funding: false,
         fundingError: '',
-        data: payload,
+        data: formatNewProject(payload),
       };
 
     case PROJECT_FUND_FAILURE:

@@ -24,7 +24,9 @@ import {
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
-import { getProjectApiCall } from '../services/api';
+import { getProjectApiCall, oneTimeFundApiCall } from '../services/api';
+import { sendTx } from './notificationsActions';
+import { oneTimeFundContractCall } from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
   {
@@ -228,6 +230,30 @@ export const projectWithdraw = (formData, projectId, closeModal) => async (dispa
 export const resetProjectWithdraw = () => (dispatch) => { dispatch({ type: PROJECT_WITHDRAW_RESET }); };
 
 /**
+ * Handles the contract and api call for the one time fund method
+ *
+ * @param formData
+ * @param projectId
+ * @param account
+ * @param dispatch
+ * @param getState
+ *
+ * @return {Promise<any>}
+ */
+const oneTimeFund = (formData, projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => {
+  const proxySendHandler = promise => sendTx(promise, 'One time fund', dispatch, getState);
+
+  try {
+    await oneTimeFundContractCall(proxySendHandler, account, projectId, formData.ethAmount);
+    const payload = await oneTimeFundApiCall(projectId, parseFloat(formData.ethAmount));
+
+    resolve(payload);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+/**
  * Adss funds to the project via 3 types.
  *
  * @param formData {Object}
@@ -237,13 +263,14 @@ export const resetProjectWithdraw = () => (dispatch) => { dispatch({ type: PROJE
  *
  * @return {Function}
  */
-export const fundProject = (formData, projectId, closeModal, type) => async (dispatch) => {
+export const fundProject = (formData, projectId, closeModal, type) => async (dispatch, getState) => {
   dispatch({ type: PROJECT_FUND_REQUEST });
 
   try {
+    const { account } = getState().account;
     let payload = {};
 
-    if (type === 'one-time') payload = await wait(MOCK_PROJECTS[projectId], 500);
+    if (type === 'one-time') payload = await oneTimeFund(formData, projectId, account, dispatch, getState);
     if (type === 'vest') payload = await wait(MOCK_PROJECTS[projectId], 500);
     if (type === 'compound') payload = await wait(MOCK_PROJECTS[projectId], 500);
 
