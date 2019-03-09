@@ -28,9 +28,11 @@ export const closeModal = () => (dispatch) => {
 
 /**
  * Opens project add question modal for the owner to add a question to the faq
+ *
+ * @param id {Number}
  */
-export const openProjectAddQuestionModal = () => (dispatch) => {
-  dispatch(toggleModal(PROJECT_ADD_QUESTION_MODAL, { width: 647 }, true));
+export const openProjectAddQuestionModal = id => (dispatch) => {
+  dispatch(toggleModal(PROJECT_ADD_QUESTION_MODAL, { width: 647, projectId: id }, true));
 };
 
 /**

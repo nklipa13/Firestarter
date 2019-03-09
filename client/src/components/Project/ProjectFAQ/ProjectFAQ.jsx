@@ -6,13 +6,13 @@ import { openProjectAddQuestionModal } from '../../../actions/modalActions';
 import './ProjectFAQ.scss';
 
 const ProjectFAQ = ({
-  data, openProjectAddQuestionModal,
+  data, openProjectAddQuestionModal, id,
 }) => (
   <div className="project-faq-wrapper">
     <button
       className="button uppercase text-large-margin"
       type="button"
-      onClick={openProjectAddQuestionModal}
+      onClick={() => { openProjectAddQuestionModal(id); }}
     >
       Add a question
     </button>
@@ -30,6 +30,7 @@ const ProjectFAQ = ({
 
 ProjectFAQ.propTypes = {
   data: PropTypes.array.isRequired,
+  id: PropTypes.number.isRequired,
   openProjectAddQuestionModal: PropTypes.func.isRequired,
 };
 

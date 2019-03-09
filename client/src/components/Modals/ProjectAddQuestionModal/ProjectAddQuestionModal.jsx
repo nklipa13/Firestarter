@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import ProjectAddQuestionForm from './ProjectAddQuestionForm/ProjectAddQuestionForm';
+import { resetProjectAddQuestion } from '../../../actions/projectActions';
 
 import './ProjectAddQuestionModal.scss';
 
 class ProjectAddQuestionModal extends Component {
   componentWillMount() {
-    console.log('');
+    this.props.resetProjectAddQuestion();
   }
 
   render() {
+    const { closeModal, projectId } = this.props;
+
     return (
       <div className="project-add-question-modal-wrapper">
-        <ProjectAddQuestionForm />
+        <ProjectAddQuestionForm closeModal={closeModal} projectId={projectId} />
       </div>
     );
   }
 }
 
-ProjectAddQuestionModal.propTypes = {};
+ProjectAddQuestionModal.propTypes = {
+  closeModal: PropTypes.func.isRequired,
+  resetProjectAddQuestion: PropTypes.func.isRequired,
+  projectId: PropTypes.number.isRequired,
+};
 
-const mapStateToProps = () => ({});
+const mapDispatchToProps = {
+  resetProjectAddQuestion,
+};
 
-export default connect(mapStateToProps)(ProjectAddQuestionModal);
+export default connect(null, mapDispatchToProps)(ProjectAddQuestionModal);

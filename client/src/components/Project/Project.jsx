@@ -11,7 +11,7 @@ import './Project.scss';
 
 const Project = ({
   data: {
-    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs, changelog,
+    name, description, cover, supporters, ethRaised, daysPassed, creator, about, finance, faqs, changelog, id,
   },
 }) => (
   <div className="project-wrapper">
@@ -60,7 +60,7 @@ const Project = ({
       </div>
 
       <div label="Finance"><ProjectFinance data={finance} /></div>
-      <div label="FAQ"><ProjectFAQ data={faqs} /></div>
+      <div label="FAQ"><ProjectFAQ data={faqs} id={id} /></div>
       <div label="Changelog"><ProjectChangelog data={changelog} /></div>
     </Tabs>
   </div>

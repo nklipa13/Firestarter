@@ -1,12 +1,18 @@
 import {
-  GET_PROJECT_FAILURE,
   GET_PROJECT_REQUEST,
   GET_PROJECT_SUCCESS,
+  GET_PROJECT_FAILURE,
+
+  PROJECT_ADD_QUESTION_REQUEST,
+  PROJECT_ADD_QUESTION_SUCCESS,
+  PROJECT_ADD_QUESTION_FAILURE,
+  PROJECT_ADD_QUESTION_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 
 const MOCK_PROJECTS = [
   {
+    id: 0,
     name: 'Community-driven Dapps on the Ethereum blockchain',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',
     supporters: 42,
@@ -87,3 +93,34 @@ export const getProject = id => async (dispatch) => {
     dispatch({ type: GET_PROJECT_FAILURE, payload: err.message });
   }
 };
+
+/**
+ * Adds a new question-answer item to the faqs project array
+ *
+ * @param formData {Object}
+ * @param projectId {String}
+ * @param closeModal {Function}
+ *
+ * @return {Function}
+ */
+export const projectAddQuestion = (formData, projectId, closeModal) => async (dispatch) => {
+  dispatch({ type: PROJECT_ADD_QUESTION_REQUEST });
+
+  try {
+    const payload = await wait(MOCK_PROJECTS[projectId], 100000);
+
+    payload.faqs.push(formData);
+
+    dispatch({ type: PROJECT_ADD_QUESTION_SUCCESS, payload });
+    closeModal();
+  } catch (err) {
+    dispatch({ type: PROJECT_ADD_QUESTION_FAILURE, payload: err.message });
+  }
+};
+
+/**
+ * Resets the add new question-answer form state
+ *
+ * @return {Function}
+ */
+export const resetProjectAddQuestion = () => (dispatch) => { dispatch({ type: PROJECT_ADD_QUESTION_RESET }); };
