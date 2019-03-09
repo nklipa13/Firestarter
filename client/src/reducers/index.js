@@ -4,6 +4,8 @@ import modalReducer from './modalReducer';
 import generalReducer from './generalReducer';
 import projectReducer from './projectReducer';
 import startProjectReducer from './startProjectReducer';
+import accountReducer from './accountReducer';
+import notificationReducer from './notificationReducer';
 
 export default combineReducers({
   form: formReducer,
@@ -11,4 +13,6 @@ export default combineReducers({
   general: generalReducer,
   project: projectReducer,
   startProject: startProjectReducer,
+  account: accountReducer,
+  notification: notificationReducer,
 });

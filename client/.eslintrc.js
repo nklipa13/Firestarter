@@ -1,4 +1,4 @@
-module.exports = {
+  module.exports = {
   extends: 'eslint-config-airbnb',
   plugins: [
     'react', 'import',

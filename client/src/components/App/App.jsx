@@ -1,13 +1,18 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect, Provider } from 'react-redux';
+import { silentLogin } from '../../actions/accountActions';
+
 import HomePage from '../HomePage/HomePage';
 import Page404 from '../Page404/Page404';
 import ModalRoot from '../Modals/ModalRoot';
 import Header from '../Header/Header';
 import ProjectRoutes from '../Project/ProjectRoutes';
 import StartProject from '../StartProject/StartProject';
+import Loader from '../Loader/Loader';
+import Notification from '../Notification/Notification';
+
 
 import '../../common/fonts.scss';
 import './App.scss';
@@ -15,16 +20,22 @@ import './App.scss';
 class RoutesWrapper extends Component {
   componentWillMount() {
     console.log('');
+    this.props.silentLogin();
   }
 
   render() {
-    const { store } = this.props;
+    const { store, connectingProvider } = this.props;
+
+    if (connectingProvider) {
+      return <Loader />;
+    }
 
     return (
       <Provider store={store}>
         <BrowserRouter>
           <div className="app">
             <Header />
+            <Notification />
 
             <Switch>
               <Route exact path="/" component={HomePage} />
@@ -43,6 +54,19 @@ class RoutesWrapper extends Component {
 
 RoutesWrapper.propTypes = {
   store: PropTypes.object.isRequired,
+  silentLogin: PropTypes.func.isRequired,
+  connectingProvider: PropTypes.bool.isRequired,
 };
 
-export default RoutesWrapper;
+const mapStateToProps = ({ account }) => ({
+  connectingProvider: account.connectingProvider,
+});
+
+const mapDispatchToProps = {
+  silentLogin,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(RoutesWrapper);
