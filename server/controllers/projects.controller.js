@@ -28,7 +28,7 @@ module.exports.getProject = async (req, res) => {
 
         console.log(id);
 
-        const project = await Project.find({_id: id});
+        const project = await Project.find({projectId: id});
 
         res.status(200);
         res.json(project);
@@ -56,7 +56,7 @@ module.exports.listProjects = async (req, res) => {
 
 module.exports.updateProjectFunds = async (req, res) => {
     try {
-        let project = await Project.findById(req.params.projectId).exec();
+        let project = await Project.findOne({projectId: req.params.projectId}).exec();
 
         // action = 'add'|'remove' u zavisnosti da li zoves kad korisnik funduje ili sklanja funding
         // type = 1 -> direktno placanje | 2 -> vesting | 3 -> compound
@@ -93,7 +93,7 @@ module.exports.addProjectLog = async (req, res) => {
             res.json({status: 'ERROR', description: 'Invalid signature'});
         }
 
-        let project = await Project.findById(req.params.projectId).exec();
+        let project = await Project.findOne({projectId: req.params.projectId}).exec();
 
         if(!project.logs) {
             project.logs = [];
@@ -120,7 +120,7 @@ module.exports.getProjectLogs = async (req, res) => {
     try {
         const id = req.params.projectId;
 
-        const project = await Project.find({_id: id});
+        const project = await Project.findOne({projectId: id}).exec();
 
         res.status(200);
         res.json(project.logs);
@@ -141,7 +141,7 @@ module.exports.addProjectFaq = async (req, res) => {
             res.json({status: 'ERROR', description: 'Invalid signature'});
         }
 
-        let project = await Project.findById(req.params.projectId).exec();
+        let project = await Project.findOne({projectId: req.params.projectId}).exec();
 
         if(!project.faq) {
             project.faq = [];
