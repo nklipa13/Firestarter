@@ -85,7 +85,7 @@ contract Firestarter is Vesting {
 		addInvestorIfNeeded(msg.sender, _id);
 
 		projects[_id].allFunds[msg.sender].push(Fund({
-				amount: msg.value,
+				amount: msg.value / _numOfBlocks,
 				fundType: FundType.VestingType,
 				canceled: 0,
 				end: block.number + _numOfBlocks
@@ -119,6 +119,27 @@ contract Firestarter is Vesting {
 		}));
         
         emit ProjectFunded(_id, _daiAmount, msg.sender, FundType.CompoundType);
+	}
+
+	function stopFunding(uint _projectId, uint _fundId) public {
+		Fund memory fund = projects[_projectId].allFunds[msg.sender][_fundId];
+		// can't stop one time payment
+		require(fund.fundType != FundType.DirectType);
+		require(fund.canceled == 0);
+
+		if (fund.fundType == FundType.VestingType) {
+			updateBalance(_projectId);
+
+			projects[_projectId].vestRate -= fund.amount;
+			projects[_projectId].allFunds[msg.sender][_fundId].canceled = block.number;
+			removeVestingRecordWithRateAndBlock(fund.amount, fund.end);
+		} else {
+			compound.withdraw(DAI_ADDRESS, fund.amount);
+			ERC20(DAI_ADDRESS).transfer(msg.sender, fund.amount);
+			projects[_projectId].daiWithdrawn -= fund.amount;
+
+			projects[_projectId].allFunds[msg.sender][_fundId].canceled = block.number;
+		}
 	}
 
 	function withdraw(uint _projectId, uint _ethBalance, uint _daiBalance, string memory _message) public {
@@ -277,9 +298,13 @@ contract Firestarter is Vesting {
 		return projects[_projectId].allFunds[_from].length;
 	}
 
-	function getFund(uint _projectId, address _from, uint _fundId) public view returns(uint amount, FundType fundType) {
+	function getFund(uint _projectId, address _from, uint _fundId) public view returns(uint amount, FundType fundType, uint canceled, uint end) {
 	    Fund memory fund = projects[_projectId].allFunds[_from][_fundId];
-		return (fund.amount, fund.fundType);
+	    
+	    amount = fund.amount;
+	    fundType = fund.fundType;
+	    canceled = fund.canceled;
+	    end = fund.end;
 	}
 	
 	// remix for skipping few blocks
