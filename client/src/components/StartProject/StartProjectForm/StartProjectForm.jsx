@@ -63,8 +63,6 @@ const StartProjectForm = ({
       showErrorText
     />
 
-    { !submittingForm && submittingError && <div className="submit-error-wrapper">{submittingError}</div> }
-
     <div className="buttons-wrapper">
       <button
         type="submit"

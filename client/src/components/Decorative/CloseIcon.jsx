@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from 'react';
 
-export default function CloseIcon({ size = 13, color = '#FFFFFF' }) {
+export default function CloseIcon({ size = 13, color = '#000000' }) {
   return (
     <div className="close-icon">
       <svg width={size} height={size} viewBox="0 0 13 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">

@@ -1,3 +1,6 @@
+@import "../../common/colors";
+@import "../../common/variables";
+
 .notification-wrapper {
   position: fixed;
   transform: translateY(-80px);
@@ -27,12 +30,12 @@
 
     &.success {
       background-color: white;
-      color: #1beb1b;
+      color: $green;
     }
 
     &.error {
       background-color: white;
-      color: #eb1b1b;
+      color: $red;
     }
   }
 }
