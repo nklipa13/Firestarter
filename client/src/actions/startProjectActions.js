@@ -4,8 +4,7 @@ import {
   START_PROJECT_FAILURE,
   START_PROJECT_RESET,
 } from '../actionTypes/startProjectActionTypes';
-import { wait } from '../services/utils';
-import { MOCK_PROJECTS } from './projectActions';
+import { startProjectApiCall } from '../services/api';
 
 /**
  * Creates a new project for the user address that submitted it
@@ -19,7 +18,14 @@ export const startProject = (formData, history) => async (dispatch) => {
   dispatch({ type: START_PROJECT_REQUEST });
 
   try {
-    const payload = await wait(MOCK_PROJECTS[0], 500);
+    const data = {
+      ...formData,
+      creator: '0x45002669Ad051fd899331328E5F38f97feD075Bc',
+    };
+
+    const payload = await startProjectApiCall(data);
+
+    console.log('payload', payload);
 
     dispatch({ type: START_PROJECT_SUCCESS, payload });
     history.push(`/project/${payload.id}`);

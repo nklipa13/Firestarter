@@ -30,7 +30,7 @@ class ProjectRoutes extends Component {
                 message="Project not found"
                 question="Explore more great projects!"
                 buttonHandler={() => { history.push('/'); }}
-                buttonText="Upload"
+                buttonText="Explore"
               />
             )
           }
