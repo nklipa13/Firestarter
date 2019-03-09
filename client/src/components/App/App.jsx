@@ -7,6 +7,7 @@ import Page404 from '../Page404/Page404';
 import ModalRoot from '../Modals/ModalRoot';
 import Header from '../Header/Header';
 import ProjectRoutes from '../Project/ProjectRoutes';
+import StartProject from '../StartProject/StartProject';
 
 import '../../common/fonts.scss';
 import './App.scss';
@@ -27,7 +28,8 @@ class RoutesWrapper extends Component {
 
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/project/:id" component={ProjectRoutes} />
+              <Route path="/start-project" component={StartProject} />
+              <Route path="/project/:id" component={ProjectRoutes} />
               <Route path="*" component={Page404} />
             </Switch>
 

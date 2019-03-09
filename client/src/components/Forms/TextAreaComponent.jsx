@@ -3,10 +3,20 @@ import PropTypes from 'prop-types';
 
 const TextAreaComponent = ({
   input, placeholder, wrapperClassName, inputClassName, errorClassName, showErrorText,
-  id, labelText, labelClass, meta: { touched, error }, focus, additional,
+  id, labelText, labelClass, meta: { touched, error }, focus, additional, secondLabelText,
 }) => (
   <div className={wrapperClassName}>
-    {labelText && <label className={labelClass} htmlFor={id || ''}>{ labelText }</label>}
+    {
+      labelText && (
+        <label
+          className={`${labelClass} ${secondLabelText ? 'two-labels' : ''}`}
+          htmlFor={id || ''}
+        >
+          { labelText }
+        </label>
+      )
+    }
+    { secondLabelText && <div className="second-label">{secondLabelText}</div> }
     <textarea
       {...input}
       {...additional}
@@ -21,6 +31,7 @@ const TextAreaComponent = ({
 
 TextAreaComponent.defaultProps = {
   labelText: '',
+  secondLabelText: '',
   labelClass: '',
   id: '',
   placeholder: '',
@@ -38,6 +49,7 @@ TextAreaComponent.propTypes = {
   wrapperClassName: PropTypes.string,
   inputClassName: PropTypes.string,
   errorClassName: PropTypes.string,
+  secondLabelText: PropTypes.string,
   id: PropTypes.string,
   labelText: PropTypes.string,
   labelClass: PropTypes.string,
