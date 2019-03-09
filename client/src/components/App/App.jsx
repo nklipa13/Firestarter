@@ -10,7 +10,6 @@ import ModalRoot from '../Modals/ModalRoot';
 import Header from '../Header/Header';
 import ProjectRoutes from '../Project/ProjectRoutes';
 import StartProject from '../StartProject/StartProject';
-import Loader from '../Loader/Loader';
 import Notification from '../Notification/Notification';
 import TxNotifications from '../TxNotifications/TxNotifications';
 
