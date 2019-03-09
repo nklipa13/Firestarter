@@ -199,3 +199,20 @@ export const projectWithdrawContractCall = (sendTxFunc, from, projectId, formDat
     reject(err);
   }
 });
+
+export const signString = (stringToSign, address) => new Promise((resolve, reject) => {
+  const msgParams = [{
+    type: 'string',
+    name: 'Message',
+    value: stringToSign,
+  }];
+
+  window.web3.currentProvider.sendAsync({
+    method: 'eth_signTypedData',
+    params: [msgParams, address],
+    from: address,
+  }, (err, data) => {
+    if (err || data.error) return reject(data.error);
+    return resolve(data.result);
+  });
+});
