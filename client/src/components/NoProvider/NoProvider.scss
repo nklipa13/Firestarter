@@ -1,0 +1,11 @@
+.no-provider {
+  width: 100vw;
+  height: calc(100vh - 7.3rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  p {
+    text-align: center;
+  }
+}

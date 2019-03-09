@@ -21,6 +21,12 @@ export const imageExists = url => new Promise((resolve, reject) => {
   img.src = url;
 });
 
+export const toDecimal = (num, decimals = 3) => {
+  const conditional = num.indexOf('.') !== -1;
+
+  return conditional ? +num.substr(0, num.indexOf('.') + decimals + 1) : num;
+};
+
 export const calcDaysPassed = (val) => {
   const currDate = moment(new Date());
   const dateToTest = moment(val);

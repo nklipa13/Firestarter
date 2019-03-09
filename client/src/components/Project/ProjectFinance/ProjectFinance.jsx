@@ -6,7 +6,8 @@ import './ProjectFinance.scss';
 
 const ProjectFinance = ({
   data: {
-    oneTimePayments, total, funded, compound, withdrawHistory,
+    lockedInVesting, earnedInVesting, earnedInCompund, lockedInCompound, oneTimePaymentAmount, ethCollected,
+    withdrawHistory = [],
   },
 }) => (
   <div className="project-finance-wrapper">
@@ -14,41 +15,26 @@ const ProjectFinance = ({
       <div className="column-wrapper">
         <div className="label">One time payments:</div>
 
-        {
-          oneTimePayments.eth && (
-            <div className="col-item">{`${oneTimePayments.eth} ETH / ${oneTimePayments.usd} USD`}</div>
-          )
-        }
-
-        { oneTimePayments.dai && (<div className="col-item">{`${oneTimePayments.dai} DAI`}</div>) }
-        { oneTimePayments.mln && (<div className="col-item">{`${oneTimePayments.dai} MLN`}</div>) }
+        <div className="col-item">{`${oneTimePaymentAmount} ETH`}</div>
       </div>
 
-      {
-        funded && (
-          <div className="column-wrapper">
-            <div className="label">Funded: (Earned / Locked):</div>
-            <div className="col-item">{`${funded.earned} / ${funded.locked} ETH`}</div>
-          </div>
-        )
-      }
+      <div className="column-wrapper">
+        <div className="label">Vested: (Earned / Locked):</div>
+        <div className="col-item">{`${earnedInVesting} / ${lockedInVesting} ETH`}</div>
+      </div>
 
-      {
-        compound && (
-          <div className="column-wrapper">
-            <div className="label">Compound: (Earned / Staked):</div>
-            <div className="col-item">{`${compound.earned} / ${compound.locked} DAI`}</div>
-          </div>
-        )
-      }
+      <div className="column-wrapper">
+        <div className="label">Compound: (Earned / Staked):</div>
+        <div className="col-item">{`${earnedInCompund} / ${lockedInCompound} DAI`}</div>
+      </div>
     </div>
 
     <div className="total-wrapper">
       <div className="label">Totally raised:</div>
-      <div className="value">{total} ETH</div>
+      <div className="value">{ethCollected} ETH</div>
     </div>
 
-    <ProjectFinanceWithdrawHistory data={withdrawHistory} />
+    { withdrawHistory.length > 0 && (<ProjectFinanceWithdrawHistory data={withdrawHistory} />) }
   </div>
 );
 

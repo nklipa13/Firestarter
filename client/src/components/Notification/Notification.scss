@@ -1,0 +1,38 @@
+.notification-wrapper {
+  position: fixed;
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: all .3s;
+  text-align: center;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1000000;
+
+  &.active {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+
+  .notification-inner-wrapper {
+    display: inline-block;
+    width: 500px;
+    max-width: 100%;
+    min-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 24px;
+    background-color: #eee;
+    padding: 10px;
+    box-shadow: 0 2px 25px -10px rgba(0, 0, 0, 0.6);
+
+    &.success {
+      background-color: white;
+      color: #1beb1b;
+    }
+
+    &.error {
+      background-color: white;
+      color: #eb1b1b;
+    }
+  }
+}
