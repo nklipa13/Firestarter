@@ -33,6 +33,7 @@
     "image-webpack-loader": "^4.5.0",
     "imagemin-webpack-plugin": "^2.3.0",
     "mini-css-extract-plugin": "^0.4.4",
+    "moment": "^2.24.0",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",
     "prop-types": "^15.6.0",

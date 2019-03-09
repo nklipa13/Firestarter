@@ -13,8 +13,10 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "eth-sig-util": "^2.1.1",
+    "ethereum-ens": "^0.7.5",
+    "ethjs-ens": "^2.0.1",
     "express": "^4.16.4",
     "mongoose": "^5.4.18",
-    "web3": "^1.0.0-beta.48"
+    "web3": "^1.0.0-beta.34"
   }
 }

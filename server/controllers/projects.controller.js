@@ -18,6 +18,7 @@ module.exports.addProject = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 
@@ -34,6 +35,7 @@ module.exports.getProject = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 
@@ -48,6 +50,7 @@ module.exports.listProjects = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 
@@ -77,6 +80,7 @@ module.exports.updateProjectFunds = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 
@@ -108,6 +112,7 @@ module.exports.addProjectLog = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 
@@ -122,6 +127,7 @@ module.exports.getProjectLogs = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 
@@ -155,6 +161,7 @@ module.exports.addProjectFaq = async (req, res) => {
         
     } catch(err) {
         console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
     }
 };
 

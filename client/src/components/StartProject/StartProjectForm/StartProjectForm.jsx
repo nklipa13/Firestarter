@@ -25,7 +25,7 @@ const StartProjectForm = ({
 
     <Field
       id="short-description"
-      name="shortDescription"
+      name="description"
       labelText="Short description"
       secondLabelText="Project name should be bla bla. Lorem ipsum dolor sum"
       placeholder="Short description"
@@ -45,7 +45,7 @@ const StartProjectForm = ({
 
     <Field
       id="about"
-      name="about"
+      name="aboutProject"
       labelText="About project"
       secondLabelText="Project name should be bla bla. Lorem ipsum dolor sum"
       placeholder="About project"

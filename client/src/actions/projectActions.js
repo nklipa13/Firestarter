@@ -24,6 +24,7 @@ import {
   PROJECT_FUND_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
+import { getProjectApiCall } from '../services/api';
 
 export const MOCK_PROJECTS = [
   {
@@ -117,9 +118,11 @@ export const getProject = id => async (dispatch) => {
   dispatch({ type: GET_PROJECT_REQUEST });
 
   try {
-    const payload = await wait(MOCK_PROJECTS[id], 500);
+    const payload = await getProjectApiCall(id);
 
-    dispatch({ type: GET_PROJECT_SUCCESS, payload });
+    if (payload.length === 0) throw new Error('Project not found');
+
+    dispatch({ type: GET_PROJECT_SUCCESS, payload: payload[0] });
   } catch (err) {
     dispatch({ type: GET_PROJECT_FAILURE, payload: err.message });
   }
