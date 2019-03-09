@@ -42,7 +42,7 @@ const HomePage = () => (
     <div className="cta">
       <h2 className="heading-3 text-large-margin">Are you building a community-driven dapp?</h2>
       <h3 className="heading-4 text-large-margin">Start your project with Firestrater and fund your project easily.</h3>
-      <Link to="/start-project" className="button  uppercase no-wrap">Support the project</Link>
+      <Link to="/start-project" className="button  uppercase no-wrap">Start a project</Link>
     </div>
 
   </div>
