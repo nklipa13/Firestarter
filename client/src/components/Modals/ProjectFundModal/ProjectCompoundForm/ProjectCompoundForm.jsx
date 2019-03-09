@@ -2,33 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import projectVestFormValidator from './projectVestFormValidator';
+import projectCompoundFormValidator from './projectCompoundFormValidator';
 import InputComponent from '../../../Forms/InputComponent';
 import { fundProject } from '../../../../actions/projectActions';
 
-const ProjectVestForm = ({
+const ProjectCompoundForm = ({
   handleSubmit, pristine, invalid, submittingForm, submittingError, closeModal, onSubmit, projectId,
 }) => (
-  <form onSubmit={handleSubmit((e) => { onSubmit(e, projectId, closeModal, 'vest'); })} className="form-wrapper">
+  <form onSubmit={handleSubmit((e) => { onSubmit(e, projectId, closeModal, 'compound'); })} className="form-wrapper">
     <Field
       focus
       type="number"
       additional={{ min: 0 }}
-      id="ethAmount"
-      name="ethAmount"
-      labelText="ETH amount"
-      placeholder="ETH amount"
-      component={InputComponent}
-      showErrorText
-    />
-
-    <Field
-      type="number"
-      additional={{ min: 0 }}
-      id="weeks"
-      name="weeks"
-      labelText="Number of weeks"
-      placeholder="Number of weeks"
+      id="dai-amount"
+      name="daiAmount"
+      labelText="DAI amount"
+      secondLabelText="You will send two transactions. First one approves, second locks DAI."
+      placeholder="DAI amount"
       component={InputComponent}
       showErrorText
     />
@@ -47,7 +37,7 @@ const ProjectVestForm = ({
   </form>
 );
 
-ProjectVestForm.propTypes = {
+ProjectCompoundForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   projectId: PropTypes.number.isRequired,
@@ -58,10 +48,10 @@ ProjectVestForm.propTypes = {
   closeModal: PropTypes.func.isRequired,
 };
 
-const ProjectVestFormComp = reduxForm({
-  form: 'projectVestForm',
-  validate: projectVestFormValidator,
-})(ProjectVestForm);
+const ProjectCompoundFormComp = reduxForm({
+  form: 'projectCompoundForm',
+  validate: projectCompoundFormValidator,
+})(ProjectCompoundForm);
 
 const mapStateToProps = ({ project }) => ({
   submittingForm: project.funding,
@@ -72,4 +62,4 @@ const mapDispatchToProps = {
   onSubmit: fundProject,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectVestFormComp);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectCompoundFormComp);

@@ -10,7 +10,17 @@ const InputComponent = ({
 }) => (
   <div className={`${wrapperClassName} ${touched && error ? 'wrapper-error' : ''}`}>
     <div className="input-values">
-      {labelText && <label className={labelClass} htmlFor={id || ''}>{ labelText }</label>}
+      {
+        labelText && (
+          <label
+            className={`${labelClass} ${secondLabelText ? 'two-labels' : ''}`}
+            htmlFor={id || ''}
+          >
+            { labelText }
+          </label>
+        )
+      }
+      { secondLabelText && <div className="second-label">{secondLabelText}</div> }
       { icon && <span className={`${touched && error ? 'icon-error' : ''} input-icon`}>{icon}</span> }
       <input
         {...input}
@@ -22,7 +32,6 @@ const InputComponent = ({
         autoFocus={focus}
         disabled={disabled}
       />
-      { secondLabelText && <div className="second-label">{secondLabelText}</div> }
     </div>
 
     {touched && ((error && showErrorText && <div className={errorClassName}>{error}</div>))}

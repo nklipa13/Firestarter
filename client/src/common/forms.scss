@@ -32,12 +32,17 @@
       font-family: $bold-light;
       margin-bottom: 30px;
       color: black;
+
+      &.two-labels {
+        margin-bottom: 15px;
+      }
     }
 
     .second-label {
-      font-size: $font-size-extra-large;
-      color: white;
+      text-align: left;
+      margin-bottom: 30px;
       display: flex;
+      font-family: $bold-light;
       align-items: center;
     }
 
