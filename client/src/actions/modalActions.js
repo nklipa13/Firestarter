@@ -33,19 +33,19 @@ export const closeModal = () => (dispatch) => {
 /**
  * Opens project add question modal for the owner to add a question to the faq
  *
- * @param id {Number}
+ * @param projectId {Number}
  */
-export const openProjectAddQuestionModal = id => (dispatch) => {
-  dispatch(toggleModal(PROJECT_ADD_QUESTION_MODAL, { width: 647, projectId: id }, true));
+export const openProjectAddQuestionModal = projectId => (dispatch) => {
+  dispatch(toggleModal(PROJECT_ADD_QUESTION_MODAL, { width: 647, projectId }, true));
 };
 
 /**
  * Opens project add change modal for the owner to add a version to the changelog
  *
- * @param id {Number}
+ * @param projectId {Number}
  */
-export const openProjectAddChangeModal = id => (dispatch) => {
-  dispatch(toggleModal(PROJECT_ADD_CHANGE_MODAL, { width: 647, projectId: id }, true));
+export const openProjectAddChangeModal = projectId => (dispatch) => {
+  dispatch(toggleModal(PROJECT_ADD_CHANGE_MODAL, { width: 647, projectId }, true));
 };
 
 /**

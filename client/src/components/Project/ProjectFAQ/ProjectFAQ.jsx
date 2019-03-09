@@ -6,16 +6,21 @@ import { openProjectAddQuestionModal } from '../../../actions/modalActions';
 import './ProjectFAQ.scss';
 
 const ProjectFAQ = ({
-  data, openProjectAddQuestionModal, id,
+  data, openProjectAddQuestionModal, projectId, isOwner, addingQuestion,
 }) => (
   <div className="project-faq-wrapper">
-    <button
-      className="button uppercase text-large-margin"
-      type="button"
-      onClick={() => { openProjectAddQuestionModal(id); }}
-    >
-      Add a question
-    </button>
+    {
+      isOwner && (
+        <button
+          className="button uppercase text-large-margin"
+          type="button"
+          disabled={addingQuestion}
+          onClick={() => { openProjectAddQuestionModal(projectId); }}
+        >
+          Add a question
+        </button>
+      )
+    }
 
     { data.length === 0 && (<div className="tab-empty-wrapper">Currently, there are not FAQs</div>) }
 
@@ -32,12 +37,18 @@ const ProjectFAQ = ({
 
 ProjectFAQ.propTypes = {
   data: PropTypes.array.isRequired,
-  id: PropTypes.number.isRequired,
+  projectId: PropTypes.number.isRequired,
+  isOwner: PropTypes.bool.isRequired,
+  addingQuestion: PropTypes.bool.isRequired,
   openProjectAddQuestionModal: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = ({ project }) => ({
+  addingQuestion: project.addingQuestion,
+});
 
 const mapDispatchToProps = {
   openProjectAddQuestionModal,
 };
 
-export default connect(null, mapDispatchToProps)(ProjectFAQ);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectFAQ);

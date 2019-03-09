@@ -5,6 +5,8 @@ import {
   START_PROJECT_RESET,
 } from '../actionTypes/startProjectActionTypes';
 import { startProjectApiCall } from '../services/api';
+import { startProjectContractCall } from '../services/ethereumService';
+import { sendTx } from './notificationsActions';
 
 /**
  * Creates a new project for the user address that submitted it
@@ -15,17 +17,17 @@ import { startProjectApiCall } from '../services/api';
  * @return {Function}
  */
 export const startProject = (formData, history) => async (dispatch, getState) => {
-  dispatch({ type: START_PROJECT_REQUEST });
   const { account } = getState().account;
+  const proxySendHandler = promise => sendTx(promise, 'Start project', dispatch, getState);
+
+  dispatch({ type: START_PROJECT_REQUEST });
 
   try {
+    const projectId = await startProjectContractCall(proxySendHandler, account, formData.name);
+    await startProjectApiCall({ ...formData, creator: account, projectId });
 
-    const payload = await startProjectApiCall({ ...formData, creator: account });
-
-    console.log('payload', payload);
-
-    dispatch({ type: START_PROJECT_SUCCESS, payload });
-    history.push(`/project/${payload.id}`);
+    dispatch({ type: START_PROJECT_SUCCESS });
+    history.push(`/project/${projectId}`);
   } catch (err) {
     dispatch({ type: START_PROJECT_FAILURE, payload: err.message });
   }

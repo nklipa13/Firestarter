@@ -6,16 +6,21 @@ import { openProjectAddChangeModal } from '../../../actions/modalActions';
 import './ProjectChangelog.scss';
 
 const ProjectChangelog = ({
-  data, openProjectAddChangeModal, id,
+  data, openProjectAddChangeModal, projectId, isOwner, addingChange,
 }) => (
   <div className="project-changelog-wrapper">
-    <button
-      className="button uppercase text-large-margin"
-      type="button"
-      onClick={() => { openProjectAddChangeModal(id); }}
-    >
-      Add a new version
-    </button>
+    {
+      isOwner && (
+        <button
+          className="button uppercase text-large-margin"
+          type="button"
+          disabled={addingChange}
+          onClick={() => { openProjectAddChangeModal(projectId); }}
+        >
+          Add a new version
+        </button>
+      )
+    }
 
     { data.length === 0 && (<div className="tab-empty-wrapper">Currently, there are no versions</div>) }
 
@@ -45,12 +50,18 @@ const ProjectChangelog = ({
 
 ProjectChangelog.propTypes = {
   data: PropTypes.array.isRequired,
-  id: PropTypes.number.isRequired,
+  projectId: PropTypes.number.isRequired,
+  isOwner: PropTypes.bool.isRequired,
   openProjectAddChangeModal: PropTypes.func.isRequired,
+  addingChange: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = ({ project }) => ({
+  addingChange: project.addingChange,
+});
 
 const mapDispatchToProps = {
   openProjectAddChangeModal,
 };
 
-export default connect(null, mapDispatchToProps)(ProjectChangelog);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectChangelog);
