@@ -23,11 +23,7 @@ class RoutesWrapper extends Component {
   }
 
   render() {
-    const { store, connectingProvider } = this.props;
-
-    if (connectingProvider) {
-      return <Loader />;
-    }
+    const { store } = this.props;
 
     return (
       <Provider store={store}>
@@ -55,18 +51,13 @@ class RoutesWrapper extends Component {
 RoutesWrapper.propTypes = {
   store: PropTypes.object.isRequired,
   silentLogin: PropTypes.func.isRequired,
-  connectingProvider: PropTypes.bool.isRequired,
 };
-
-const mapStateToProps = ({ account }) => ({
-  connectingProvider: account.connectingProvider,
-});
 
 const mapDispatchToProps = {
   silentLogin,
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(RoutesWrapper);

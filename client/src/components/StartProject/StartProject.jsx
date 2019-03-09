@@ -5,6 +5,8 @@ import { resetStartProjectForm } from '../../actions/startProjectActions';
 import StartProjectForm from './StartProjectForm/StartProjectForm';
 
 import './StartProject.scss';
+import Loader from '../Loader/Loader';
+import NoProvider from '../NoProvider/NoProvider';
 
 class StartProject extends Component {
   componentWillUnmount() {
@@ -12,7 +14,15 @@ class StartProject extends Component {
   }
 
   render() {
-    const { history } = this.props;
+    const { history, connectingProvider, account } = this.props;
+
+    if (connectingProvider) {
+      return <Loader />;
+    }
+
+    if (account === '') {
+      return <NoProvider />;
+    }
 
     return (
       <div className="start-project-wrapper">
@@ -35,10 +45,17 @@ class StartProject extends Component {
 StartProject.propTypes = {
   resetStartProjectForm: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  connectingProvider: PropTypes.bool.isRequired,
+  account: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = ({ account }) => ({
+  connectingProvider: account.connectingProvider,
+  account: account.account,
+});
 
 const mapDispatchToProps = {
   resetStartProjectForm,
 };
 
-export default connect(null, mapDispatchToProps)(StartProject);
+export default connect(mapStateToProps, mapDispatchToProps)(StartProject);
