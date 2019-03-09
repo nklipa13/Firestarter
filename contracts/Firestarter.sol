@@ -46,7 +46,7 @@ contract Firestarter is Vesting {
 	event ProjectWithdraw(uint indexed id, uint ethAmount, uint daiAmount, string message);
 
 	constructor() public {
-		ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
+		// ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
 	}
 
 	function addProject(string memory _name) public {
