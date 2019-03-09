@@ -164,9 +164,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ncontract CompoundInterface {\n    function supply(address asset, uint amount) public returns (uint);\n    function withdraw(address asset, uint requestedAmount) public returns (uint);\n    function borrow(address asset, uint amount) public returns (uint);\n    function repayBorrow(address asset, uint amount) public returns (uint);\n    function getAccountLiquidity(address account) public view returns (int);\n    function getSupplyBalance(address account, address asset) public view returns (uint);\n    function getBorrowBalance(address account, address asset) public view returns (uint);\n}",
-  "sourcePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/CompoundInterface.sol",
+  "sourcePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/CompoundInterface.sol",
   "ast": {
-    "absolutePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/CompoundInterface.sol",
+    "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/CompoundInterface.sol",
     "exportedSymbols": {
       "CompoundInterface": [
         63
@@ -939,7 +939,7 @@
     "src": "0:612:0"
   },
   "legacyAST": {
-    "absolutePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/CompoundInterface.sol",
+    "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/CompoundInterface.sol",
     "exportedSymbols": {
       "CompoundInterface": [
         63
@@ -1716,8 +1716,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.0",
-  "updatedAt": "2019-03-09T09:50:42.583Z",
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-03-09T10:33:48.195Z",
   "devdoc": {
     "methods": {}
   },
