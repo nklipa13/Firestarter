@@ -17,6 +17,8 @@ const ProjectChangelog = ({
       Add a new version
     </button>
 
+    { data.length === 0 && (<div className="tab-empty-wrapper">Currently, there are no versions</div>) }
+
     {
       data.map(({
         version, date, description, changes,

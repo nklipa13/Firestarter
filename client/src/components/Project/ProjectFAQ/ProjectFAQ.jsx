@@ -17,6 +17,8 @@ const ProjectFAQ = ({
       Add a question
     </button>
 
+    { data.length === 0 && (<div className="tab-empty-wrapper">Currently, there are not FAQs</div>) }
+
     {
       data.map(({ question, answer }) => (
         <div className="item" key={question}>

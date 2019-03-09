@@ -11,9 +11,10 @@ import { openProjectWithdrawModal, openProjectFundModal } from '../../actions/mo
 import './Project.scss';
 
 const Project = ({
+  data,
   data: {
     name, description, imageUrl, ethCollected, date,
-    numSupporters, creator, aboutProject, finance, faqs, changelog, id, ethWithdraw, daiWithdraw, aboutCreator,
+    numSupporters, creator, aboutProject, faq, id, ethWithdraw, daiWithdraw, aboutCreator, logs,
   },
   openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
 }) => {
@@ -89,9 +90,9 @@ const Project = ({
           </div>
         </div>
 
-        <div label="Finance"><ProjectFinance data={finance} /></div>
-        <div label="FAQ"><ProjectFAQ data={faqs} id={id} /></div>
-        <div label="Changelog"><ProjectChangelog data={changelog} id={id} /></div>
+        <div label="Finance"><ProjectFinance data={data} /></div>
+        <div label="FAQ"><ProjectFAQ data={faq} id={id} /></div>
+        <div label="Changelog"><ProjectChangelog data={logs} id={id} /></div>
       </Tabs>
     </div>
   );
