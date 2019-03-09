@@ -167,3 +167,35 @@ export const compoundFundContractCall = (sendTxFunc1, sendTxFunc2, from, project
     reject(err);
   }
 });
+
+export const getMaxEthDaiForProject = id => new Promise(async (resolve, reject) => {
+  try {
+    // const contract = await FirestarterContract();
+    //
+    // const res = await contract.methods.projects(id).call();
+    // console.log('res', res);
+
+    resolve({ maxDai: 100, maxEth: 100 });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const projectWithdrawContractCall = (sendTxFunc, from, projectId, formData) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+    const ethAmount = window._web3.utils.toWei(formData.ethAmount, 'ether');
+    const daiAmount = window._web3.utils.toWei(formData.daiAmount, 'ether');
+
+    console.log('ethAmount', ethAmount);
+    console.log('ethAmount', daiAmount);
+
+    const promise = contract.methods.withdraw(projectId, ethAmount, daiAmount, formData.purpose).send({ from });
+    //
+    // await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});

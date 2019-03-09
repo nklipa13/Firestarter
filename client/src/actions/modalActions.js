@@ -5,6 +5,7 @@ import {
   PROJECT_WITHDRAW_MODAL,
   PROJECT_FUND_MODAL,
 } from '../components/Modals/modalTypes';
+import { getMaxEthDaiForProject } from '../services/ethereumService';
 
 /**
  * Dispatches action to toggle modal.
@@ -52,10 +53,10 @@ export const openProjectAddChangeModal = projectId => (dispatch) => {
  * Opens project withdraw modal for the owner to withdraw available funds
  *
  * @param id {Number}
- * @param maxEth {Number}
- * @param maxDai {Number}
  */
-export const openProjectWithdrawModal = (id, maxEth, maxDai) => (dispatch) => {
+export const openProjectWithdrawModal = id => async (dispatch) => {
+  const { maxEth, maxDai } = await getMaxEthDaiForProject(id);
+
   dispatch(toggleModal(PROJECT_WITHDRAW_MODAL, {
     width: 647, maxEth, maxDai, projectId: id,
   }, true));
