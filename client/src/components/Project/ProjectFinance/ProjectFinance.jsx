@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ProjectFinanceWithdrawHistory from './ProjectFinanceWithdrawHistory/ProjectFinanceWithdrawHistory';
 
 import './ProjectFinance.scss';
 
 const ProjectFinance = ({
   data: {
-    oneTimePayments, total, funded, compound,
+    oneTimePayments, total, funded, compound, withdrawHistory,
   },
 }) => (
   <div className="project-finance-wrapper">
@@ -46,6 +47,8 @@ const ProjectFinance = ({
       <div className="label">Totally raised:</div>
       <div className="value">{total} ETH</div>
     </div>
+
+    <ProjectFinanceWithdrawHistory data={withdrawHistory} />
   </div>
 );
 

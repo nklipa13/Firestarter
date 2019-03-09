@@ -42,18 +42,18 @@
     padding: 90px;
 
     .modal-header {
-      background: transparent;
-      padding: 20px 0;
       display: flex;
       justify-content: flex-end;
+      position: absolute;
+      right: 12px;
+      top: 12px;
 
-      .icon-close {
+      svg {
+        transform: rotate(45deg);
         @include hover-transition;
         cursor: pointer;
 
-        &:hover {
-          opacity: 0.7;
-        }
+        &:hover { opacity: 0.7; }
       }
     }
 

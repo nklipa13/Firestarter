@@ -1,6 +1,9 @@
 import { TOGGLE_MODAL } from '../actionTypes/modalActionTypes';
-import { PROJECT_ADD_QUESTION_MODAL, PROJECT_ADD_CHANGE_MODAL } from '../components/Modals/modalTypes';
-// import {} from '../components/Modals/modalTypes';
+import {
+  PROJECT_ADD_QUESTION_MODAL,
+  PROJECT_ADD_CHANGE_MODAL,
+  PROJECT_WITHDRAW_MODAL,
+} from '../components/Modals/modalTypes';
 
 /**
  * Dispatches action to toggle modal.
@@ -37,7 +40,18 @@ export const openProjectAddQuestionModal = id => (dispatch) => {
 
 /**
  * Opens project add change modal for the owner to add a version to the changelog
+ *
+ * @param id {Number}
  */
-export const openProjectAddChangeModal = () => (dispatch) => {
-  dispatch(toggleModal(PROJECT_ADD_CHANGE_MODAL, { width: 647 }, true));
+export const openProjectAddChangeModal = id => (dispatch) => {
+  dispatch(toggleModal(PROJECT_ADD_CHANGE_MODAL, { width: 647, projectId: id }, true));
+};
+
+/**
+ * Opens project withdraw modal for the owner to withdraw available funds
+ *
+ * @param id {Number}
+ */
+export const openProjectWithdrawModal = id => (dispatch) => {
+  dispatch(toggleModal(PROJECT_WITHDRAW_MODAL, { width: 647, projectId: id }, true));
 };

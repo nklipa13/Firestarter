@@ -34,8 +34,6 @@ const ProjectAddQuestionForm = ({
     { !submittingForm && submittingError && <div className="submit-error-wrapper">{submittingError}</div> }
 
     <div className="buttons-wrapper">
-      <button type="button" className="button" onClick={closeModal}>Cancel</button>
-
       <button
         type="submit"
         className="button uppercase"
@@ -59,7 +57,7 @@ ProjectAddQuestionForm.propTypes = {
 };
 
 const ProjectAddQuestionFormComp = reduxForm({
-  form: 'projectAddQuestionFormComp',
+  form: 'projectAddQuestionForm',
   validate: projectAddQuestionFormValidator,
 })(ProjectAddQuestionForm);
 

@@ -86,4 +86,35 @@
       margin-right: 30px;
     }
   }
+
+  .filed-array-wrapper {
+    text-align: left;
+
+    .items-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+
+      .form-item-wrapper {
+        margin-bottom: 15px;
+      }
+    }
+
+    .add-wrapper {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+
+      &:hover {
+        svg, .label { opacity: 0.7; }
+      }
+
+      .label { @include hover-transition; }
+
+      svg {
+        @include hover-transition;
+        margin-right: 15px;
+      }
+    }
+  }
 }

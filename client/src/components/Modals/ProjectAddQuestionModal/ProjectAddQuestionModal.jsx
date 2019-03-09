@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ProjectAddQuestionForm from './ProjectAddQuestionForm/ProjectAddQuestionForm';
 import { resetProjectAddQuestion } from '../../../actions/projectActions';
+import ModalHeader from '../ModalHeader';
 
 import './ProjectAddQuestionModal.scss';
 
 class ProjectAddQuestionModal extends Component {
-  componentWillMount() {
+  componentWillUnmount() {
     this.props.resetProjectAddQuestion();
   }
 
@@ -16,6 +17,8 @@ class ProjectAddQuestionModal extends Component {
 
     return (
       <div className="project-add-question-modal-wrapper">
+        <ModalHeader closeModal={closeModal} />
+
         <ProjectAddQuestionForm closeModal={closeModal} projectId={projectId} />
       </div>
     );
