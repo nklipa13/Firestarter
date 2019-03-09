@@ -12,8 +12,9 @@ const projectSchema = new mongoose.Schema({
     description: {type: String, required: true},
     imageUrl: {type: String},
     date: {type: Date, default: Date.now, required: true},
+    supportersAddresses: [String],
     numSupporters: {type: Number, default: '0'},
-    ethCollected: {type: String, default: '0'},
+    ethCollected: {type: Number, default: 0},
     oneTimePaymentAmount: {type: Number, default: 0},
     lockedInVesting: {type: Number, default: 0},
     earnedInVesting: {type: String, default: '0'}, // contract info

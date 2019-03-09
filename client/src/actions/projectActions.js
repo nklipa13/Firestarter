@@ -245,7 +245,7 @@ const oneTimeFund = (formData, projectId, account, dispatch, getState) => new Pr
 
   try {
     await oneTimeFundContractCall(proxySendHandler, account, projectId, formData.ethAmount);
-    const payload = await oneTimeFundApiCall(projectId, parseFloat(formData.ethAmount));
+    const payload = await oneTimeFundApiCall(projectId, parseFloat(formData.ethAmount), account);
 
     resolve(payload);
   } catch (err) {
