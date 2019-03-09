@@ -48,8 +48,10 @@ export const compoundFundApiCall = (id, amount, account) => fetch(`${API_URL}/pr
   }),
 }).then(res => handleResponse(res));
 
-export const projectAddQuestionApiCall = (id, formData) => fetch(`${API_URL}/project/${id}/faq`, {
+export const projectAddQuestionApiCall = (id, formData, address, sig) => fetch(`${API_URL}/project/${id}/faq`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify(formData),
+  body: JSON.stringify({
+    ...formData, address, sig, msg: formData.question,
+  }),
 }).then(res => handleResponse(res));
