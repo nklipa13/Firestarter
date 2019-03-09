@@ -13,7 +13,7 @@ contract Vesting {
 	uint public maxId = 1;
 	uint public firstVestingRecord;
 
-	function addVestingRecord(uint _rate, uint _block) public returns(uint id) {
+	function addVestingRecord(uint _rate, uint _block) internal returns(uint id) {
 		id = maxId;
 
 		allVestings[id] = VestingRecord({
@@ -39,7 +39,7 @@ contract Vesting {
 		maxId++;
 	}
 
-	function removeVestingRecord(uint _id) public {
+	function removeVestingRecord(uint _id) internal {
 		if (_id == firstVestingRecord) {
 			firstVestingRecord = allVestings[_id].next;
 		} else {
@@ -89,6 +89,5 @@ contract Vesting {
 		}		
 		arr[count] = allVestings[curr].block;
 	}
-	
 
 }

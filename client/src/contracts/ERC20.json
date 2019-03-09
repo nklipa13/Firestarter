@@ -172,9 +172,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ninterface ERC20 {\n    function totalSupply() external view returns (uint supply);\n    function balanceOf(address _owner) external view returns (uint balance);\n    function transfer(address _to, uint _value) external returns (bool success);\n    function transferFrom(address _from, address _to, uint _value) external returns (bool success);\n    function approve(address _spender, uint _value) external returns (bool success);\n    function allowance(address _owner, address _spender) external view returns (uint remaining);\n    function decimals() external view returns(uint digits);\n    event Approval(address indexed _owner, address indexed _spender, uint _value);\n}",
-  "sourcePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/ERC20.sol",
+  "sourcePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/ERC20.sol",
   "ast": {
-    "absolutePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/ERC20.sol",
+    "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         129
@@ -963,7 +963,7 @@
     "src": "0:691:1"
   },
   "legacyAST": {
-    "absolutePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/ERC20.sol",
+    "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/ERC20.sol",
     "exportedSymbols": {
       "ERC20": [
         129
@@ -1756,8 +1756,8 @@
     "version": "0.5.0+commit.1d4f565a.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.0",
-  "updatedAt": "2019-03-09T09:50:42.584Z",
+  "schemaVersion": "3.0.1",
+  "updatedAt": "2019-03-09T10:33:48.196Z",
   "devdoc": {
     "methods": {}
   },

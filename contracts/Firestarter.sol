@@ -8,6 +8,12 @@ contract Firestarter is Vesting {
 
 	enum FundType { DirectType, VestingType, CompoundType }
 
+	struct Withdraw {
+		uint ethAmount;
+		uint daiAmount;
+		string message;
+	}
+
 	struct Fund {
 		uint amount;
 		FundType fundType;
@@ -17,11 +23,16 @@ contract Firestarter is Vesting {
 		address owner;
 		string name;
 		uint funds;
-		mapping(address => Fund[]) allFunds;
 		uint daiFunds;
+		mapping(address => Fund[]) allFunds;
+		// solidity doesn't support array of structs in struct, so implementing it on my own
+		mapping(uint => Withdraw) allWithdraws;
+		uint totalWithdraws;
 		address[] investors;
 		uint lastUpdate;
 		uint vestRate;
+		uint ethWithdrawn;
+		uint daiWithdrawn;
 	}
 
 	Project[] public projects;
@@ -30,22 +41,21 @@ contract Firestarter is Vesting {
 	CompoundInterface compound = CompoundInterface(0x61bbd7Bd5EE2A202d7e62519750170A52A8DFD45);
 	address public DAI_ADDRESS = 0x4e17c87c52d0E9a0cAd3Fbc53b77d9514F003807;
 
-	event ProjectCreated(uint id, string name, address owner);
-	event ProjectFunded(uint id, uint amount, address from, FundType fundType);
+	event ProjectCreated(uint indexed id, string name, address indexed owner);
+	event ProjectFunded(uint indexed id, uint amount, address from, FundType fundType);
+	event ProjectWithdraw(uint indexed id, uint ethAmount, uint daiAmount, string message);
 
 	constructor() public {
 		// ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
 	}
 
 	function addProject(string memory _name) public {
-		projects.push(Project({
-				owner: msg.sender,
-				name: _name,
-				funds: 0,
-				investors: new address[](0),
-				lastUpdate: block.number,
-				vestRate: 0
-			}));
+		
+		Project memory project;
+		project.owner = msg.sender;
+		project.name = _name;
+
+		projects.push(project);
 
 		emit ProjectCreated(projects.length-1, _name, msg.sender);
 	}
@@ -100,6 +110,39 @@ contract Firestarter is Vesting {
         emit ProjectFunded(_id, _daiAmount, msg.sender, FundType.CompoundType);
 	}
 
+	function withdraw(uint _projectId, uint _ethBalance, uint _daiBalance, string memory _message) public {
+		uint currentFullBalance = compound.getSupplyBalance(address(this), DAI_ADDRESS);
+
+		// update before we try to get it
+		updateBalance(_projectId);
+		Project memory project = projects[_projectId];
+
+		require(project.owner == msg.sender);
+		require(_ethBalance <= (project.funds - project.ethWithdrawn));
+		require(_daiBalance <= (currentFullBalance - project.daiFunds - project.daiWithdrawn));
+
+		if (_ethBalance > 0) {
+			msg.sender.transfer(_ethBalance);
+			projects[_projectId].ethWithdrawn += _ethBalance;
+		}
+
+		if (_daiBalance > 0) {
+			compound.withdraw(DAI_ADDRESS, _daiBalance);
+			ERC20(DAI_ADDRESS).transfer(msg.sender, _daiBalance);
+			projects[_projectId].daiWithdrawn += _daiBalance;
+		}
+
+		projects[_projectId].allWithdraws[projects[_projectId].totalWithdraws] = Withdraw({
+				ethAmount: _ethBalance,
+				daiAmount: _daiBalance,
+				message: _message
+			});
+		projects[_projectId].totalWithdraws++;
+
+		emit ProjectWithdraw(_projectId, _ethBalance, _daiBalance, _message);
+	}
+	
+
 	function updateBalance(uint _id) public {
 		uint balance;
 		uint rate;
@@ -110,7 +153,7 @@ contract Firestarter is Vesting {
 		projects[_id].lastUpdate = block.number;
 	}
 
-	function getNewBalanceAndRate(uint _id) public returns(uint, uint) {
+	function getNewBalanceAndRate(uint _id) internal returns(uint, uint) {
 		uint previous = findPrevious(block.number);
 
 		uint curr = firstVestingRecord;
@@ -141,6 +184,37 @@ contract Firestarter is Vesting {
 		return (balance, rate);
 	}
 
+	function getNewBalanceAndRateView(uint _id) public view returns(uint, uint) {
+		uint previous = findPrevious(block.number);
+
+		uint curr = firstVestingRecord;
+		uint rate = projects[_id].vestRate;
+		uint balance = projects[_id].funds;
+		uint lastUpdate = projects[_id].lastUpdate;
+
+		if (previous != 0) {
+			while (curr != previous) {
+				balance += (allVestings[curr].block - lastUpdate) * rate;
+				rate -= allVestings[curr].rate;
+				lastUpdate = allVestings[curr].block;
+
+				uint next = allVestings[curr].next;
+				// removeVestingRecord(curr);
+				curr = next;
+			}
+			
+			balance += (allVestings[curr].block - lastUpdate) * rate;
+			rate -= allVestings[curr].rate;
+			lastUpdate = allVestings[curr].block;
+
+			// removeVestingRecord(curr);
+		} 
+
+		balance += (block.number - lastUpdate) * rate;
+
+		return (balance, rate);
+	}
+
 	function addInvestorIfNeeded(address _user, uint _projectId) internal {
 		//needs to change this in future
 
@@ -162,6 +236,6 @@ contract Firestarter is Vesting {
 		return (fund.amount, fund.fundType);
 	}
 	
-
-
+	// remix for skipping few blocks
+	function skip() public {}
 }
