@@ -7,6 +7,11 @@ import {
   PROJECT_ADD_QUESTION_SUCCESS,
   PROJECT_ADD_QUESTION_FAILURE,
   PROJECT_ADD_QUESTION_RESET,
+
+  PROJECT_ADD_CHANGE_REQUEST,
+  PROJECT_ADD_CHANGE_SUCCESS,
+  PROJECT_ADD_CHANGE_FAILURE,
+  PROJECT_ADD_CHANGE_RESET,
 } from '../actionTypes/projectActionTypes';
 import { wait } from '../services/utils';
 
@@ -107,7 +112,7 @@ export const projectAddQuestion = (formData, projectId, closeModal) => async (di
   dispatch({ type: PROJECT_ADD_QUESTION_REQUEST });
 
   try {
-    const payload = await wait(MOCK_PROJECTS[projectId], 100000);
+    const payload = await wait(MOCK_PROJECTS[projectId], 500);
 
     payload.faqs.push(formData);
 
@@ -124,3 +129,39 @@ export const projectAddQuestion = (formData, projectId, closeModal) => async (di
  * @return {Function}
  */
 export const resetProjectAddQuestion = () => (dispatch) => { dispatch({ type: PROJECT_ADD_QUESTION_RESET }); };
+
+/**
+ * Adds a new version item to the changelog project array
+ *
+ * @param formData {Object}
+ * @param projectId {String}
+ * @param closeModal {Function}
+ *
+ * @return {Function}
+ */
+export const projectAddChange = (formData, projectId, closeModal) => async (dispatch) => {
+  dispatch({ type: PROJECT_ADD_CHANGE_REQUEST });
+
+  try {
+    const payload = await wait(MOCK_PROJECTS[projectId], 500);
+
+    payload.changelog.unshift({
+      version: formData.version,
+      date: formData.date,
+      description: formData.description, // eslint-disable-line
+      changes: formData.changes.map(c => c.change),
+    });
+
+    dispatch({ type: PROJECT_ADD_CHANGE_SUCCESS, payload });
+    closeModal();
+  } catch (err) {
+    dispatch({ type: PROJECT_ADD_CHANGE_FAILURE, payload: err.message });
+  }
+};
+
+/**
+ * Resets the add new changelog item form state
+ *
+ * @return {Function}
+ */
+export const resetProjectAddChange = () => (dispatch) => { dispatch({ type: PROJECT_ADD_CHANGE_RESET }); };

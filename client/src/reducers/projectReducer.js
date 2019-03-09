@@ -7,6 +7,11 @@ import {
   PROJECT_ADD_QUESTION_SUCCESS,
   PROJECT_ADD_QUESTION_FAILURE,
   PROJECT_ADD_QUESTION_RESET,
+
+  PROJECT_ADD_CHANGE_REQUEST,
+  PROJECT_ADD_CHANGE_SUCCESS,
+  PROJECT_ADD_CHANGE_FAILURE,
+  PROJECT_ADD_CHANGE_RESET,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -15,6 +20,9 @@ const INITIAL_STATE = {
 
   addingQuestion: false,
   addingQuestionError: '',
+
+  addingChange: false,
+  addingChangeError: '',
 
   data: {},
 };
@@ -64,6 +72,31 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         addingQuestion: false,
         addingQuestionError: '',
+      };
+
+    case PROJECT_ADD_CHANGE_REQUEST:
+      return { ...state, addingChange: true, addingChangeError: '' };
+
+    case PROJECT_ADD_CHANGE_SUCCESS:
+      return {
+        ...state,
+        addingChange: false,
+        addingChangeError: '',
+        data: payload,
+      };
+
+    case PROJECT_ADD_CHANGE_FAILURE:
+      return {
+        ...state,
+        addingChange: false,
+        addingChangeError: payload,
+      };
+
+    case PROJECT_ADD_CHANGE_RESET:
+      return {
+        ...state,
+        addingChange: false,
+        addingChangeError: '',
       };
 
     default:

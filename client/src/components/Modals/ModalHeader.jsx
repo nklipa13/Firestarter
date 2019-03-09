@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CloseIcon from '../Decorative/CloseIcon';
+import CloseIcon from '../Decorative/AddCircle';
 
 import './modals.scss';
 
