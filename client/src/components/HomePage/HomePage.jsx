@@ -43,14 +43,18 @@ class HomePage extends Component {
           hasData && (
             <div className="projects">
               {
-                data.map(({ projectId, name, description, imageUrl }) =>
-                  (
-                    <Link to={`/project/0${projectId}`} className="project">
-                      <h3>{name}</h3>
-                      <img src={imageUrl} alt={name} />
-                      <h4>{description}</h4>
-                    </Link>
-                  )
+                data.map(({
+                  projectId,
+                  name,
+                  description,
+                  imageUrl,
+                }) => (
+                  <Link to={`/project/0${projectId}`} className="project">
+                    <h3>{name}</h3>
+                    <img src={imageUrl} alt={name} />
+                    <h4>{description}</h4>
+                  </Link>
+                ),
                 )
               }
             </div>
