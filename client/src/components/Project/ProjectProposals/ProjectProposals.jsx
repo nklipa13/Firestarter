@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openProjectAddProposalModal } from '../../../actions/modalActions';
-import { getProjectProposals } from '../../../actions/projectActions';
+import { getProjectProposals, supportProposal, declineProposal } from '../../../actions/projectActions';
 import Loader from '../../Loader/Loader';
 
 import './ProjectProposals.scss';
 
 const ProjectProposals = ({
   isOwner, projectId, addingProposal, openProjectAddProposalModal, getProjectProposals,
-  getting, gettingError, data,
+  getting, gettingError, data, supporting, supportProposal, declining, declineProposal,
 }) => {
   const [mounted, setMounted] = useState(false);
 
@@ -64,26 +64,54 @@ const ProjectProposals = ({
 
             {
               data.length > 0 && data.map(({
-                daiAmount, description, ethAmount, proposalId, title,
-              }) => (
+                daiAmount, description, ethAmount, proposalId, title, voted = false, info,
+              }, index) => (
                 <div className="item" key={proposalId}>
                   <div className="title text-medium-margin">{title}</div>
 
                   <div className="description text-large-margin">{description}</div>
 
-                  <div className="action-wrapper">
+                  <div className="action-wrapper text-large-margin">
                     <div className="stats">
                       <span>Amount needed for feature</span>
                       { ethAmount > 0 && <span className="stat">{ethAmount} ETH</span> }
                       { daiAmount > 0 && <span className="stat">{daiAmount} DAI</span> }
                     </div>
+                  </div>
+
+                  <div className="vote-wrapper">
+                    <div className="vote-data">
+                      <div className="vote-item">
+                        <div className="label">Supported by:</div>
+                        <div className="value">{info.yes}</div>
+                      </div>
+
+                      <div className="vote-item">
+                        <div className="label">Supported by:</div>
+                        <div className="value">{info.yes}</div>
+                      </div>
+                    </div>
 
                     {
                       !isOwner && (
-                        <div className="voting-wrapper">
-                          <button className="button uppercase" type="button">Support</button>
+                        <div className="voting-actions">
+                          <button
+                            className="button uppercase"
+                            type="button"
+                            disabled={supporting || declining || voted}
+                            onClick={() => { supportProposal(projectId, proposalId, index); }}
+                          >
+                            { supporting ? 'Supporting' : 'Support' }
+                          </button>
 
-                          <button className="button uppercase" type="button">Decline</button>
+                          <button
+                            className="button uppercase"
+                            type="button"
+                            onClick={() => { declineProposal(projectId, proposalId, index); }}
+                            disabled={supporting || declining || voted}
+                          >
+                            { declining ? 'Declining' : 'Decline' }
+                          </button>
                         </div>
                       )
                     }
@@ -107,6 +135,10 @@ ProjectProposals.propTypes = {
   getting: PropTypes.bool.isRequired,
   gettingError: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  supporting: PropTypes.bool.isRequired,
+  declining: PropTypes.bool.isRequired,
+  supportProposal: PropTypes.func.isRequired,
+  declineProposal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ project }) => ({
@@ -114,10 +146,12 @@ const mapStateToProps = ({ project }) => ({
   data: project.proposals,
   getting: project.gettingProposals,
   gettingError: project.gettingProposalsError,
+  supporting: project.supportingProposal,
+  declining: project.decliningProposal,
 });
 
 const mapDispatchToProps = {
-  openProjectAddProposalModal, getProjectProposals,
+  openProjectAddProposalModal, getProjectProposals, supportProposal, declineProposal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectProposals);

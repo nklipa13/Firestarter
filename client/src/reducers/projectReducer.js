@@ -39,6 +39,14 @@ import {
   GET_PROJECT_PROPOSALS_REQUEST,
   GET_PROJECT_PROPOSALS_SUCCESS,
   GET_PROJECT_PROPOSALS_FAILURE,
+
+  SUPPORT_PROPOSAL_REQUEST,
+  SUPPORT_PROPOSAL_SUCCESS,
+  SUPPORT_PROPOSAL_FAILURE,
+
+  DECLINE_PROPOSAL_REQUEST,
+  DECLINE_PROPOSAL_SUCCESS,
+  DECLINE_PROPOSAL_FAILURE,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -67,6 +75,12 @@ const INITIAL_STATE = {
   gettingProposals: false,
   gettingProposalsError: '',
   proposals: [],
+
+  supportingProposal: false,
+  supportingProposalError: '',
+
+  decliningProposal: false,
+  decliningProposalError: '',
 
   data: {},
 };
@@ -275,6 +289,42 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         gettingProposals: false,
         gettingProposalsError: payload,
+      };
+
+    case SUPPORT_PROPOSAL_REQUEST:
+      return { ...state, supportingProposal: true, supportingProposalError: '' };
+
+    case SUPPORT_PROPOSAL_SUCCESS:
+      return {
+        ...state,
+        supportingProposal: false,
+        supportingProposalError: '',
+        proposals: payload,
+      };
+
+    case SUPPORT_PROPOSAL_FAILURE:
+      return {
+        ...state,
+        supportingProposal: false,
+        supportingProposalError: payload,
+      };
+
+    case DECLINE_PROPOSAL_REQUEST:
+      return { ...state, decliningProposal: true, decliningProposalError: '' };
+
+    case DECLINE_PROPOSAL_SUCCESS:
+      return {
+        ...state,
+        decliningProposal: false,
+        decliningProposalError: '',
+        proposals: payload,
+      };
+
+    case DECLINE_PROPOSAL_FAILURE:
+      return {
+        ...state,
+        decliningProposal: false,
+        decliningProposalError: payload,
       };
 
     default:

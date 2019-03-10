@@ -336,6 +336,57 @@ export const cancelFundingCall = (sendTxFunc, from, projectId) => new Promise(as
   }
 });
 
+export const voteProposalContractCall = (sendTxFunc, from, projectId, proposalId, state) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    const project = await contract.methods.projects(projectId).call();
+    const votingMachineAddress = project.votingMachineCallback;
+    const machineContract = await VotingMachineContract(votingMachineAddress);
+
+    const promise = machineContract.methods.vote(proposalId, state).send({ from });
+
+    await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const getProposalInfo = (projectId, proposalId, from) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    const project = await contract.methods.projects(projectId).call();
+    const votingMachineAddress = project.votingMachineCallback;
+    const machineContract = await VotingMachineContract(votingMachineAddress);
+
+    const voted = await machineContract.methods.checkVote(proposalId, from).call();
+    const info = await machineContract.methods.voteStatus(proposalId).call();
+
+    resolve({ info, voted: parseInt(voted.vote, 10) > 0 });
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const getProposalVoteStatus = (projectId, proposalId) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    const project = await contract.methods.projects(projectId).call();
+    const votingMachineAddress = project.votingMachineCallback;
+    const machineContract = await VotingMachineContract(votingMachineAddress);
+
+    const info = await machineContract.methods.voteStatus(proposalId).call();
+
+    resolve(info);
+  } catch (err) {
+    reject(err);
+  }
+});
+
 // export const getProjectProposalsContractCall = projectId => new Promise(async (resolve, reject) => { // eslint-disable-line
 //   try {
 //     const contract = await FirestarterContract();

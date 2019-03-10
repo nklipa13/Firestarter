@@ -8,7 +8,7 @@
 
     &:not(:last-child) {
       padding-bottom: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 45px;
       border-bottom: 1px solid $light-gray;
     }
 
@@ -16,18 +16,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 0;
-
-      .button {
-        margin: 0;
-        width: 96px;
-        height: 23px;
-        padding: 0;
-
-        &:first-child {
-          margin-right: 15px;
-        }
-      }
+      margin-bottom: 30px;
 
       .stats {
         display: flex;
@@ -38,6 +27,41 @@
 
         span:not(:last-child) {
           margin-right: 30px;
+        }
+      }
+    }
+
+    .vote-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .vote-data {
+        display: flex;
+
+        .vote-item {
+          display: flex;
+          margin-right: 15px;
+        }
+
+        .label {
+          font-family: $bold-light;
+          margin-right: 30px;
+        }
+      }
+
+      .voting-actions {
+        display: flex;
+
+        .button {
+          margin: 0;
+          width: 96px;
+          height: 23px;
+          padding: 0;
+
+          &:first-child {
+            margin-right: 15px;
+          }
         }
       }
     }
