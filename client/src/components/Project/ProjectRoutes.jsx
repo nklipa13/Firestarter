@@ -24,7 +24,7 @@ class ProjectRoutes extends Component {
     this.props.getProject(this.props.match.params.id);
   }
 
-  componentWillReceiveProps(props, newProps) {
+  componentWillReceiveProps(props) {
     if (!this.state.checkedUser && props.account && props.hasData) {
       this.props.didUserFundProject(props.account);
       this.setCheckedUser();

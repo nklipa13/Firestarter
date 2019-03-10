@@ -35,6 +35,10 @@ import {
   PROJECT_ADD_PROPOSAL_SUCCESS,
   PROJECT_ADD_PROPOSAL_FAILURE,
   PROJECT_ADD_PROPOSAL_RESET,
+
+  GET_PROJECT_PROPOSALS_REQUEST,
+  GET_PROJECT_PROPOSALS_SUCCESS,
+  GET_PROJECT_PROPOSALS_FAILURE,
 } from '../actionTypes/projectActionTypes';
 import {
   compoundFundApiCall,
@@ -45,6 +49,7 @@ import {
   projectAddQuestionApiCall,
   projectAddChangelogApiCall,
   projectAddProposalApiCall,
+  getAllProjectProposalsApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
 import { SET_USER_FUNDING_STATUS } from '../actionTypes/accountActionTypes';
@@ -59,6 +64,7 @@ import {
   getIfUserHasFundsLockedCall,
   cancelFundingCall,
   getFinance,
+  // getProjectProposalsContractCall,
 } from '../services/ethereumService';
 
 /**
@@ -343,6 +349,23 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
 export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJECT_FUND_RESET }); };
 
 /**
+ * Gets all proposals for the project
+ *
+ * @param projectId
+ * @return {Function}
+ */
+export const getProjectProposals = projectId => async (dispatch) => {
+  dispatch({ type: GET_PROJECT_PROPOSALS_REQUEST });
+
+  try {
+    const payload = await getAllProjectProposalsApiCall(projectId);
+    dispatch({ type: GET_PROJECT_PROPOSALS_SUCCESS, payload });
+  } catch (err) {
+    dispatch({ type: GET_PROJECT_PROPOSALS_FAILURE, payload: err.message });
+  }
+};
+
+/**
  * Adds a proposal to a project
  *
  * @param formData {Object}
@@ -358,11 +381,13 @@ export const projectAddProposal = (formData, projectId, closeModal) => async (di
 
   try {
     const { account } = getState().account;
-    const proposalId = await projectAddProposalContractCall(proxySendHandler, account, projectId);
+
+    const proposalId = await projectAddProposalContractCall(proxySendHandler, account, projectId, formData);
     await projectAddProposalApiCall(projectId, proposalId, formData);
 
-    // TODO fetch proposals here
+    dispatch(getProjectProposals(projectId));
     dispatch({ type: PROJECT_ADD_PROPOSAL_SUCCESS });
+
     closeModal();
   } catch (err) {
     dispatch({ type: PROJECT_ADD_PROPOSAL_FAILURE, payload: err.message });

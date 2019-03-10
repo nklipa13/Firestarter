@@ -285,7 +285,7 @@ export const getFinance = (id, project) => new Promise(async (resolve, reject) =
   }
 });
 
-export const projectAddProposalContractCall = (sendTxFunc, from, projectId) => new Promise(async (resolve, reject) => { // eslint-disable-line
+export const projectAddProposalContractCall = (sendTxFunc, from, projectId, formData) => new Promise(async (resolve, reject) => { // eslint-disable-line
   try {
     const contract = await FirestarterContract();
 
@@ -293,7 +293,10 @@ export const projectAddProposalContractCall = (sendTxFunc, from, projectId) => n
     const votingMachineAddress = project.votingMachineCallback;
     const machineContract = await VotingMachineContract(votingMachineAddress);
 
-    const promise = machineContract.methods.createProposal.send({ from });
+    const ethAmount = window._web3.utils.toWei(formData.ethAmount || '0', 'ether');
+    const daiAmount = window._web3.utils.toWei(formData.daiAmount || '0', 'ether');
+
+    const promise = machineContract.methods.createProposal(ethAmount, daiAmount).send({ from });
     const receipt = await sendTxFunc(promise);
 
     resolve(receipt.logs[0].topics[1]);
@@ -332,3 +335,26 @@ export const cancelFundingCall = (sendTxFunc, from, projectId) => new Promise(as
     reject(err);
   }
 });
+
+// export const getProjectProposalsContractCall = projectId => new Promise(async (resolve, reject) => { // eslint-disable-line
+//   try {
+//     const contract = await FirestarterContract();
+//
+//     const project = await contract.methods.projects(projectId).call();
+//     const votingMachineAddress = project.votingMachineCallback;
+//     const machineContract = await VotingMachineContract(votingMachineAddress);
+//
+//     const finished = await machineContract.getPastEvents('ProposalFinished', { fromBlock: 0, toBlock: 'latest' }); // eslint-disable-line
+//
+//     console.log('finished', finished);
+//
+//     const finished2 = await machineContract.getPastEvents('ProposalCreated', { fromBlock: 0, toBlock: 'latest' }); // eslint-disable-line
+//
+//     console.log(finished2);
+//     // console.log('created', created);
+//
+//     resolve([]);
+//   } catch (err) {
+//     reject(err);
+//   }
+// });

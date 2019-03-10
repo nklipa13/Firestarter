@@ -1,3 +1,45 @@
+@import "../../../common/colors";
+@import "../../../common/text";
+
 .project-proposals-wrapper {
 
+  .item {
+    font-family: $bold-light;
+
+    &:not(:last-child) {
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      border-bottom: 1px solid $light-gray;
+    }
+
+    .action-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0;
+
+      .button {
+        margin: 0;
+        width: 96px;
+        height: 23px;
+        padding: 0;
+
+        &:first-child {
+          margin-right: 15px;
+        }
+      }
+
+      .stats {
+        display: flex;
+
+        .stat {
+          font-family: $main-font;
+        }
+
+        span:not(:last-child) {
+          margin-right: 30px;
+        }
+      }
+    }
+  }
 }

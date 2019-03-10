@@ -35,6 +35,10 @@ import {
   PROJECT_ADD_PROPOSAL_SUCCESS,
   PROJECT_ADD_PROPOSAL_FAILURE,
   PROJECT_ADD_PROPOSAL_RESET,
+
+  GET_PROJECT_PROPOSALS_REQUEST,
+  GET_PROJECT_PROPOSALS_SUCCESS,
+  GET_PROJECT_PROPOSALS_FAILURE,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -59,6 +63,10 @@ const INITIAL_STATE = {
   gettingProjectWithdrawHistory: false,
   gettingProjectWithdrawHistoryError: '',
   projectWithdrawHistory: [],
+
+  gettingProposals: false,
+  gettingProposalsError: '',
+  proposals: [],
 
   data: {},
 };
@@ -249,6 +257,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         addingProposal: false,
         addingProposalError: '',
+      };
+
+    case GET_PROJECT_PROPOSALS_REQUEST:
+      return { ...state, gettingProposals: true, gettingProposalsError: '' };
+
+    case GET_PROJECT_PROPOSALS_SUCCESS:
+      return {
+        ...state,
+        gettingProposals: false,
+        gettingProposalsError: '',
+        proposals: payload,
+      };
+
+    case GET_PROJECT_PROPOSALS_FAILURE:
+      return {
+        ...state,
+        gettingProposals: false,
+        gettingProposalsError: payload,
       };
 
     default:
