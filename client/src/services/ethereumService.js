@@ -286,6 +286,8 @@ export const getIfUserHasFundsLockedCall = (projectId, address) => new Promise(a
     const contract = await FirestarterContract();
     const data = await contract.methods.hasLockedFunds(projectId.toString(), address).call();
 
+    console.log('data: ', data);
+
     resolve({
       isLocked: data,
     });
