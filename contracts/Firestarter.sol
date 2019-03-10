@@ -341,6 +341,17 @@ contract Firestarter is Vesting {
 		return balance;
 	}
 
+	function maxReputation(uint _projectId) public view returns(uint) {
+		address[] memory investors = projects[_projectId].investors;
+		uint balance = 0;
+
+		for (uint i=0; i<investors.length; i++) {
+			balance += userFundedProject(_projectId, investors[i]);
+		}
+
+		return balance;
+	}
+
 	function getEndBlock(Fund memory _fund) internal view returns(uint endBlock) {
 		endBlock = block.number;
 
