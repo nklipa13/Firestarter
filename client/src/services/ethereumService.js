@@ -336,6 +336,24 @@ export const cancelFundingCall = (sendTxFunc, from, projectId) => new Promise(as
   }
 });
 
+export const voteProposalContractCall = (sendTxFunc, from, projectId, proposalId, state) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    const project = await contract.methods.projects(projectId).call();
+    const votingMachineAddress = project.votingMachineCallback;
+    const machineContract = await VotingMachineContract(votingMachineAddress);
+
+    const promise = machineContract.methods.vote(proposalId, state).send({ from });
+
+    await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
+    reject(err);
+  }
+});
+
 // export const getProjectProposalsContractCall = projectId => new Promise(async (resolve, reject) => { // eslint-disable-line
 //   try {
 //     const contract = await FirestarterContract();

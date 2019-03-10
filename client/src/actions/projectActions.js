@@ -39,6 +39,10 @@ import {
   GET_PROJECT_PROPOSALS_REQUEST,
   GET_PROJECT_PROPOSALS_SUCCESS,
   GET_PROJECT_PROPOSALS_FAILURE,
+
+  SUPPORT_PROPOSAL_REQUEST,
+  SUPPORT_PROPOSAL_SUCCESS,
+  SUPPORT_PROPOSAL_FAILURE,
 } from '../actionTypes/projectActionTypes';
 import {
   compoundFundApiCall,
@@ -64,6 +68,7 @@ import {
   getIfUserHasFundsLockedCall,
   cancelFundingCall,
   getFinance,
+  voteProposalContractCall,
   // getProjectProposalsContractCall,
 } from '../services/ethereumService';
 
@@ -359,6 +364,10 @@ export const getProjectProposals = projectId => async (dispatch) => {
 
   try {
     const payload = await getAllProjectProposalsApiCall(projectId);
+
+    // TODO get proposal vote info - info
+    // TODO get proposal status - voted
+
     dispatch({ type: GET_PROJECT_PROPOSALS_SUCCESS, payload });
   } catch (err) {
     dispatch({ type: GET_PROJECT_PROPOSALS_FAILURE, payload: err.message });
@@ -412,6 +421,26 @@ export const didUserFundProject = account => async (dispatch, getState) => {
   console.log(res);
 };
 
+export const supportProposal = (projectId, proposalId, index) => async (dispatch, getState) => {
+  dispatch({ type: SUPPORT_PROPOSAL_REQUEST });
+
+  const proxySendHandler = promise => sendTx(promise, 'Support proposal', dispatch, getState);
+
+  try {
+    const { account } = getState().account;
+    const { proposals } = getState().project;
+
+    await voteProposalContractCall(proxySendHandler, account, projectId, proposalId, true);
+    const newProposals = [...proposals];
+
+    // TODO get proposal info
+    newProposals[index] = { ...newProposals[index], voted: true };
+
+    dispatch({ type: SUPPORT_PROPOSAL_SUCCESS, payload: proposals });
+  } catch (err) {
+    dispatch({ type: SUPPORT_PROPOSAL_FAILURE, payload: err.message });
+  }
+};
 
 export const cancelFunding = (projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => { // eslint-disable-line
   const proxySendHandler = promise => sendTx(promise, 'Cancel funding', dispatch, getState);
