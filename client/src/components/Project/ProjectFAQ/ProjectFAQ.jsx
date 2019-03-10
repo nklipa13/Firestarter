@@ -22,7 +22,7 @@ const ProjectFAQ = ({
       )
     }
 
-    { data.length === 0 && (<div className="tab-empty-wrapper">Currently, there are not FAQs</div>) }
+    { data.length === 0 && (<div className="tab-empty-wrapper">The project owner hasn&#39;t add FAQ yet.</div>) }
 
     {
       data.map(({ question, answer }) => (

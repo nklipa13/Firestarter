@@ -23,15 +23,14 @@ class HomePage extends Component {
     return (
       <div className="home width-container flex">
         <h1 className="heading-2 text-large-margin">
-          Support projects on Ethereum
+          Support projects you like
           <br />
           and watch them grow
         </h1>
         <h2 className="heading-4 text-large-margin">
-          Firestarter introduces various projects built on Ethereum and helps
-          developers
+          Firestarter introduces various projects and helps developers
           <br />
-          getting their projects funded by community.
+          to get their projects funded by community using Ethereum
         </h2>
 
         {
@@ -65,11 +64,10 @@ class HomePage extends Component {
           gettingProjectError && <p className="projects-error">An error occurred while getting data.</p>
         }
 
-
         <div className="cta">
-          <h2 className="heading-3 text-large-margin">Are you building a community-driven dapp?</h2>
+          <h2 className="heading-3 text-large-margin">Are you building a community-driven app?</h2>
           <h3 className="heading-4 text-large-margin">
-            Start your project with Firestrater and fund your project easily.
+            Start your project with Firestrater and fund your project easily
           </h3>
           <Link to="/start-project" className="button  uppercase no-wrap">Start a project</Link>
         </div>
