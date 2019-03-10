@@ -13,6 +13,7 @@
   transition: all 0.15s ease-out;
   text-align: center;
   visibility: hidden;
+  overflow: auto;
 
   .modal-wrapper {
     width: 100%;
@@ -40,6 +41,7 @@
     overflow: hidden;
     background: white;
     padding: 90px;
+    margin-bottom: 120px;
 
     .modal-header {
       display: flex;
