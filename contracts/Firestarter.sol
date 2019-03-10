@@ -201,6 +201,30 @@ contract Firestarter is Vesting {
 		fullDai = (currentFullBalance - project.daiFunds) + project.daiWithdrawn;
 	}
 	
+	function getFinance(uint _projectId) public view returns(uint earnedEthOneTime, uint earnedEthVested, uint earnedDai, uint vestedEth, uint vestedDai) {
+		uint eth;
+		(eth, earnedDai) = getFullEarnings(_projectId);
+
+		vestedDai = compound.getSupplyBalance(address(this), DAI_ADDRESS);
+
+		vestedEth = 0;
+		earnedEthVested = 0;
+		earnedEthOneTime = 0;
+
+		address[] memory investors = projects[_projectId].investors;
+		for (uint i=0; i<investors.length; i++) {
+			uint count = totalFunds(_projectId, investors[i]);
+
+			for (uint j=0; j<count; j++) {
+				if (projects[_projectId].allFunds[investors[i]][j].fundType == FundType.DirectType) {
+					earnedEthOneTime += projects[_projectId].allFunds[investors[i]][j].amount;
+				} else if (projects[_projectId].allFunds[investors[i]][j].fundType == FundType.VestingType) {
+					earnedEthVested += (getEndBlock(projects[_projectId].allFunds[investors[i]][j])-projects[_projectId].allFunds[investors[i]][j].start) * projects[_projectId].allFunds[investors[i]][j].amount;
+					vestedEth += (projects[_projectId].allFunds[investors[i]][j].end-projects[_projectId].allFunds[investors[i]][j].start) * projects[_projectId].allFunds[investors[i]][j].amount;
+				}
+			} 
+		}
+	}
 
 	function updateBalance(uint _id) public {
 		uint balance;
@@ -318,13 +342,14 @@ contract Firestarter is Vesting {
 		return projects[_projectId].allFunds[_from].length;
 	}
 
-	function getFund(uint _projectId, address _from, uint _fundId) public view returns(uint amount, FundType fundType, uint canceled, uint end) {
+	function getFund(uint _projectId, address _from, uint _fundId) public view returns(uint amount, FundType fundType, uint canceled, uint end, uint start) {
 	    Fund memory fund = projects[_projectId].allFunds[_from][_fundId];
 	    
 	    amount = fund.amount;
 	    fundType = fund.fundType;
 	    canceled = fund.canceled;
 	    end = fund.end;
+	    start = fund.start;
 	}
 	
 	// remix for skipping few blocks

@@ -311,14 +311,14 @@
     "absolutePath": "@daostack/infra/contracts/votingMachines/IntVoteInterface.sol",
     "exportedSymbols": {
       "IntVoteInterface": [
-        3449
+        3434
       ]
     },
-    "id": 3450,
+    "id": 3435,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3316,
+        "id": 3301,
         "literals": [
           "solidity",
           "^",
@@ -334,16 +334,16 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 3449,
+        "id": 3434,
         "linearizedBaseContracts": [
-          3449
+          3434
         ],
         "name": "IntVoteInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 3324,
+              "id": 3309,
               "nodeType": "Block",
               "src": "262:14:9",
               "statements": [
@@ -353,21 +353,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 3320,
+                      "id": 3305,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3851,
-                        3852
+                        3836,
+                        3837
                       ],
-                      "referencedDeclaration": 3851,
+                      "referencedDeclaration": 3836,
                       "src": "263:6:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 3321,
+                    "id": 3306,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -381,31 +381,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3322,
+                  "id": 3307,
                   "nodeType": "ExpressionStatement",
                   "src": "263:8:9"
                 },
                 {
-                  "id": 3323,
+                  "id": 3308,
                   "nodeType": "PlaceholderStatement",
                   "src": "273:1:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 3325,
+            "id": 3310,
             "name": "onlyProposalOwner",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3319,
+              "id": 3304,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3318,
+                  "id": 3303,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3325,
+                  "scope": 3310,
                   "src": "241:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -414,7 +414,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3317,
+                    "id": 3302,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "241:7:9",
@@ -434,7 +434,7 @@
           },
           {
             "body": {
-              "id": 3333,
+              "id": 3318,
               "nodeType": "Block",
               "src": "319:14:9",
               "statements": [
@@ -444,21 +444,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 3329,
+                      "id": 3314,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3851,
-                        3852
+                        3836,
+                        3837
                       ],
-                      "referencedDeclaration": 3851,
+                      "referencedDeclaration": 3836,
                       "src": "320:6:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 3330,
+                    "id": 3315,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -472,31 +472,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3331,
+                  "id": 3316,
                   "nodeType": "ExpressionStatement",
                   "src": "320:8:9"
                 },
                 {
-                  "id": 3332,
+                  "id": 3317,
                   "nodeType": "PlaceholderStatement",
                   "src": "330:1:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 3334,
+            "id": 3319,
             "name": "votable",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3328,
+              "id": 3313,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3327,
+                  "id": 3312,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3334,
+                  "scope": 3319,
                   "src": "298:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -505,7 +505,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3326,
+                    "id": 3311,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "298:7:9",
@@ -526,20 +526,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3346,
+            "id": 3331,
             "name": "NewProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3345,
+              "id": 3330,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3336,
+                  "id": 3321,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "366:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -548,7 +548,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3335,
+                    "id": 3320,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "366:7:9",
@@ -562,11 +562,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3338,
+                  "id": 3323,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "403:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -575,7 +575,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3337,
+                    "id": 3322,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "403:7:9",
@@ -590,11 +590,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3340,
+                  "id": 3325,
                   "indexed": false,
                   "name": "_numOfChoices",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "442:21:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -603,7 +603,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3339,
+                    "id": 3324,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "442:7:9",
@@ -617,11 +617,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3342,
+                  "id": 3327,
                   "indexed": false,
                   "name": "_proposer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "473:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -630,7 +630,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3341,
+                    "id": 3326,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "473:7:9",
@@ -645,11 +645,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3344,
+                  "id": 3329,
                   "indexed": false,
                   "name": "_paramsHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "500:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -658,7 +658,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3343,
+                    "id": 3328,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "500:7:9",
@@ -678,20 +678,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3356,
+            "id": 3341,
             "name": "ExecuteProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3355,
+              "id": 3340,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3348,
+                  "id": 3333,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "554:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -700,7 +700,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3347,
+                    "id": 3332,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "554:7:9",
@@ -714,11 +714,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3350,
+                  "id": 3335,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "591:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -727,7 +727,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3349,
+                    "id": 3334,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "591:7:9",
@@ -742,11 +742,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3352,
+                  "id": 3337,
                   "indexed": false,
                   "name": "_decision",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "630:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -755,7 +755,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3351,
+                    "id": 3336,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "630:7:9",
@@ -769,11 +769,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3354,
+                  "id": 3339,
                   "indexed": false,
                   "name": "_totalReputation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "657:24:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -782,7 +782,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3353,
+                    "id": 3338,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "657:7:9",
@@ -802,20 +802,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3368,
+            "id": 3353,
             "name": "VoteProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3367,
+              "id": 3352,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3358,
+                  "id": 3343,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "722:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -824,7 +824,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3357,
+                    "id": 3342,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "722:7:9",
@@ -838,11 +838,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3360,
+                  "id": 3345,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "759:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -851,7 +851,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3359,
+                    "id": 3344,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "759:7:9",
@@ -866,11 +866,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3362,
+                  "id": 3347,
                   "indexed": true,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "798:22:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -879,7 +879,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3361,
+                    "id": 3346,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "798:7:9",
@@ -894,11 +894,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3364,
+                  "id": 3349,
                   "indexed": false,
                   "name": "_vote",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "830:13:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -907,7 +907,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3363,
+                    "id": 3348,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "830:7:9",
@@ -921,11 +921,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3366,
+                  "id": 3351,
                   "indexed": false,
                   "name": "_reputation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "853:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -934,7 +934,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3365,
+                    "id": 3350,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "853:7:9",
@@ -954,20 +954,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3374,
+            "id": 3359,
             "name": "CancelProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3373,
+              "id": 3358,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3370,
+                  "id": 3355,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3374,
+                  "scope": 3359,
                   "src": "906:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -976,7 +976,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3369,
+                    "id": 3354,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "906:7:9",
@@ -990,11 +990,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3372,
+                  "id": 3357,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3374,
+                  "scope": 3359,
                   "src": "935:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1003,7 +1003,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3371,
+                    "id": 3356,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "935:7:9",
@@ -1024,20 +1024,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3382,
+            "id": 3367,
             "name": "CancelVoting",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3381,
+              "id": 3366,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3376,
+                  "id": 3361,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3382,
+                  "scope": 3367,
                   "src": "991:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1046,7 +1046,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3375,
+                    "id": 3360,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "991:7:9",
@@ -1060,11 +1060,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3378,
+                  "id": 3363,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3382,
+                  "scope": 3367,
                   "src": "1020:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1073,7 +1073,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3377,
+                    "id": 3362,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1020:7:9",
@@ -1088,11 +1088,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3380,
+                  "id": 3365,
                   "indexed": true,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3382,
+                  "scope": 3367,
                   "src": "1051:22:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1101,7 +1101,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3379,
+                    "id": 3364,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1051:7:9",
@@ -1122,22 +1122,22 @@
           {
             "body": null,
             "documentation": "@dev register a new proposal with the given parameters. Every proposal has a unique ID which is being\ngenerated by calculating keccak256 of a incremented counter.\n@param _numOfChoices number of voting choices\n@param _proposalParameters defines the parameters of the voting machine used for this proposal\n@param _proposer address\n@param _organization address - if this address is zero the msg.sender will be used as the organization address.\n@return proposal's id.",
-            "id": 3395,
+            "id": 3380,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "propose",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3391,
+              "id": 3376,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3384,
+                  "id": 3369,
                   "name": "_numOfChoices",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1636:21:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1146,7 +1146,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3383,
+                    "id": 3368,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1636:7:9",
@@ -1160,10 +1160,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3386,
+                  "id": 3371,
                   "name": "_proposalParameters",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1667:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1172,7 +1172,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3385,
+                    "id": 3370,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1667:7:9",
@@ -1186,10 +1186,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3388,
+                  "id": 3373,
                   "name": "_proposer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1704:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1198,7 +1198,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3387,
+                    "id": 3372,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1704:7:9",
@@ -1213,10 +1213,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3390,
+                  "id": 3375,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1731:21:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1225,7 +1225,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3389,
+                    "id": 3374,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1731:7:9",
@@ -1242,15 +1242,15 @@
               "src": "1626:136:9"
             },
             "returnParameters": {
-              "id": 3394,
+              "id": 3379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3393,
+                  "id": 3378,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1780:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1259,7 +1259,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3392,
+                    "id": 3377,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1780:7:9",
@@ -1274,7 +1274,7 @@
               ],
               "src": "1779:9:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "1610:179:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1283,22 +1283,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3408,
+            "id": 3393,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "vote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3404,
+              "id": 3389,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3397,
+                  "id": 3382,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1818:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1307,7 +1307,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3396,
+                    "id": 3381,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1818:7:9",
@@ -1321,10 +1321,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3399,
+                  "id": 3384,
                   "name": "_vote",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1847:13:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1333,7 +1333,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3398,
+                    "id": 3383,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1847:7:9",
@@ -1347,10 +1347,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3401,
+                  "id": 3386,
                   "name": "_rep",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1870:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1359,7 +1359,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3400,
+                    "id": 3385,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1870:7:9",
@@ -1373,10 +1373,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3403,
+                  "id": 3388,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1892:14:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1385,7 +1385,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3402,
+                    "id": 3387,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1892:7:9",
@@ -1402,15 +1402,15 @@
               "src": "1808:104:9"
             },
             "returnParameters": {
-              "id": 3407,
+              "id": 3392,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3406,
+                  "id": 3391,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1938:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1419,7 +1419,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3405,
+                    "id": 3390,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1938:4:9",
@@ -1434,7 +1434,7 @@
               ],
               "src": "1937:6:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "1795:149:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1443,22 +1443,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3413,
+            "id": 3398,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "cancelVote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3411,
+              "id": 3396,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3410,
+                  "id": 3395,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3413,
+                  "scope": 3398,
                   "src": "1970:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1467,7 +1467,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3409,
+                    "id": 3394,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1970:7:9",
@@ -1483,12 +1483,12 @@
               "src": "1969:21:9"
             },
             "returnParameters": {
-              "id": 3412,
+              "id": 3397,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1999:0:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "1950:50:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -1497,22 +1497,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3420,
+            "id": 3405,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getNumberOfChoices",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3416,
+              "id": 3401,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3415,
+                  "id": 3400,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3420,
+                  "scope": 3405,
                   "src": "2034:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1521,7 +1521,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3414,
+                    "id": 3399,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2034:7:9",
@@ -1537,15 +1537,15 @@
               "src": "2033:21:9"
             },
             "returnParameters": {
-              "id": 3419,
+              "id": 3404,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3418,
+                  "id": 3403,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3420,
+                  "scope": 3405,
                   "src": "2077:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1554,7 +1554,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3417,
+                    "id": 3402,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2077:7:9",
@@ -1569,7 +1569,7 @@
               ],
               "src": "2076:9:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2006:80:9",
             "stateMutability": "view",
             "superFunction": null,
@@ -1578,22 +1578,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3427,
+            "id": 3412,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isVotable",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3423,
+              "id": 3408,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3422,
+                  "id": 3407,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3427,
+                  "scope": 3412,
                   "src": "2111:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1602,7 +1602,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3421,
+                    "id": 3406,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2111:7:9",
@@ -1618,15 +1618,15 @@
               "src": "2110:21:9"
             },
             "returnParameters": {
-              "id": 3426,
+              "id": 3411,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3425,
+                  "id": 3410,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3427,
+                  "scope": 3412,
                   "src": "2154:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1635,7 +1635,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3424,
+                    "id": 3409,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2154:4:9",
@@ -1650,7 +1650,7 @@
               ],
               "src": "2153:6:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2092:68:9",
             "stateMutability": "view",
             "superFunction": null,
@@ -1659,22 +1659,22 @@
           {
             "body": null,
             "documentation": "@dev voteStatus returns the reputation voted for a proposal for a specific voting choice.\n@param _proposalId the ID of the proposal\n@param _choice the index in the\n@return voted reputation for the given choice",
-            "id": 3436,
+            "id": 3421,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "voteStatus",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3432,
+              "id": 3417,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3429,
+                  "id": 3414,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3436,
+                  "scope": 3421,
                   "src": "2440:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1683,7 +1683,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3428,
+                    "id": 3413,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2440:7:9",
@@ -1697,10 +1697,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3431,
+                  "id": 3416,
                   "name": "_choice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3436,
+                  "scope": 3421,
                   "src": "2461:15:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1709,7 +1709,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3430,
+                    "id": 3415,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2461:7:9",
@@ -1725,15 +1725,15 @@
               "src": "2439:38:9"
             },
             "returnParameters": {
-              "id": 3435,
+              "id": 3420,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3434,
+                  "id": 3419,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3436,
+                  "scope": 3421,
                   "src": "2500:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1742,7 +1742,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3433,
+                    "id": 3418,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2500:7:9",
@@ -1757,7 +1757,7 @@
               ],
               "src": "2499:9:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2420:89:9",
             "stateMutability": "view",
             "superFunction": null,
@@ -1766,28 +1766,28 @@
           {
             "body": null,
             "documentation": "@dev isAbstainAllow returns if the voting machine allow abstain (0)\n@return bool true or false",
-            "id": 3441,
+            "id": 3426,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isAbstainAllow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3437,
+              "id": 3422,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2663:2:9"
             },
             "returnParameters": {
-              "id": 3440,
+              "id": 3425,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3439,
+                  "id": 3424,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3441,
+                  "scope": 3426,
                   "src": "2688:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1796,7 +1796,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3438,
+                    "id": 3423,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2688:4:9",
@@ -1811,7 +1811,7 @@
               ],
               "src": "2687:6:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2640:54:9",
             "stateMutability": "pure",
             "superFunction": null,
@@ -1820,28 +1820,28 @@
           {
             "body": null,
             "documentation": "@dev getAllowedRangeOfChoices returns the allowed range of choices for a voting machine.\n@return min - minimum number of choices\nmax - maximum number of choices",
-            "id": 3448,
+            "id": 3433,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getAllowedRangeOfChoices",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3442,
+              "id": 3427,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2939:2:9"
             },
             "returnParameters": {
-              "id": 3447,
+              "id": 3432,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3444,
+                  "id": 3429,
                   "name": "min",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3448,
+                  "scope": 3433,
                   "src": "2964:11:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1850,7 +1850,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3443,
+                    "id": 3428,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2964:7:9",
@@ -1864,10 +1864,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3446,
+                  "id": 3431,
                   "name": "max",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3448,
+                  "scope": 3433,
                   "src": "2977:11:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -1876,7 +1876,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3445,
+                    "id": 3430,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2977:7:9",
@@ -1891,14 +1891,14 @@
               ],
               "src": "2963:26:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2906:84:9",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 3450,
+        "scope": 3435,
         "src": "25:2967:9"
       }
     ],
@@ -1908,14 +1908,14 @@
     "absolutePath": "@daostack/infra/contracts/votingMachines/IntVoteInterface.sol",
     "exportedSymbols": {
       "IntVoteInterface": [
-        3449
+        3434
       ]
     },
-    "id": 3450,
+    "id": 3435,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 3316,
+        "id": 3301,
         "literals": [
           "solidity",
           "^",
@@ -1931,16 +1931,16 @@
         "contractKind": "interface",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 3449,
+        "id": 3434,
         "linearizedBaseContracts": [
-          3449
+          3434
         ],
         "name": "IntVoteInterface",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "body": {
-              "id": 3324,
+              "id": 3309,
               "nodeType": "Block",
               "src": "262:14:9",
               "statements": [
@@ -1950,21 +1950,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 3320,
+                      "id": 3305,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3851,
-                        3852
+                        3836,
+                        3837
                       ],
-                      "referencedDeclaration": 3851,
+                      "referencedDeclaration": 3836,
                       "src": "263:6:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 3321,
+                    "id": 3306,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -1978,31 +1978,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3322,
+                  "id": 3307,
                   "nodeType": "ExpressionStatement",
                   "src": "263:8:9"
                 },
                 {
-                  "id": 3323,
+                  "id": 3308,
                   "nodeType": "PlaceholderStatement",
                   "src": "273:1:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 3325,
+            "id": 3310,
             "name": "onlyProposalOwner",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3319,
+              "id": 3304,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3318,
+                  "id": 3303,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3325,
+                  "scope": 3310,
                   "src": "241:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2011,7 +2011,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3317,
+                    "id": 3302,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "241:7:9",
@@ -2031,7 +2031,7 @@
           },
           {
             "body": {
-              "id": 3333,
+              "id": 3318,
               "nodeType": "Block",
               "src": "319:14:9",
               "statements": [
@@ -2041,21 +2041,21 @@
                     "arguments": [],
                     "expression": {
                       "argumentTypes": [],
-                      "id": 3329,
+                      "id": 3314,
                       "name": "revert",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        3851,
-                        3852
+                        3836,
+                        3837
                       ],
-                      "referencedDeclaration": 3851,
+                      "referencedDeclaration": 3836,
                       "src": "320:6:9",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_revert_pure$__$returns$__$",
                         "typeString": "function () pure"
                       }
                     },
-                    "id": 3330,
+                    "id": 3315,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -2069,31 +2069,31 @@
                       "typeString": "tuple()"
                     }
                   },
-                  "id": 3331,
+                  "id": 3316,
                   "nodeType": "ExpressionStatement",
                   "src": "320:8:9"
                 },
                 {
-                  "id": 3332,
+                  "id": 3317,
                   "nodeType": "PlaceholderStatement",
                   "src": "330:1:9"
                 }
               ]
             },
             "documentation": null,
-            "id": 3334,
+            "id": 3319,
             "name": "votable",
             "nodeType": "ModifierDefinition",
             "parameters": {
-              "id": 3328,
+              "id": 3313,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3327,
+                  "id": 3312,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3334,
+                  "scope": 3319,
                   "src": "298:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2102,7 +2102,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3326,
+                    "id": 3311,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "298:7:9",
@@ -2123,20 +2123,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3346,
+            "id": 3331,
             "name": "NewProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3345,
+              "id": 3330,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3336,
+                  "id": 3321,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "366:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2145,7 +2145,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3335,
+                    "id": 3320,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "366:7:9",
@@ -2159,11 +2159,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3338,
+                  "id": 3323,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "403:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2172,7 +2172,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3337,
+                    "id": 3322,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "403:7:9",
@@ -2187,11 +2187,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3340,
+                  "id": 3325,
                   "indexed": false,
                   "name": "_numOfChoices",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "442:21:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2200,7 +2200,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3339,
+                    "id": 3324,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "442:7:9",
@@ -2214,11 +2214,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3342,
+                  "id": 3327,
                   "indexed": false,
                   "name": "_proposer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "473:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2227,7 +2227,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3341,
+                    "id": 3326,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "473:7:9",
@@ -2242,11 +2242,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3344,
+                  "id": 3329,
                   "indexed": false,
                   "name": "_paramsHash",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3346,
+                  "scope": 3331,
                   "src": "500:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2255,7 +2255,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3343,
+                    "id": 3328,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "500:7:9",
@@ -2275,20 +2275,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3356,
+            "id": 3341,
             "name": "ExecuteProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3355,
+              "id": 3340,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3348,
+                  "id": 3333,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "554:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2297,7 +2297,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3347,
+                    "id": 3332,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "554:7:9",
@@ -2311,11 +2311,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3350,
+                  "id": 3335,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "591:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2324,7 +2324,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3349,
+                    "id": 3334,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "591:7:9",
@@ -2339,11 +2339,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3352,
+                  "id": 3337,
                   "indexed": false,
                   "name": "_decision",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "630:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2352,7 +2352,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3351,
+                    "id": 3336,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "630:7:9",
@@ -2366,11 +2366,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3354,
+                  "id": 3339,
                   "indexed": false,
                   "name": "_totalReputation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3356,
+                  "scope": 3341,
                   "src": "657:24:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2379,7 +2379,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3353,
+                    "id": 3338,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "657:7:9",
@@ -2399,20 +2399,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3368,
+            "id": 3353,
             "name": "VoteProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3367,
+              "id": 3352,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3358,
+                  "id": 3343,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "722:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2421,7 +2421,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3357,
+                    "id": 3342,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "722:7:9",
@@ -2435,11 +2435,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3360,
+                  "id": 3345,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "759:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2448,7 +2448,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3359,
+                    "id": 3344,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "759:7:9",
@@ -2463,11 +2463,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3362,
+                  "id": 3347,
                   "indexed": true,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "798:22:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2476,7 +2476,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3361,
+                    "id": 3346,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "798:7:9",
@@ -2491,11 +2491,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3364,
+                  "id": 3349,
                   "indexed": false,
                   "name": "_vote",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "830:13:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2504,7 +2504,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3363,
+                    "id": 3348,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "830:7:9",
@@ -2518,11 +2518,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3366,
+                  "id": 3351,
                   "indexed": false,
                   "name": "_reputation",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3368,
+                  "scope": 3353,
                   "src": "853:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2531,7 +2531,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3365,
+                    "id": 3350,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "853:7:9",
@@ -2551,20 +2551,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3374,
+            "id": 3359,
             "name": "CancelProposal",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3373,
+              "id": 3358,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3370,
+                  "id": 3355,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3374,
+                  "scope": 3359,
                   "src": "906:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2573,7 +2573,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3369,
+                    "id": 3354,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "906:7:9",
@@ -2587,11 +2587,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3372,
+                  "id": 3357,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3374,
+                  "scope": 3359,
                   "src": "935:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2600,7 +2600,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3371,
+                    "id": 3356,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "935:7:9",
@@ -2621,20 +2621,20 @@
           {
             "anonymous": false,
             "documentation": null,
-            "id": 3382,
+            "id": 3367,
             "name": "CancelVoting",
             "nodeType": "EventDefinition",
             "parameters": {
-              "id": 3381,
+              "id": 3366,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3376,
+                  "id": 3361,
                   "indexed": true,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3382,
+                  "scope": 3367,
                   "src": "991:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2643,7 +2643,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3375,
+                    "id": 3360,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "991:7:9",
@@ -2657,11 +2657,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3378,
+                  "id": 3363,
                   "indexed": true,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3382,
+                  "scope": 3367,
                   "src": "1020:29:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2670,7 +2670,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3377,
+                    "id": 3362,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1020:7:9",
@@ -2685,11 +2685,11 @@
                 },
                 {
                   "constant": false,
-                  "id": 3380,
+                  "id": 3365,
                   "indexed": true,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3382,
+                  "scope": 3367,
                   "src": "1051:22:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2698,7 +2698,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3379,
+                    "id": 3364,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1051:7:9",
@@ -2719,22 +2719,22 @@
           {
             "body": null,
             "documentation": "@dev register a new proposal with the given parameters. Every proposal has a unique ID which is being\ngenerated by calculating keccak256 of a incremented counter.\n@param _numOfChoices number of voting choices\n@param _proposalParameters defines the parameters of the voting machine used for this proposal\n@param _proposer address\n@param _organization address - if this address is zero the msg.sender will be used as the organization address.\n@return proposal's id.",
-            "id": 3395,
+            "id": 3380,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "propose",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3391,
+              "id": 3376,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3384,
+                  "id": 3369,
                   "name": "_numOfChoices",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1636:21:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2743,7 +2743,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3383,
+                    "id": 3368,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1636:7:9",
@@ -2757,10 +2757,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3386,
+                  "id": 3371,
                   "name": "_proposalParameters",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1667:27:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2769,7 +2769,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3385,
+                    "id": 3370,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1667:7:9",
@@ -2783,10 +2783,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3388,
+                  "id": 3373,
                   "name": "_proposer",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1704:17:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2795,7 +2795,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3387,
+                    "id": 3372,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1704:7:9",
@@ -2810,10 +2810,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3390,
+                  "id": 3375,
                   "name": "_organization",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1731:21:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2822,7 +2822,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3389,
+                    "id": 3374,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1731:7:9",
@@ -2839,15 +2839,15 @@
               "src": "1626:136:9"
             },
             "returnParameters": {
-              "id": 3394,
+              "id": 3379,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3393,
+                  "id": 3378,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3395,
+                  "scope": 3380,
                   "src": "1780:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2856,7 +2856,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3392,
+                    "id": 3377,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1780:7:9",
@@ -2871,7 +2871,7 @@
               ],
               "src": "1779:9:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "1610:179:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -2880,22 +2880,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3408,
+            "id": 3393,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "vote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3404,
+              "id": 3389,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3397,
+                  "id": 3382,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1818:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2904,7 +2904,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3396,
+                    "id": 3381,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1818:7:9",
@@ -2918,10 +2918,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3399,
+                  "id": 3384,
                   "name": "_vote",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1847:13:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2930,7 +2930,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3398,
+                    "id": 3383,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1847:7:9",
@@ -2944,10 +2944,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3401,
+                  "id": 3386,
                   "name": "_rep",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1870:12:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2956,7 +2956,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3400,
+                    "id": 3385,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "1870:7:9",
@@ -2970,10 +2970,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3403,
+                  "id": 3388,
                   "name": "_voter",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1892:14:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -2982,7 +2982,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 3402,
+                    "id": 3387,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "1892:7:9",
@@ -2999,15 +2999,15 @@
               "src": "1808:104:9"
             },
             "returnParameters": {
-              "id": 3407,
+              "id": 3392,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3406,
+                  "id": 3391,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3408,
+                  "scope": 3393,
                   "src": "1938:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3016,7 +3016,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3405,
+                    "id": 3390,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "1938:4:9",
@@ -3031,7 +3031,7 @@
               ],
               "src": "1937:6:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "1795:149:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3040,22 +3040,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3413,
+            "id": 3398,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "cancelVote",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3411,
+              "id": 3396,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3410,
+                  "id": 3395,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3413,
+                  "scope": 3398,
                   "src": "1970:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3064,7 +3064,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3409,
+                    "id": 3394,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "1970:7:9",
@@ -3080,12 +3080,12 @@
               "src": "1969:21:9"
             },
             "returnParameters": {
-              "id": 3412,
+              "id": 3397,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "1999:0:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "1950:50:9",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -3094,22 +3094,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3420,
+            "id": 3405,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getNumberOfChoices",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3416,
+              "id": 3401,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3415,
+                  "id": 3400,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3420,
+                  "scope": 3405,
                   "src": "2034:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3118,7 +3118,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3414,
+                    "id": 3399,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2034:7:9",
@@ -3134,15 +3134,15 @@
               "src": "2033:21:9"
             },
             "returnParameters": {
-              "id": 3419,
+              "id": 3404,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3418,
+                  "id": 3403,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3420,
+                  "scope": 3405,
                   "src": "2077:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3151,7 +3151,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3417,
+                    "id": 3402,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2077:7:9",
@@ -3166,7 +3166,7 @@
               ],
               "src": "2076:9:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2006:80:9",
             "stateMutability": "view",
             "superFunction": null,
@@ -3175,22 +3175,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 3427,
+            "id": 3412,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isVotable",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3423,
+              "id": 3408,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3422,
+                  "id": 3407,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3427,
+                  "scope": 3412,
                   "src": "2111:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3199,7 +3199,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3421,
+                    "id": 3406,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2111:7:9",
@@ -3215,15 +3215,15 @@
               "src": "2110:21:9"
             },
             "returnParameters": {
-              "id": 3426,
+              "id": 3411,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3425,
+                  "id": 3410,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3427,
+                  "scope": 3412,
                   "src": "2154:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3232,7 +3232,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3424,
+                    "id": 3409,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2154:4:9",
@@ -3247,7 +3247,7 @@
               ],
               "src": "2153:6:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2092:68:9",
             "stateMutability": "view",
             "superFunction": null,
@@ -3256,22 +3256,22 @@
           {
             "body": null,
             "documentation": "@dev voteStatus returns the reputation voted for a proposal for a specific voting choice.\n@param _proposalId the ID of the proposal\n@param _choice the index in the\n@return voted reputation for the given choice",
-            "id": 3436,
+            "id": 3421,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "voteStatus",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3432,
+              "id": 3417,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3429,
+                  "id": 3414,
                   "name": "_proposalId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3436,
+                  "scope": 3421,
                   "src": "2440:19:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3280,7 +3280,7 @@
                     "typeString": "bytes32"
                   },
                   "typeName": {
-                    "id": 3428,
+                    "id": 3413,
                     "name": "bytes32",
                     "nodeType": "ElementaryTypeName",
                     "src": "2440:7:9",
@@ -3294,10 +3294,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3431,
+                  "id": 3416,
                   "name": "_choice",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3436,
+                  "scope": 3421,
                   "src": "2461:15:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3306,7 +3306,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3430,
+                    "id": 3415,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2461:7:9",
@@ -3322,15 +3322,15 @@
               "src": "2439:38:9"
             },
             "returnParameters": {
-              "id": 3435,
+              "id": 3420,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3434,
+                  "id": 3419,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3436,
+                  "scope": 3421,
                   "src": "2500:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3339,7 +3339,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3433,
+                    "id": 3418,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2500:7:9",
@@ -3354,7 +3354,7 @@
               ],
               "src": "2499:9:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2420:89:9",
             "stateMutability": "view",
             "superFunction": null,
@@ -3363,28 +3363,28 @@
           {
             "body": null,
             "documentation": "@dev isAbstainAllow returns if the voting machine allow abstain (0)\n@return bool true or false",
-            "id": 3441,
+            "id": 3426,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "isAbstainAllow",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3437,
+              "id": 3422,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2663:2:9"
             },
             "returnParameters": {
-              "id": 3440,
+              "id": 3425,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3439,
+                  "id": 3424,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3441,
+                  "scope": 3426,
                   "src": "2688:4:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3393,7 +3393,7 @@
                     "typeString": "bool"
                   },
                   "typeName": {
-                    "id": 3438,
+                    "id": 3423,
                     "name": "bool",
                     "nodeType": "ElementaryTypeName",
                     "src": "2688:4:9",
@@ -3408,7 +3408,7 @@
               ],
               "src": "2687:6:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2640:54:9",
             "stateMutability": "pure",
             "superFunction": null,
@@ -3417,28 +3417,28 @@
           {
             "body": null,
             "documentation": "@dev getAllowedRangeOfChoices returns the allowed range of choices for a voting machine.\n@return min - minimum number of choices\nmax - maximum number of choices",
-            "id": 3448,
+            "id": 3433,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getAllowedRangeOfChoices",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 3442,
+              "id": 3427,
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "2939:2:9"
             },
             "returnParameters": {
-              "id": 3447,
+              "id": 3432,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 3444,
+                  "id": 3429,
                   "name": "min",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3448,
+                  "scope": 3433,
                   "src": "2964:11:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3447,7 +3447,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3443,
+                    "id": 3428,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2964:7:9",
@@ -3461,10 +3461,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 3446,
+                  "id": 3431,
                   "name": "max",
                   "nodeType": "VariableDeclaration",
-                  "scope": 3448,
+                  "scope": 3433,
                   "src": "2977:11:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -3473,7 +3473,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 3445,
+                    "id": 3430,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "2977:7:9",
@@ -3488,14 +3488,14 @@
               ],
               "src": "2963:26:9"
             },
-            "scope": 3449,
+            "scope": 3434,
             "src": "2906:84:9",
             "stateMutability": "pure",
             "superFunction": null,
             "visibility": "external"
           }
         ],
-        "scope": 3450,
+        "scope": 3435,
         "src": "25:2967:9"
       }
     ],
@@ -3506,8 +3506,8 @@
     "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.0",
-  "updatedAt": "2019-03-10T00:42:23.685Z",
+  "schemaVersion": "3.0.2",
+  "updatedAt": "2019-03-10T01:16:03.315Z",
   "devdoc": {
     "methods": {
       "getAllowedRangeOfChoices()": {
