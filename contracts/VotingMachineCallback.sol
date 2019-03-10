@@ -100,7 +100,7 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
         return string(bytesArray);
     }
 
-    function () public payable {
+    function () external payable {
 
     }
 
