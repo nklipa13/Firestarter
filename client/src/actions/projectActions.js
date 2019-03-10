@@ -218,7 +218,7 @@ export const resetProjectAddQuestion = () => (dispatch) => { dispatch({ type: PR
  *
  * @return {Function}
  */
-export const projectAddChange = (formData, projectId, closeModal) => async (dispatch) => {
+export const projectAddChange = (formData, projectId, closeModal) => async (dispatch, getState) => {
   dispatch({ type: PROJECT_ADD_CHANGE_REQUEST });
 
   try {
@@ -229,7 +229,11 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
       versionChanges: formData.changes.map(c => c.change),
     };
 
-    const payload = await projectAddChangelogApiCall(projectId, data);
+    const { account } = getState().account;
+
+    const sig = await signString(formData.description, account);
+
+    const payload = await projectAddChangelogApiCall(projectId, data, account, sig);
 
     dispatch({ type: PROJECT_ADD_CHANGE_SUCCESS, payload });
     closeModal();

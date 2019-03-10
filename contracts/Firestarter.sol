@@ -18,6 +18,7 @@ contract Firestarter is Vesting {
 	struct Fund {
 		uint amount;
 		FundType fundType;
+		uint start;
 		uint canceled;
 		uint end;
 	}
@@ -50,7 +51,7 @@ contract Firestarter is Vesting {
 	event ProjectWithdraw(uint indexed id, uint ethAmount, uint daiAmount, string message);
 
 	constructor() public {
-		ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
+		// ERC20(DAI_ADDRESS).approve(address(compound), uint(-1));
 	}
 
 	function addProject(string memory _name) public {
@@ -75,7 +76,8 @@ contract Firestarter is Vesting {
 				amount: msg.value,
 				fundType: FundType.DirectType,
 				canceled: 0,
-				end: 0
+				end: 0,
+				start: block.number
 			}));
 
 		emit ProjectFunded(_id, msg.value, msg.sender, FundType.DirectType);
@@ -88,7 +90,8 @@ contract Firestarter is Vesting {
 				amount: msg.value / _numOfBlocks,
 				fundType: FundType.VestingType,
 				canceled: 0,
-				end: block.number + _numOfBlocks
+				end: block.number + _numOfBlocks,
+				start: block.number
 			}));
 
 		addVestingRecord(msg.value / _numOfBlocks, block.number + _numOfBlocks);
@@ -115,7 +118,8 @@ contract Firestarter is Vesting {
 			amount: _daiAmount,
 			fundType: FundType.CompoundType,
 			canceled: 0,
-			end: 0
+			end: 0,
+			start: block.number
 		}));
         
         emit ProjectFunded(_id, _daiAmount, msg.sender, FundType.CompoundType);
@@ -283,11 +287,27 @@ contract Firestarter is Vesting {
 
 		uint count = userFunds.length;
 		uint balance = 0;
-		for (uint i=0; i<count; i++) {
-			balance += userFunds[i].amount;
+
+		for (uint i=0; i < count; i++) {
+			if (userFunds[i].fundType == FundType.DirectType) {
+				balance += userFunds[i].amount;
+			} else if (userFunds[i].fundType == FundType.VestingType) {
+				balance += (getEndBlock(userFunds[i]) - userFunds[i].start) * userFunds[i].amount;
+			} else {
+				uint amount = (userFunds[i].amount / 100);
+				uint perBlock = amount / 2102400;
+				balance += (getEndBlock(userFunds[i]) - userFunds[i].start) * perBlock;
+			}
 		}
 
 		return balance;
+	}
+
+	function getEndBlock(Fund memory _fund) internal view returns(uint endBlock) {
+		endBlock = block.number;
+
+		if (_fund.canceled != 0) { endBlock = _fund.canceled; }
+		if (_fund.end < endBlock) { endBlock = _fund.end; }
 	}
 
 	function totalProjects() public view returns(uint) {

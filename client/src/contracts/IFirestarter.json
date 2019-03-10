@@ -53,19 +53,19 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.5.0;\n\ncontract IFirestarter {\n    function getNewBalanceAndRateView(uint _id) public view returns(uint, uint);\n    function userFundedProject(uint _projectId, address _user) public view returns(uint);\n}",
-  "sourcePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/IFirestarter.sol",
+  "sourcePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/IFirestarter.sol",
   "ast": {
-    "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/IFirestarter.sol",
+    "absolutePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/IFirestarter.sol",
     "exportedSymbols": {
       "IFirestarter": [
-        1104
+        1456
       ]
     },
-    "id": 1105,
+    "id": 1457,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1085,
+        "id": 1437,
         "literals": [
           "solidity",
           "^",
@@ -81,9 +81,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1104,
+        "id": 1456,
         "linearizedBaseContracts": [
-          1104
+          1456
         ],
         "name": "IFirestarter",
         "nodeType": "ContractDefinition",
@@ -91,22 +91,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1094,
+            "id": 1446,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getNewBalanceAndRateView",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1088,
+              "id": 1440,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1087,
+                  "id": 1439,
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1094,
+                  "scope": 1446,
                   "src": "87:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -115,7 +115,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1086,
+                    "id": 1438,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "87:4:3",
@@ -131,15 +131,15 @@
               "src": "86:10:3"
             },
             "returnParameters": {
-              "id": 1093,
+              "id": 1445,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1090,
+                  "id": 1442,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1094,
+                  "scope": 1446,
                   "src": "117:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -148,7 +148,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1089,
+                    "id": 1441,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:4:3",
@@ -162,10 +162,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1092,
+                  "id": 1444,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1094,
+                  "scope": 1446,
                   "src": "123:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -174,7 +174,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1091,
+                    "id": 1443,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "123:4:3",
@@ -189,7 +189,7 @@
               ],
               "src": "116:12:3"
             },
-            "scope": 1104,
+            "scope": 1456,
             "src": "53:76:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -198,22 +198,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1103,
+            "id": 1455,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "userFundedProject",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1099,
+              "id": 1451,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1096,
+                  "id": 1448,
                   "name": "_projectId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1103,
+                  "scope": 1455,
                   "src": "161:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -222,7 +222,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1095,
+                    "id": 1447,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:4:3",
@@ -236,10 +236,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1098,
+                  "id": 1450,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1103,
+                  "scope": 1455,
                   "src": "178:13:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -248,7 +248,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1097,
+                    "id": 1449,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "178:7:3",
@@ -265,15 +265,15 @@
               "src": "160:32:3"
             },
             "returnParameters": {
-              "id": 1102,
+              "id": 1454,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1101,
+                  "id": 1453,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1103,
+                  "scope": 1455,
                   "src": "213:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -282,7 +282,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1100,
+                    "id": 1452,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "213:4:3",
@@ -297,31 +297,31 @@
               ],
               "src": "212:6:3"
             },
-            "scope": 1104,
+            "scope": 1456,
             "src": "134:85:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1105,
+        "scope": 1457,
         "src": "25:196:3"
       }
     ],
     "src": "0:221:3"
   },
   "legacyAST": {
-    "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/IFirestarter.sol",
+    "absolutePath": "/Users/nenadpalinkasevic/Desktop/blockchain/Firestarter/contracts/IFirestarter.sol",
     "exportedSymbols": {
       "IFirestarter": [
-        1104
+        1456
       ]
     },
-    "id": 1105,
+    "id": 1457,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1085,
+        "id": 1437,
         "literals": [
           "solidity",
           "^",
@@ -337,9 +337,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1104,
+        "id": 1456,
         "linearizedBaseContracts": [
-          1104
+          1456
         ],
         "name": "IFirestarter",
         "nodeType": "ContractDefinition",
@@ -347,22 +347,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1094,
+            "id": 1446,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getNewBalanceAndRateView",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1088,
+              "id": 1440,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1087,
+                  "id": 1439,
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1094,
+                  "scope": 1446,
                   "src": "87:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -371,7 +371,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1086,
+                    "id": 1438,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "87:4:3",
@@ -387,15 +387,15 @@
               "src": "86:10:3"
             },
             "returnParameters": {
-              "id": 1093,
+              "id": 1445,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1090,
+                  "id": 1442,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1094,
+                  "scope": 1446,
                   "src": "117:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -404,7 +404,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1089,
+                    "id": 1441,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:4:3",
@@ -418,10 +418,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1092,
+                  "id": 1444,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1094,
+                  "scope": 1446,
                   "src": "123:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -430,7 +430,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1091,
+                    "id": 1443,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "123:4:3",
@@ -445,7 +445,7 @@
               ],
               "src": "116:12:3"
             },
-            "scope": 1104,
+            "scope": 1456,
             "src": "53:76:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -454,22 +454,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1103,
+            "id": 1455,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "userFundedProject",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1099,
+              "id": 1451,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1096,
+                  "id": 1448,
                   "name": "_projectId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1103,
+                  "scope": 1455,
                   "src": "161:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -478,7 +478,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1095,
+                    "id": 1447,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:4:3",
@@ -492,10 +492,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1098,
+                  "id": 1450,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1103,
+                  "scope": 1455,
                   "src": "178:13:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -504,7 +504,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1097,
+                    "id": 1449,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "178:7:3",
@@ -521,15 +521,15 @@
               "src": "160:32:3"
             },
             "returnParameters": {
-              "id": 1102,
+              "id": 1454,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1101,
+                  "id": 1453,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1103,
+                  "scope": 1455,
                   "src": "213:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -538,7 +538,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1100,
+                    "id": 1452,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "213:4:3",
@@ -553,14 +553,14 @@
               ],
               "src": "212:6:3"
             },
-            "scope": 1104,
+            "scope": 1456,
             "src": "134:85:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 1105,
+        "scope": 1457,
         "src": "25:196:3"
       }
     ],
@@ -571,8 +571,8 @@
     "version": "0.5.4+commit.9549d8ff.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-09T19:27:05.788Z",
+  "schemaVersion": "3.0.0",
+  "updatedAt": "2019-03-10T00:42:23.698Z",
   "devdoc": {
     "methods": {}
   },
