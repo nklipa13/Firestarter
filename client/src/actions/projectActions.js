@@ -419,6 +419,8 @@ export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJ
 export const didUserFundProject = account => async (dispatch, getState) => {
   const { projectId } = getState().project.data;
 
+  console.log(getState().project.data);
+
   const res = await getIfUserHasFundsLockedCall(projectId, account);
 
   dispatch({ type: SET_USER_FUNDING_STATUS, payload: res.isLocked });
@@ -426,7 +428,8 @@ export const didUserFundProject = account => async (dispatch, getState) => {
   console.log(res);
 };
 
-const cancelFunding = (formData, projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => {
+
+export const cancelFunding = (projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => { // eslint-disable-line
   const proxySendHandler = promise => sendTx(promise, 'Cancel funding', dispatch, getState);
 
   try {
