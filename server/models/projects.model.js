@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const logsSchema = require('./logs.model');
 const faqSchema = require('./faq.model');
+const proposalSchema = require('./proposal.model');
 
 const projectSchema = new mongoose.Schema({
     name: {type: String, required: true},
@@ -23,6 +24,7 @@ const projectSchema = new mongoose.Schema({
     earnedInCompund: {type: String, default: '0'}, // contract info
     logs: [logsSchema],
     faq: [faqSchema],
+    proposals: [proposalSchema],
 });
 
 mongoose.model('Project', projectSchema);
