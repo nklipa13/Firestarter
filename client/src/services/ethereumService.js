@@ -246,3 +246,18 @@ export const signString = (stringToSign, address) => new Promise((resolve, rejec
     return resolve(data.result);
   });
 });
+
+export const getFundsForProjectContractCall = (id, project) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+    const data = await contract.methods.getFullEarnings(parseInt(id, 10)).call();
+
+    resolve({
+      ...project,
+      ethCollected: parseFloat(weiToEth(data.fullEth)) + (parseFloat(weiToEth(data.fullDai)) * 138),
+    });
+  } catch (err) {
+    console.log('err', err);
+    reject(err);
+  }
+});

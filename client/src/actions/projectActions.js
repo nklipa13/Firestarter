@@ -49,6 +49,7 @@ import {
   projectWithdrawContractCall,
   signString,
   getProjectWithdrawHistoryContractCall,
+  getFundsForProjectContractCall,
 } from '../services/ethereumService';
 
 export const MOCK_PROJECTS = [
@@ -143,10 +144,11 @@ export const getProject = id => async (dispatch) => {
   dispatch({ type: GET_PROJECT_REQUEST });
 
   try {
-    const payload = await getProjectApiCall(id);
+    let payload = await getProjectApiCall(id);
 
     if (payload.length === 0) throw new Error('Project not found');
 
+    payload = await getFundsForProjectContractCall(id, payload);
     dispatch({ type: GET_PROJECT_SUCCESS, payload: payload[0] });
   } catch (err) {
     dispatch({ type: GET_PROJECT_FAILURE, payload: err.message });
@@ -193,8 +195,9 @@ export const projectAddQuestion = (formData, projectId, closeModal) => async (di
 
     console.log(sig);
 
-    const payload = await projectAddQuestionApiCall(projectId, formData, account, sig);
+    let payload = await projectAddQuestionApiCall(projectId, formData, account, sig);
 
+    payload = await getFundsForProjectContractCall(projectId, payload);
     dispatch({ type: PROJECT_ADD_QUESTION_SUCCESS, payload });
     closeModal();
   } catch (err) {
@@ -229,8 +232,9 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
       versionChanges: formData.changes.map(c => c.change),
     };
 
-    const payload = await projectAddChangelogApiCall(projectId, data);
+    let payload = await projectAddChangelogApiCall(projectId, data);
 
+    payload = await getFundsForProjectContractCall(projectId, payload);
     dispatch({ type: PROJECT_ADD_CHANGE_SUCCESS, payload });
     closeModal();
   } catch (err) {
@@ -244,6 +248,24 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
  * @return {Function}
  */
 export const resetProjectAddChange = () => (dispatch) => { dispatch({ type: PROJECT_ADD_CHANGE_RESET }); };
+
+/**
+ * Fetches withdraw history for a project
+ *
+ * @param projectId {Number}
+ * @return {Function}
+ */
+export const getProjectWithdrawHistory = projectId => async (dispatch) => {
+  dispatch({ type: PROJECT_WITHDRAW_HISTORY_REQUEST });
+
+  try {
+    const payload = await getProjectWithdrawHistoryContractCall(projectId);
+
+    dispatch({ type: PROJECT_WITHDRAW_HISTORY_SUCCESS, payload });
+  } catch (err) {
+    dispatch({ type: PROJECT_WITHDRAW_HISTORY_FAILURE, payload: err.message });
+  }
+};
 
 /**
  * Withdraws funds in either or both eth, dai from the project.
@@ -263,7 +285,7 @@ export const projectWithdraw = (formData, projectId, closeModal) => async (dispa
   try {
     await projectWithdrawContractCall(proxySendHandler, account, projectId, formData);
 
-    // TODO call get project withdraw history here
+    dispatch(getProjectWithdrawHistory(projectId));
     dispatch({ type: PROJECT_WITHDRAW_SUCCESS });
     closeModal();
   } catch (err) {
@@ -372,6 +394,7 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
     if (type === 'vest') payload = await vestFund(formData, projectId, account, dispatch, getState);
     if (type === 'compound') payload = await compoundFund(formData, projectId, account, dispatch, getState);
 
+    payload = await getFundsForProjectContractCall(projectId, payload);
     dispatch({ type: PROJECT_FUND_SUCCESS, payload });
     closeModal();
   } catch (err) {
@@ -385,21 +408,3 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
  * @return {Function}
  */
 export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJECT_FUND_RESET }); };
-
-/**
- * Fetches withdraw history for a project
- *
- * @param projectId {Number}
- * @return {Function}
- */
-export const getProjectWithdrawHistory = projectId => async (dispatch) => {
-  dispatch({ type: PROJECT_WITHDRAW_HISTORY_REQUEST });
-
-  try {
-    const payload = await getProjectWithdrawHistoryContractCall(projectId);
-
-    dispatch({ type: PROJECT_WITHDRAW_HISTORY_SUCCESS, payload });
-  } catch (err) {
-    dispatch({ type: PROJECT_WITHDRAW_HISTORY_FAILURE, payload: err.message });
-  }
-};
