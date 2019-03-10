@@ -47,6 +47,7 @@ import {
   projectAddProposalApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
+import { SET_USER_FUNDING_STATUS } from '../actionTypes/accountActionTypes';
 import {
   oneTimeFundContractCall,
   vestFundContractCall,
@@ -56,6 +57,8 @@ import {
   getProjectWithdrawHistoryContractCall,
   getFundsForProjectContractCall,
   projectAddProposalContractCall,
+  getIfUserHasFundsLockedCall,
+  cancelFundingCall,
 } from '../services/ethereumService';
 
 /**
@@ -370,3 +373,25 @@ export const projectAddProposal = (formData, projectId, closeModal) => async (di
  * @return {Function}
  */
 export const resetProjectAddProposal = () => (dispatch) => { dispatch({ type: PROJECT_ADD_PROPOSAL_RESET }); };
+
+export const didUserFundProject = account => async (dispatch, getState) => {
+  const { projectId } = getState().project.data;
+
+  const res = await getIfUserHasFundsLockedCall(projectId, account);
+
+  dispatch({ type: SET_USER_FUNDING_STATUS, payload: res.isLocked });
+
+  console.log(res);
+};
+
+const cancelFunding = (formData, projectId, account, dispatch, getState) => new Promise(async (resolve, reject) => {
+  const proxySendHandler = promise => sendTx(promise, 'Cancel funding', dispatch, getState);
+
+  try {
+    const payload = await cancelFundingCall(proxySendHandler, account, projectId);
+
+    resolve(payload);
+  } catch (err) {
+    reject(err);
+  }
+});

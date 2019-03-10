@@ -3,16 +3,35 @@ import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Project from './Project';
-import { getProject } from '../../actions/projectActions';
+import { getProject, didUserFundProject } from '../../actions/projectActions';
 import Loader from '../Loader/Loader';
 import ItemNotFound from '../ItemNotFound/ItemNotFound';
 
 import './ProjectRoutes.scss';
 
 class ProjectRoutes extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      checkedUser: false,
+    };
+
+    this.setCheckedUser = this.setCheckedUser.bind(this);
+  }
+
   componentWillMount() {
     this.props.getProject(this.props.match.params.id);
   }
+
+  componentWillReceiveProps(props, newProps) {
+    if (!this.state.checkedUser && props.account && props.hasData) {
+      this.props.didUserFundProject(props.account);
+      this.setCheckedUser();
+    }
+  }
+
+  setCheckedUser() { this.setState({ checkedUser: true }); }
 
   render() {
     const {
@@ -49,23 +68,30 @@ class ProjectRoutes extends Component {
   }
 }
 
-const mapStateToProps = ({ project }) => ({
-  gettingProject: project.gettingProject,
-  gettingProjectError: project.gettingProjectError,
-  hasData: !!project.data.name,
-});
-
-const mapDispatchToProps = {
-  getProject,
+ProjectRoutes.defaultProps = {
+  account: '',
 };
 
 ProjectRoutes.propTypes = {
   match: PropTypes.object.isRequired,
   getProject: PropTypes.func.isRequired,
+  didUserFundProject: PropTypes.func.isRequired,
   gettingProject: PropTypes.bool.isRequired,
   gettingProjectError: PropTypes.string.isRequired,
   history: PropTypes.object.isRequired,
   hasData: PropTypes.any.isRequired,
+  account: PropTypes.string,
+};
+
+const mapStateToProps = ({ project, account }) => ({
+  gettingProject: project.gettingProject,
+  gettingProjectError: project.gettingProjectError,
+  hasData: !!project.data.name,
+  account: account.account,
+});
+
+const mapDispatchToProps = {
+  getProject, didUserFundProject,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectRoutes);
