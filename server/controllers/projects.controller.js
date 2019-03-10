@@ -68,7 +68,6 @@ module.exports.updateProjectFunds = async (req, res) => {
 
         if (action === 'add') {
             project[getParamName(type)] += numAmount;
-
             if (type !== 3) {
                 project.ethCollected += numAmount;
             } else {
@@ -102,7 +101,7 @@ module.exports.addProjectProposal = async (req, res) => {
             project.proposals = [];
         }
 
-        project.proposals.push({ req.body });
+        project.proposals.push(req.body);
 
         await project.save();
 
@@ -123,7 +122,8 @@ module.exports.getProjectProposals = async (req, res) => {
         const project = await Project.findOne({projectId: id}).exec();
 
         res.status(200);
-        res.json(project.proposals.filter(proposal => ids.includes(proposal.proposalId)));
+        res.json(project.proposals);
+        // .filter(proposal => ids.includes(proposal.proposalId)) filter if needed
         
     } catch(err) {
         console.log(err);

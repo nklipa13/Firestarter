@@ -8,6 +8,7 @@ import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
 import ProjectChangelog from './ProjectChangelog/ProjectChangelog';
 import ProjectProposals from './ProjectProposals/ProjectProposals';
 import { openProjectWithdrawModal, openProjectFundModal } from '../../actions/modalActions';
+import { cancelFunding } from '../../actions/projectActions';
 
 import './Project.scss';
 
@@ -17,7 +18,7 @@ const Project = ({
     name, description, imageUrl, ethCollected, date,
     numSupporters, creator, aboutProject, faq, projectId, aboutCreator, logs,
   },
-  openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
+  openProjectWithdrawModal, openProjectFundModal, funding, withdrawing, cancelFunding,
 }) => {
   const isOwner = account === creator;
 
@@ -70,7 +71,7 @@ const Project = ({
           !isOwner && hasFunding && (
             <button
               type="button"
-              onClick={() => { openProjectFundModal(projectId); }}
+              onClick={() => { cancelFunding(projectId, account); }}
               className="button  uppercase no-wrap"
               disabled={funding || !account}
             >
@@ -117,6 +118,7 @@ Project.propTypes = {
   data: PropTypes.object.isRequired,
   openProjectWithdrawModal: PropTypes.func.isRequired,
   openProjectFundModal: PropTypes.func.isRequired,
+  cancelFunding: PropTypes.func.isRequired,
   funding: PropTypes.bool.isRequired,
   withdrawing: PropTypes.bool.isRequired,
   account: PropTypes.string.isRequired,
@@ -134,6 +136,7 @@ const mapStateToProps = ({ project, account }) => ({
 const mapDispatchToProps = {
   openProjectWithdrawModal,
   openProjectFundModal,
+  cancelFunding,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Project);
