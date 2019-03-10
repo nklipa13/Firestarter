@@ -5,6 +5,7 @@ import {
   fireStarterContractAddress,
   VotingMachineContract,
 } from './contractRegistryService';
+import { formatNumber } from './utils';
 
 export const weiToEth = weiVal => window._web3.utils.fromWei(weiVal);
 
@@ -248,14 +249,36 @@ export const signString = (stringToSign, address) => new Promise((resolve, rejec
   });
 });
 
-export const getFundsForProjectContractCall = (id, project) => new Promise(async (resolve, reject) => { // eslint-disable-line
+export const getFinance = (id, project) => new Promise(async (resolve, reject) => {
   try {
     const contract = await FirestarterContract();
-    const data = await contract.methods.getFullEarnings(parseInt(id, 10)).call();
+    const {
+      earnedDai,
+      earnedEthOneTime,
+      earnedEthVested,
+      vestedDai,
+      vestedEth,
+    } = await contract.methods.getFinance(id).call();
+
+    const { fromWei } = window._web3.utils;
+
+    const getValue = val => formatNumber(fromWei(val)) === '0.000' ? '0' : parseFloat(formatNumber(fromWei(val))).toString(); // eslint-disable-line
+
+    const totallyEarned =
+      (parseFloat(earnedEthOneTime) + parseFloat(earnedEthVested) + parseFloat(weiToEth(earnedDai))).toString();
+
+    const data = {
+      earnedInCompund: getValue(earnedDai),
+      oneTimePaymentAmount: getValue(earnedEthOneTime),
+      earnedInVesting: getValue(earnedEthVested),
+      lockedInCompound: getValue(vestedDai),
+      lockedInVesting: getValue(vestedEth),
+      ethCollected: getValue(totallyEarned),
+    };
 
     resolve({
       ...project,
-      ethCollected: parseFloat(weiToEth(data.fullEth)) + (parseFloat(weiToEth(data.fullDai)) * 138),
+      ...data,
     });
   } catch (err) {
     reject(err);

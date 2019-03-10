@@ -55,10 +55,10 @@ import {
   projectWithdrawContractCall,
   signString,
   getProjectWithdrawHistoryContractCall,
-  getFundsForProjectContractCall,
   projectAddProposalContractCall,
   getIfUserHasFundsLockedCall,
   cancelFundingCall,
+  getFinance,
 } from '../services/ethereumService';
 
 /**
@@ -76,8 +76,9 @@ export const getProject = id => async (dispatch) => {
 
     if (payload.length === 0) throw new Error('Project not found');
 
-    payload = await getFundsForProjectContractCall(id, payload);
-    dispatch({ type: GET_PROJECT_SUCCESS, payload: payload[0] });
+    payload = await getFinance(id, payload[0]);
+    console.log(payload);
+    dispatch({ type: GET_PROJECT_SUCCESS, payload });
   } catch (err) {
     dispatch({ type: GET_PROJECT_FAILURE, payload: err.message });
   }
@@ -125,7 +126,7 @@ export const projectAddQuestion = (formData, projectId, closeModal) => async (di
 
     let payload = await projectAddQuestionApiCall(projectId, formData, account, sig);
 
-    payload = await getFundsForProjectContractCall(projectId, payload);
+    payload = await getFinance(projectId, payload);
     dispatch({ type: PROJECT_ADD_QUESTION_SUCCESS, payload });
     closeModal();
   } catch (err) {
@@ -166,7 +167,7 @@ export const projectAddChange = (formData, projectId, closeModal) => async (disp
 
     let payload = await projectAddChangelogApiCall(projectId, data, account, sig);
 
-    payload = await getFundsForProjectContractCall(projectId, payload);
+    payload = await getFinance(projectId, payload);
     dispatch({ type: PROJECT_ADD_CHANGE_SUCCESS, payload });
     closeModal();
   } catch (err) {
@@ -326,7 +327,7 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
     if (type === 'vest') payload = await vestFund(formData, projectId, account, dispatch, getState);
     if (type === 'compound') payload = await compoundFund(formData, projectId, account, dispatch, getState);
 
-    payload = await getFundsForProjectContractCall(projectId, payload);
+    payload = await getFinance(projectId, payload);
     dispatch({ type: PROJECT_FUND_SUCCESS, payload });
     closeModal();
   } catch (err) {
