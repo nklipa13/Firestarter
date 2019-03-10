@@ -306,6 +306,20 @@ contract Firestarter is Vesting {
 		}
 	}
 
+	function hasLockedFunds(uint _projectId, address _from) public view returns(bool) {
+        Fund[] memory funds = projects[_projectId].allFunds[_from];
+
+        for (uint i = 0; i < funds.length; ++i) {
+            if (funds[i].fundType == FundType.CompoundType || funds[i].fundType == FundType.VestingType) {
+                if (block.number < funds[i].end && funds[i].canceled != 0) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
 	function userFundedProject(uint _projectId, address _user) public view returns(uint) {
 		Fund[] memory userFunds = projects[_projectId].allFunds[_user];
 
