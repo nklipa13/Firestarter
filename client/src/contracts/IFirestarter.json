@@ -46,26 +46,52 @@
       "payable": false,
       "stateMutability": "view",
       "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "_projectId",
+          "type": "uint256"
+        },
+        {
+          "name": "_ethBalance",
+          "type": "uint256"
+        },
+        {
+          "name": "_daiBalance",
+          "type": "uint256"
+        },
+        {
+          "name": "_message",
+          "type": "string"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "sourceMap": "",
   "deployedSourceMap": "",
-  "source": "pragma solidity ^0.5.0;\n\ncontract IFirestarter {\n    function getNewBalanceAndRateView(uint _id) public view returns(uint, uint);\n    function userFundedProject(uint _projectId, address _user) public view returns(uint);\n}",
+  "source": "pragma solidity ^0.5.0;\n\ncontract IFirestarter {\n    function getNewBalanceAndRateView(uint _id) public view returns(uint, uint);\n    function userFundedProject(uint _projectId, address _user) public view returns(uint);\n    function withdraw(uint _projectId, uint _ethBalance, uint _daiBalance, string memory _message) public;\n}",
   "sourcePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/IFirestarter.sol",
   "ast": {
     "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/IFirestarter.sol",
     "exportedSymbols": {
       "IFirestarter": [
-        1441
+        1676
       ]
     },
-    "id": 1442,
+    "id": 1677,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1422,
+        "id": 1646,
         "literals": [
           "solidity",
           "^",
@@ -81,9 +107,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1441,
+        "id": 1676,
         "linearizedBaseContracts": [
-          1441
+          1676
         ],
         "name": "IFirestarter",
         "nodeType": "ContractDefinition",
@@ -91,22 +117,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1431,
+            "id": 1655,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getNewBalanceAndRateView",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1425,
+              "id": 1649,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1424,
+                  "id": 1648,
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1431,
+                  "scope": 1655,
                   "src": "87:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -115,7 +141,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1423,
+                    "id": 1647,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "87:4:3",
@@ -131,15 +157,15 @@
               "src": "86:10:3"
             },
             "returnParameters": {
-              "id": 1430,
+              "id": 1654,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1427,
+                  "id": 1651,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1431,
+                  "scope": 1655,
                   "src": "117:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -148,7 +174,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1426,
+                    "id": 1650,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:4:3",
@@ -162,10 +188,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1429,
+                  "id": 1653,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1431,
+                  "scope": 1655,
                   "src": "123:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -174,7 +200,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1428,
+                    "id": 1652,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "123:4:3",
@@ -189,7 +215,7 @@
               ],
               "src": "116:12:3"
             },
-            "scope": 1441,
+            "scope": 1676,
             "src": "53:76:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -198,22 +224,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1440,
+            "id": 1664,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "userFundedProject",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1436,
+              "id": 1660,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1433,
+                  "id": 1657,
                   "name": "_projectId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1440,
+                  "scope": 1664,
                   "src": "161:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -222,7 +248,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1432,
+                    "id": 1656,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:4:3",
@@ -236,10 +262,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1435,
+                  "id": 1659,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1440,
+                  "scope": 1664,
                   "src": "178:13:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -248,7 +274,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1434,
+                    "id": 1658,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "178:7:3",
@@ -265,15 +291,15 @@
               "src": "160:32:3"
             },
             "returnParameters": {
-              "id": 1439,
+              "id": 1663,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1438,
+                  "id": 1662,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1440,
+                  "scope": 1664,
                   "src": "213:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -282,7 +308,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1437,
+                    "id": 1661,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "213:4:3",
@@ -297,31 +323,163 @@
               ],
               "src": "212:6:3"
             },
-            "scope": 1441,
+            "scope": 1676,
             "src": "134:85:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1675,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1666,
+                  "name": "_projectId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "242:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1665,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "242:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1668,
+                  "name": "_ethBalance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "259:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1667,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "259:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1670,
+                  "name": "_daiBalance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "277:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1669,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "277:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1672,
+                  "name": "_message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "295:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1671,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "241:77:3"
+            },
+            "returnParameters": {
+              "id": 1674,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "325:0:3"
+            },
+            "scope": 1676,
+            "src": "224:102:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
           }
         ],
-        "scope": 1442,
-        "src": "25:196:3"
+        "scope": 1677,
+        "src": "25:303:3"
       }
     ],
-    "src": "0:221:3"
+    "src": "0:328:3"
   },
   "legacyAST": {
     "absolutePath": "/Users/nikolaklipa/Hakaton/Firestarter/contracts/IFirestarter.sol",
     "exportedSymbols": {
       "IFirestarter": [
-        1441
+        1676
       ]
     },
-    "id": 1442,
+    "id": 1677,
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1422,
+        "id": 1646,
         "literals": [
           "solidity",
           "^",
@@ -337,9 +495,9 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": false,
-        "id": 1441,
+        "id": 1676,
         "linearizedBaseContracts": [
-          1441
+          1676
         ],
         "name": "IFirestarter",
         "nodeType": "ContractDefinition",
@@ -347,22 +505,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1431,
+            "id": 1655,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "getNewBalanceAndRateView",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1425,
+              "id": 1649,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1424,
+                  "id": 1648,
                   "name": "_id",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1431,
+                  "scope": 1655,
                   "src": "87:8:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -371,7 +529,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1423,
+                    "id": 1647,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "87:4:3",
@@ -387,15 +545,15 @@
               "src": "86:10:3"
             },
             "returnParameters": {
-              "id": 1430,
+              "id": 1654,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1427,
+                  "id": 1651,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1431,
+                  "scope": 1655,
                   "src": "117:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -404,7 +562,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1426,
+                    "id": 1650,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "117:4:3",
@@ -418,10 +576,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1429,
+                  "id": 1653,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1431,
+                  "scope": 1655,
                   "src": "123:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -430,7 +588,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1428,
+                    "id": 1652,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "123:4:3",
@@ -445,7 +603,7 @@
               ],
               "src": "116:12:3"
             },
-            "scope": 1441,
+            "scope": 1676,
             "src": "53:76:3",
             "stateMutability": "view",
             "superFunction": null,
@@ -454,22 +612,22 @@
           {
             "body": null,
             "documentation": null,
-            "id": 1440,
+            "id": 1664,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "userFundedProject",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1436,
+              "id": 1660,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1433,
+                  "id": 1657,
                   "name": "_projectId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1440,
+                  "scope": 1664,
                   "src": "161:15:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -478,7 +636,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1432,
+                    "id": 1656,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "161:4:3",
@@ -492,10 +650,10 @@
                 },
                 {
                   "constant": false,
-                  "id": 1435,
+                  "id": 1659,
                   "name": "_user",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1440,
+                  "scope": 1664,
                   "src": "178:13:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -504,7 +662,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1434,
+                    "id": 1658,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "178:7:3",
@@ -521,15 +679,15 @@
               "src": "160:32:3"
             },
             "returnParameters": {
-              "id": 1439,
+              "id": 1663,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1438,
+                  "id": 1662,
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1440,
+                  "scope": 1664,
                   "src": "213:4:3",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -538,7 +696,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1437,
+                    "id": 1661,
                     "name": "uint",
                     "nodeType": "ElementaryTypeName",
                     "src": "213:4:3",
@@ -553,18 +711,150 @@
               ],
               "src": "212:6:3"
             },
-            "scope": 1441,
+            "scope": 1676,
             "src": "134:85:3",
             "stateMutability": "view",
             "superFunction": null,
             "visibility": "public"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "id": 1675,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1666,
+                  "name": "_projectId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "242:15:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1665,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "242:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1668,
+                  "name": "_ethBalance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "259:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1667,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "259:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1670,
+                  "name": "_daiBalance",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "277:16:3",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1669,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "277:4:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1672,
+                  "name": "_message",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1675,
+                  "src": "295:22:3",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 1671,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "295:6:3",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "241:77:3"
+            },
+            "returnParameters": {
+              "id": 1674,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "325:0:3"
+            },
+            "scope": 1676,
+            "src": "224:102:3",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
           }
         ],
-        "scope": 1442,
-        "src": "25:196:3"
+        "scope": 1677,
+        "src": "25:303:3"
       }
     ],
-    "src": "0:221:3"
+    "src": "0:328:3"
   },
   "compiler": {
     "name": "solc",
@@ -572,7 +862,7 @@
   },
   "networks": {},
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-10T01:16:03.306Z",
+  "updatedAt": "2019-03-10T03:09:34.057Z",
   "devdoc": {
     "methods": {}
   },

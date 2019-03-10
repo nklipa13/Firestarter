@@ -1,16 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-import projectWithdrawFormValidator from './projectWithdrawFormValidator';
+import projectAddProposalFormValidator from './projectAddProposalFormValidator';
 import InputComponent from '../../../Forms/InputComponent';
 import TextAreaComponent from '../../../Forms/TextAreaComponent';
-import { projectWithdraw } from '../../../../actions/projectActions';
-import { notGraterThan } from '../../../../services/utils';
+import { projectAddProposal } from '../../../../actions/projectActions';
 
-const ProjectWithdrawForm = ({
+const ProjectAddProposalForm = ({
   handleSubmit, pristine, invalid, submittingForm, submittingError, closeModal, onSubmit, projectId,
-  maxEth, maxDai,
 }) => (
   <form
     onSubmit={handleSubmit((e) => { onSubmit(e, projectId, closeModal); })}
@@ -19,12 +17,20 @@ const ProjectWithdrawForm = ({
   >
     <Field
       focus
+      id="add-proposal-name"
+      name="featureName"
+      labelText="Feature name"
+      placeholder="Feature name"
+      component={InputComponent}
+      showErrorText
+    />
+
+    <Field
       type="number"
-      normalize={val => notGraterThan(val, maxEth)}
-      additional={{ min: 0, max: maxEth }}
+      additional={{ min: 0 }}
       id="ethAmount"
       name="ethAmount"
-      labelText={`Withdraw ETH - ${maxEth} ETH available`}
+      labelText="Amount of ETH needed"
       placeholder="ETH amount"
       component={InputComponent}
       showErrorText
@@ -32,21 +38,20 @@ const ProjectWithdrawForm = ({
 
     <Field
       type="number"
-      normalize={val => notGraterThan(val, maxDai)}
-      additional={{ min: 0, max: maxDai }}
+      additional={{ min: 0 }}
       id="daiAmount"
       name="daiAmount"
-      labelText={`Withdraw DAI - ${maxDai} DAI available`}
+      labelText="Amount of DAI needed"
       placeholder="DAI amount"
       component={InputComponent}
       showErrorText
     />
 
     <Field
-      id="purpose"
-      name="purpose"
-      labelText="Purpose of withdrawal"
-      placeholder="Purpose of withdrawal"
+      id="change-description"
+      name="featureDescription"
+      labelText="Feature description"
+      placeholder="Feature description"
       component={TextAreaComponent}
       showErrorText
     />
@@ -65,7 +70,7 @@ const ProjectWithdrawForm = ({
   </form>
 );
 
-ProjectWithdrawForm.propTypes = {
+ProjectAddProposalForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   projectId: PropTypes.number.isRequired,
@@ -74,22 +79,20 @@ ProjectWithdrawForm.propTypes = {
   submittingForm: PropTypes.bool.isRequired,
   submittingError: PropTypes.string.isRequired,
   closeModal: PropTypes.func.isRequired,
-  maxEth: PropTypes.number.isRequired,
-  maxDai: PropTypes.number.isRequired,
 };
 
-const ProjectWithdrawFormComp = reduxForm({
-  form: 'projectWithdrawForm',
-  validate: projectWithdrawFormValidator,
-})(ProjectWithdrawForm);
+const ProjectAddProposalFormComp = reduxForm({
+  form: 'projectAddProposalForm',
+  validate: projectAddProposalFormValidator,
+})(ProjectAddProposalForm);
 
 const mapStateToProps = ({ project }) => ({
-  submittingForm: project.withdrawing,
-  submittingError: project.withdrawingError,
+  submittingForm: project.addingProposal,
+  submittingError: project.addingProposalError,
 });
 
 const mapDispatchToProps = {
-  onSubmit: projectWithdraw,
+  onSubmit: projectAddProposal,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectWithdrawFormComp);
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectAddProposalFormComp);

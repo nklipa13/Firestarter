@@ -30,8 +30,12 @@ import {
   PROJECT_WITHDRAW_HISTORY_REQUEST,
   PROJECT_WITHDRAW_HISTORY_SUCCESS,
   PROJECT_WITHDRAW_HISTORY_FAILURE,
+
+  PROJECT_ADD_PROPOSAL_REQUEST,
+  PROJECT_ADD_PROPOSAL_SUCCESS,
+  PROJECT_ADD_PROPOSAL_FAILURE,
+  PROJECT_ADD_PROPOSAL_RESET,
 } from '../actionTypes/projectActionTypes';
-import { wait } from '../services/utils';
 import {
   compoundFundApiCall,
   vestFundApiCall,
@@ -40,6 +44,7 @@ import {
   oneTimeFundApiCall,
   projectAddQuestionApiCall,
   projectAddChangelogApiCall,
+  projectAddProposalApiCall,
 } from '../services/api';
 import { sendTx } from './notificationsActions';
 import { SET_USER_FUNDING_STATUS } from '../actionTypes/accountActionTypes';
@@ -51,90 +56,10 @@ import {
   signString,
   getProjectWithdrawHistoryContractCall,
   getFundsForProjectContractCall,
+  projectAddProposalContractCall,
   getIfUserHasFundsLockedCall,
   cancelFundingCall,
 } from '../services/ethereumService';
-
-export const MOCK_PROJECTS = [
-  {
-    id: 0,
-    name: 'Community-driven Dapps on the Ethereum blockchain',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',
-    supporters: 42,
-    ethRaised: 69,
-    daysPassed: 21,
-    cover: 'https://bit.ly/2SUf41r',
-    creator: {
-      address: '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
-      avatar: 'https://bit.ly/2EKavSx',
-      about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.' // eslint-disable-line
-    },
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.:Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel.', // eslint-disable-line
-    ethWithdraw: 69,
-    daiWithdraw: 10,
-    finance: {
-      oneTimePayments: {
-        eth: 31,
-        usd: 3100,
-        dai: 120,
-        mln: 250,
-      },
-      funded: {
-        earned: 4,
-        locked: 72,
-      },
-      compound: {
-        earned: 20,
-        locked: 10000,
-      },
-      total: 69,
-      withdrawHistory: [
-        {
-          date: '12 September 2019',
-          daiAmount: 0,
-          ethAmount: 20,
-          purpose: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.', // eslint-disable-line
-        },
-        {
-          date: '13 September 2019',
-          daiAmount: 10,
-          ethAmount: 1,
-          purpose: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.', // eslint-disable-line
-        },
-      ],
-    },
-    faqs: [
-      {
-        question: 'How about answering some questions now?',
-        answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',  // eslint-disable-line
-      },
-      {
-        question: 'How about some more?',
-        answer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nulla ante, pretium vel neque.',  // eslint-disable-line
-      },
-    ],
-    changelog: [
-      {
-        version: 'v2.0.0-alpha',
-        date: '20 October 2019',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', // eslint-disable-line
-        changes: [
-          ' Lorem ipsum dolor sit amet, consectetur.', 'Dolor sit amet, consectetur.',
-          'Consectetur ipsum consectetur sit amet, mipsuminsectetur.', 'Mipsum dolor sit amet, consectetur.',
-        ],
-      },
-      {
-        version: 'v1.9.4',
-        date: '17 September 2019',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.Praesent nulla ante, pretium vel neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit.', // eslint-disable-line
-        changes: [
-          ' Lorem ipsum dolor sit amet, consectetur.', 'Dolor sit amet, consectetur.',
-          'Consectetur ipsum consectetur sit amet, mipsuminsectetur.', 'Mipsum dolor sit amet, consectetur.',
-        ],
-      },
-    ],
-  },
-];
 
 /**
  * Gets the project data for the passed down id
@@ -381,7 +306,7 @@ const compoundFund = (formData, projectId, account, dispatch, getState) => new P
 });
 
 /**
- * Adss funds to the project via 3 types.
+ * Adds funds to the project via 3 types.
  *
  * @param formData {Object}
  * @param projectId {String}
@@ -415,6 +340,39 @@ export const fundProject = (formData, projectId, closeModal, type) => async (dis
  * @return {Function}
  */
 export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJECT_FUND_RESET }); };
+
+/**
+ * Adds a proposal to a project
+ *
+ * @param formData {Object}
+ * @param projectId {String}
+ * @param closeModal {Function}
+ *
+ * @return {Function}
+ */
+export const projectAddProposal = (formData, projectId, closeModal) => async (dispatch, getState) => {
+  dispatch({ type: PROJECT_ADD_PROPOSAL_REQUEST });
+
+  const proxySendHandler = promise => sendTx(promise, 'Add proposal', dispatch, getState);
+
+  try {
+    const { account } = getState().account;
+    const proposalId = await projectAddProposalContractCall(proxySendHandler, account, projectId);
+    await projectAddProposalApiCall(projectId, proposalId, formData);
+
+    // TODO fetch proposals here
+    dispatch({ type: PROJECT_ADD_PROPOSAL_SUCCESS });
+    closeModal();
+  } catch (err) {
+    dispatch({ type: PROJECT_ADD_PROPOSAL_FAILURE, payload: err.message });
+  }
+};
+
+/**
+ * Resets the project add proposal form for the creator
+ * @return {Function}
+ */
+export const resetProjectAddProposal = () => (dispatch) => { dispatch({ type: PROJECT_ADD_PROPOSAL_RESET }); };
 
 export const didUserFundProject = account => async (dispatch, getState) => {
   const { projectId } = getState().project.data;
