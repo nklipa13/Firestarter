@@ -43,7 +43,7 @@ const ProjectFinanceWithdrawHistory = ({
           <React.Fragment>
             {
               data.length === 0 && (
-                <div className="page-loader-wrapper no-items-wrapper">
+                <div className="no-items-wrapper">
                   <div>There were no withdraws for this project</div>
                 </div>
               )

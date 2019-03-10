@@ -29,7 +29,7 @@ const ProjectFinance = ({
     </div>
 
     <div className="total-wrapper">
-      <div className="label">Totally collected:</div>
+      <div className="label">Totally earned:</div>
       <div className="value">{ethCollected} ETH</div>
     </div>
 
