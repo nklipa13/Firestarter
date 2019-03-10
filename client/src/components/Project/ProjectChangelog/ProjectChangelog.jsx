@@ -22,7 +22,10 @@ const ProjectChangelog = ({
       )
     }
 
-    { data.length === 0 && (<div className="tab-empty-wrapper">Currently, there are no versions</div>) }
+    {
+      data.length === 0 &&
+      (<div className="tab-empty-wrapper">The project owner hasn&#39;t add any changes yet.</div>)
+    }
 
     {
       data.map(({

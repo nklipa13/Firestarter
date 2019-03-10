@@ -56,8 +56,8 @@ const ProjectProposals = ({
           <React.Fragment>
             {
               data.length === 0 && (
-                <div className="no-items-wrapper">
-                  <div>There are no proposals for this project</div>
+                <div className="tab-empty-wrapper no-items-wrapper">
+                  <div>There are no proposals for this project.</div>
                 </div>
               )
             }
