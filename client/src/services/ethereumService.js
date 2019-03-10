@@ -3,6 +3,7 @@ import {
   DaiErc20Contract,
   FirestarterContract,
   fireStarterContractAddress,
+  VotingMachineContract,
 } from './contractRegistryService';
 
 export const weiToEth = weiVal => window._web3.utils.fromWei(weiVal);
@@ -257,7 +258,23 @@ export const getFundsForProjectContractCall = (id, project) => new Promise(async
       ethCollected: parseFloat(weiToEth(data.fullEth)) + (parseFloat(weiToEth(data.fullDai)) * 138),
     });
   } catch (err) {
-    console.log('err', err);
+    reject(err);
+  }
+});
+
+export const projectAddProposalContractCall = (sendTxFunc, from, projectId) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    const project = await contract.methods.projects(projectId).call();
+    const votingMachineAddress = project.votingMachineCallback;
+    const machineContract = await VotingMachineContract(votingMachineAddress);
+
+    const promise = machineContract.methods.createProposal.send({ from });
+    const receipt = await sendTxFunc(promise);
+
+    resolve(receipt.logs[0].topics[1]);
+  } catch (err) {
     reject(err);
   }
 });

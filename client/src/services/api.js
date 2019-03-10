@@ -63,3 +63,19 @@ export const projectAddChangelogApiCall = (id, formData, address, sig) => fetch(
     ...formData, address, sig, msg: formData.description,
   }),
 }).then(res => handleResponse(res));
+
+export const projectAddProposalApiCall = (id, proposalId, formData) => fetch(`${API_URL}/project/${id}/proposal`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    title: formData.featureName,
+    description: formData.featureName,
+    ethAmount: formData.ethAmount,
+    daiAmount: formData.daiAmount,
+    proposalId,
+  }),
+}).then(res => handleResponse(res));
+
+export const getAllProjectProposalsApiCall = id => fetch(`${API_URL}/project/${id}/proposal`, {
+  method: 'GET',
+}).then(res => handleResponse(res));
