@@ -73,6 +73,8 @@ import {
   cancelFundingCall,
   getFinance,
   voteProposalContractCall,
+  getProposalInfo,
+  getProposalVoteStatus,
   // getProjectProposalsContractCall,
 } from '../services/ethereumService';
 
@@ -363,14 +365,17 @@ export const resetProjectFundForms = () => (dispatch) => { dispatch({ type: PROJ
  * @param projectId
  * @return {Function}
  */
-export const getProjectProposals = projectId => async (dispatch) => {
+export const getProjectProposals = projectId => async (dispatch, getState) => {
   dispatch({ type: GET_PROJECT_PROPOSALS_REQUEST });
 
   try {
-    const payload = await getAllProjectProposalsApiCall(projectId);
+    const { account } = getState().account;
+    let payload = await getAllProjectProposalsApiCall(projectId);
 
-    // TODO get proposal vote info - info
-    // TODO get proposal status - voted
+    const promises = payload.map(({ proposalId }) => getProposalInfo(projectId, proposalId, account));
+
+    const res = await Promise.all(promises);
+    payload = payload.map((p, index) => ({ ...p, ...res[index] }));
 
     dispatch({ type: GET_PROJECT_PROPOSALS_SUCCESS, payload });
   } catch (err) {
@@ -437,8 +442,8 @@ export const supportProposal = (projectId, proposalId, index) => async (dispatch
     await voteProposalContractCall(proxySendHandler, account, projectId, proposalId, true);
     const newProposals = [...proposals];
 
-    // TODO get proposal info
-    newProposals[index] = { ...newProposals[index], voted: true };
+    const newVoteStatus = await getProposalVoteStatus(projectId, proposalId);
+    newProposals[index] = { ...newProposals[index], voted: true, info: newVoteStatus };
 
     dispatch({ type: SUPPORT_PROPOSAL_SUCCESS, payload: newProposals });
   } catch (err) {
@@ -458,8 +463,8 @@ export const declineProposal = (projectId, proposalId, index) => async (dispatch
     await voteProposalContractCall(proxySendHandler, account, projectId, proposalId, false);
     const newProposals = [...proposals];
 
-    // TODO get proposal info
-    newProposals[index] = { ...newProposals[index], voted: true };
+    const newVoteStatus = await getProposalVoteStatus(projectId, proposalId);
+    newProposals[index] = { ...newProposals[index], voted: true, info: newVoteStatus };
 
     dispatch({ type: DECLINE_PROPOSAL_SUCCESS, payload: newProposals });
   } catch (err) {

@@ -35,7 +35,7 @@ const Project = ({
 
         <div className="creator-section">
           <div className="creator-data-wrapper">
-            <img src={`https:\/\/eth.vanity.show\/${creator}`} alt="Creator avatar" className="avatar-image" />
+            <img src={`https:\/\/eth.vanity.show\/${creator}`} alt="Creator avatar" className="avatar-image" /> {/* eslint-disable-line */ }
 
             <div className="creator-data">
               <div className="label">Created by</div>

@@ -64,23 +64,37 @@ const ProjectProposals = ({
 
             {
               data.length > 0 && data.map(({
-                daiAmount, description, ethAmount, proposalId, title, voted = false,
+                daiAmount, description, ethAmount, proposalId, title, voted = false, info,
               }, index) => (
                 <div className="item" key={proposalId}>
                   <div className="title text-medium-margin">{title}</div>
 
                   <div className="description text-large-margin">{description}</div>
 
-                  <div className="action-wrapper">
+                  <div className="action-wrapper text-large-margin">
                     <div className="stats">
                       <span>Amount needed for feature</span>
                       { ethAmount > 0 && <span className="stat">{ethAmount} ETH</span> }
                       { daiAmount > 0 && <span className="stat">{daiAmount} DAI</span> }
                     </div>
+                  </div>
+
+                  <div className="vote-wrapper">
+                    <div className="vote-data">
+                      <div className="vote-item">
+                        <div className="label">Supported by:</div>
+                        <div className="value">{info.yes}</div>
+                      </div>
+
+                      <div className="vote-item">
+                        <div className="label">Supported by:</div>
+                        <div className="value">{info.yes}</div>
+                      </div>
+                    </div>
 
                     {
                       !isOwner && (
-                        <div className="voting-wrapper">
+                        <div className="voting-actions">
                           <button
                             className="button uppercase"
                             type="button"
