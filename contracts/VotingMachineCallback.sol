@@ -78,9 +78,13 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
         if (_decision == 1) {
             IFirestarter(firestarter).withdraw(projectId, ethWanted[_proposalId], daiWanted[_proposalId], "Got from proposal");
 
-            proposer[_proposalId].transfer(address(this).balance);
-            uint balance = IERC20(DAI_ADDRESS).balanceOf(address(this));
-            IERC20(DAI_ADDRESS).transfer(msg.sender, balance);
+            if (ethWanted[_proposalId] > 0) {
+                proposer[_proposalId].transfer(address(this).balance);
+            }
+
+            if (daiWanted[_proposalId] > 0) {
+                IERC20(DAI_ADDRESS).transfer(msg.sender, daiWanted[_proposalId]);
+            }
         }
 
     	emit ProposalFinished(_proposalId, _decision);
