@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=development webpack-dev-server --mode=development --history-api-fallback --compress --hot --config ./build/webpack.dev.config.js",
     "prod": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack --mode=production --config ./build/webpack.prod.config.js",
+    "dev-build": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=development webpack --mode=development --config ./build/webpack.dev.config.js",
     "prod-serve": "NODE_OPTIONS=--max_old_space_size=4096 NODE_ENV=production webpack-dev-server --mode=production --history-api-fallback --compress --hot --config ./build/webpack.prod.config.js"
   },
   "dependencies": {
