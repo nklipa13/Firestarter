@@ -44008,8 +44008,8 @@
         }
       },
       "links": {},
-      "address": "0x1C47dE78137ef666B993B9b62ceEe52C698CD0e6",
-      "transactionHash": "0x48fb0b7fe22434f40b829f9829f22b0ca5ff1f58fa63aa646fb44eb92ce4a1ae"
+      "address": "0xBdeC0a5B653A6FA23be386d44E308D8F3b328E0C",
+      "transactionHash": "0xdb41fb1a6d89aab7c3ece42fb59f2687a96ff8f75f98038d7166515b260e2978"
     },
     "42": {
       "events": {},
@@ -44025,7 +44025,7 @@
     }
   },
   "schemaVersion": "3.0.2",
-  "updatedAt": "2019-03-10T06:33:03.537Z",
+  "updatedAt": "2019-03-10T07:10:49.192Z",
   "devdoc": {
     "methods": {
       "fundProjectByCompound(uint256,uint256)": {
