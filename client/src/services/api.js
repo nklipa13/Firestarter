@@ -1,4 +1,4 @@
-const API_URL = 'http://e3fd672f.ngrok.io/api';
+const API_URL = 'http://firestarter.cc:9999/api';
 
 const handleResponse = response => response.text().then((text) => {
   const data = text && JSON.parse(text);
