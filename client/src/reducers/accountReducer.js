@@ -2,6 +2,7 @@ import {
   CONNECT_PROVIDER,
   CONNECT_PROVIDER_SUCCESS,
   CONNECT_PROVIDER_FAILURE,
+  SET_USER_FUNDING_STATUS,
 } from '../actionTypes/accountActionTypes';
 
 const INITIAL_STATE = {
@@ -12,6 +13,7 @@ const INITIAL_STATE = {
   walletBalance: 0,
   gameBalance: 0,
   network: 0,
+  hasFunding: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -27,6 +29,12 @@ export default (state = INITIAL_STATE, action) => {
         connectingProvider: false,
         accountError: '',
         ...payload,
+      };
+
+    case SET_USER_FUNDING_STATUS:
+      return {
+        ...state,
+        hasFunding: payload,
       };
 
     case CONNECT_PROVIDER_FAILURE:

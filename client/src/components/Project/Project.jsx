@@ -12,7 +12,7 @@ import { openProjectWithdrawModal, openProjectFundModal } from '../../actions/mo
 import './Project.scss';
 
 const Project = ({
-  data, account,
+  data, account, hasFunding,
   data: {
     name, description, imageUrl, ethCollected, date,
     numSupporters, creator, aboutProject, faq, projectId, aboutCreator, logs,
@@ -54,7 +54,7 @@ const Project = ({
         </div>
 
         {
-          !isOwner && (
+          !isOwner && !hasFunding && (
             <button
               type="button"
               onClick={() => { openProjectFundModal(projectId); }}
@@ -62,6 +62,19 @@ const Project = ({
               disabled={funding || !account}
             >
               Support the project
+            </button>
+          )
+        }
+
+        {
+          !isOwner && hasFunding && (
+            <button
+              type="button"
+              onClick={() => { openProjectFundModal(projectId); }}
+              className="button  uppercase no-wrap"
+              disabled={funding || !account}
+            >
+              Cancel funding
             </button>
           )
         }
@@ -107,6 +120,7 @@ Project.propTypes = {
   funding: PropTypes.bool.isRequired,
   withdrawing: PropTypes.bool.isRequired,
   account: PropTypes.string.isRequired,
+  hasFunding: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = ({ project, account }) => ({
@@ -114,6 +128,7 @@ const mapStateToProps = ({ project, account }) => ({
   funding: project.funding,
   withdrawing: project.withdrawing,
   account: account.account,
+  hasFunding: account.hasFunding,
 });
 
 const mapDispatchToProps = {

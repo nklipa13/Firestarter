@@ -34,7 +34,7 @@ import {
   PROJECT_ADD_PROPOSAL_REQUEST,
   PROJECT_ADD_PROPOSAL_SUCCESS,
   PROJECT_ADD_PROPOSAL_FAILURE,
-  PROJECT_ADD_PROPOSAL_RESET
+  PROJECT_ADD_PROPOSAL_RESET,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -54,7 +54,7 @@ const INITIAL_STATE = {
   fundingError: '',
 
   addingProposal: false,
-  addingProposalError: false,
+  addingProposalError: '',
 
   gettingProjectWithdrawHistory: false,
   gettingProjectWithdrawHistoryError: '',
