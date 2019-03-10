@@ -94,6 +94,43 @@ module.exports.updateProjectFunds = async (req, res) => {
     }
 };
 
+module.exports.addProjectProposal = async (req, res) => {
+    try {
+        let project = await Project.findOne({projectId: req.params.projectId}).exec();
+
+        if(!project.proposals) {
+            project.proposals = [];
+        }
+
+        project.proposals.push({ req.body });
+
+        await project.save();
+
+        res.status(200);
+        res.json(project);
+        
+    } catch(err) {
+        console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
+    }
+};
+
+module.exports.getProjectProposals = async (req, res) => {
+    try {
+        const id = req.params.projectId;
+        const ids = req.params.proposalIds;
+
+        const project = await Project.findOne({projectId: id}).exec();
+
+        res.status(200);
+        res.json(project.proposals.filter(proposal => ids.includes(proposal.proposalId)));
+        
+    } catch(err) {
+        console.log(err);
+        res.status(500).send({ error: { messsage: err } } );
+    }
+};
+
 module.exports.addProjectLog = async (req, res) => {
     try {
         const { address, sig, msg } = req.body;

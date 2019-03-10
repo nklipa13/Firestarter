@@ -54,7 +54,7 @@ const INITIAL_STATE = {
   fundingError: '',
 
   addingProposal: false,
-  addingProposalError: false,
+  addingProposalError: '',
 
   gettingProjectWithdrawHistory: false,
   gettingProjectWithdrawHistoryError: '',

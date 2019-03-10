@@ -14,6 +14,10 @@ router.put('/project/:projectId/funds', (req, res) => { projectsCtrl.updateProje
 router.post('/project/:projectId/log', (req, res) => { projectsCtrl.addProjectLog(req, res); });
 router.get('/project/:projectId/log', (req, res) => { projectsCtrl.getProjectLogs(req, res); });
 
+// Proposals
+router.post('/project/:projectId/proposal', (req, res) => { projectsCtrl.addProjectProposals(req, res); });
+router.get('/project/:projectId/proposal/:proposalIds', (req, res) => { projectsCtrl.getProjectProposals(req, res); });
+
 // FAQ
 router.post('/project/:projectId/faq', (req, res) => { projectsCtrl.addProjectFaq(req, res); });
 

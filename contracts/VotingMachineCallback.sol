@@ -20,6 +20,12 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
 	bytes32 public paramsHash;
 	uint public projectId;
 
+    address public DAI_ADDRESS = 0x4e17c87c52d0E9a0cAd3Fbc53b77d9514F003807;
+
+    mapping(bytes32 => uint) public ethWanted;
+    mapping(bytes32 => uint) public daiWanted;
+    mapping(bytes32 => address payable) public proposer;
+
 	event ProposalCreated(bytes32 indexed proposalId, address indexed proposer);
 	event ProposalFinished(bytes32 indexed proposalId, int decision);
 	event ProposalVote(bytes32 indexed proposalId, uint vote, address indexed voter);
@@ -33,13 +39,18 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
 
 	function vote(bytes32 _proposalId, bool yes) public {
 
-        absoluteVote.vote(_proposalId, yes?1:0, 0, msg.sender);
+        absoluteVote.vote(_proposalId, yes ? 1 : 0, 0, msg.sender);
 
-        emit ProposalVote(_proposalId, yes?1:0, msg.sender);
+        emit ProposalVote(_proposalId, yes ? 1 : 0, msg.sender);
 	}
 
-	function createProposal() public {
+	function createProposal(uint _ethAmount, uint _daiAmount) public {
 		bytes32 proposalId = absoluteVote.propose(2, paramsHash, address(0), address(this));
+
+        ethWanted[proposalId] = _ethAmount;
+        daiWanted[proposalId] = _daiAmount;
+        proposer[proposalId] = msg.sender;
+
 		emit ProposalCreated(proposalId, msg.sender);
 	}
 
@@ -57,7 +68,26 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
     }
 
     function executeProposal(bytes32 _proposalId, int _decision) external returns(bool) {
+
+        if (_decision == 1) {
+            IFirestarter(firestarter).withdraw(projectId, ethWanted[_proposalId], daiWanted[_proposalId], "Got from proposal");
+
+            proposer[_proposalId].transfer(address(this).balance);
+            uint balance = IERC20(DAI_ADDRESS).balanceOf(address(this));
+            IERC20(DAI_ADDRESS).transfer(msg.sender, balance);
+        }
+
     	emit ProposalFinished(_proposalId, _decision);
+    }
+
+    function bytes32ToStr(bytes32 _bytes32) public pure returns (string memory) {
+        bytes memory bytesArray = new bytes(64);
+        
+        for (uint256 i; i < 32; i=i+2) {
+            bytesArray[i] = _bytes32[i];
+        }
+
+        return string(bytesArray);
     }
 
 }

@@ -3,6 +3,7 @@ import {
   DaiErc20Contract,
   FirestarterContract,
   fireStarterContractAddress,
+  VotingMachineContract,
 } from './contractRegistryService';
 import { formatNumber } from './utils';
 
@@ -280,7 +281,54 @@ export const getFinance = (id, project) => new Promise(async (resolve, reject) =
       ...data,
     });
   } catch (err) {
+    reject(err);
+  }
+});
+
+export const projectAddProposalContractCall = (sendTxFunc, from, projectId) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+
+    const project = await contract.methods.projects(projectId).call();
+    const votingMachineAddress = project.votingMachineCallback;
+    const machineContract = await VotingMachineContract(votingMachineAddress);
+
+    const promise = machineContract.methods.createProposal.send({ from });
+    const receipt = await sendTxFunc(promise);
+
+    resolve(receipt.logs[0].topics[1]);
+  } catch (err) {
+    reject(err);
+  }
+});
+
+export const getIfUserHasFundsLockedCall = (projectId, address) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    console.log(projectId, address);
+
+    const contract = await FirestarterContract();
+    const data = await contract.methods.totalFunds(projectId.toString(), address).call();
+
+    console.log(data);
+
+    resolve({
+      isLocked: parseFloat(data) > 0,
+    });
+  } catch (err) {
     console.log('err', err);
+    reject(err);
+  }
+});
+
+export const cancelFundingCall = (sendTxFunc, from, projectId) => new Promise(async (resolve, reject) => { // eslint-disable-line
+  try {
+    const contract = await FirestarterContract();
+    const promise = contract.methods.stopFunding()(projectId, 0).send({ from });
+
+    await sendTxFunc(promise);
+
+    resolve(true);
+  } catch (err) {
     reject(err);
   }
 });
