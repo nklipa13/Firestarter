@@ -6,6 +6,7 @@ import Tabs from '../Tabs/Tabs';
 import ProjectFinance from './ProjectFinance/ProjectFinance';
 import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
 import ProjectChangelog from './ProjectChangelog/ProjectChangelog';
+import ProjectProposals from './ProjectProposals/ProjectProposals';
 import { openProjectWithdrawModal, openProjectFundModal } from '../../actions/modalActions';
 
 import './Project.scss';
@@ -13,7 +14,7 @@ import './Project.scss';
 const Project = ({
   data, account,
   data: {
-    name, description, imageUrl, ethCollected, date, daiCollected,
+    name, description, imageUrl, ethCollected, date,
     numSupporters, creator, aboutProject, faq, projectId, aboutCreator, logs,
   },
   openProjectWithdrawModal, openProjectFundModal, funding, withdrawing,
@@ -93,6 +94,7 @@ const Project = ({
         <div label="Finance"><ProjectFinance projectId={projectId} data={data} /></div>
         <div label="FAQ"><ProjectFAQ isOwner={isOwner} data={faq} projectId={projectId} /></div>
         <div label="Changelog"><ProjectChangelog isOwner={isOwner} data={logs} projectId={projectId} /></div>
+        <div label="Proposals"><ProjectProposals isOwner={isOwner} projectId={projectId} /></div>
       </Tabs>
     </div>
   );

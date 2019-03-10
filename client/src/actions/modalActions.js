@@ -4,6 +4,7 @@ import {
   PROJECT_ADD_CHANGE_MODAL,
   PROJECT_WITHDRAW_MODAL,
   PROJECT_FUND_MODAL,
+  PROJECT_ADD_PROPOSAL_MODAL,
 } from '../components/Modals/modalTypes';
 import { getMaxEthDaiForProject } from '../services/ethereumService';
 
@@ -65,8 +66,17 @@ export const openProjectWithdrawModal = id => async (dispatch) => {
 /**
  * Opens project fund modal where the user can contribute to the project
  *
- * @param id {Number}
+ * @param projectId {Number}
  */
-export const openProjectFundModal = id => (dispatch) => {
-  dispatch(toggleModal(PROJECT_FUND_MODAL, { width: 647, projectId: id }, true));
+export const openProjectFundModal = projectId => (dispatch) => {
+  dispatch(toggleModal(PROJECT_FUND_MODAL, { width: 647, projectId }, true));
+};
+
+/**
+ * Opens project add proposal where the creator suggests proposals
+ *
+ * @param projectId {Number}
+ */
+export const openProjectAddProposalModal = projectId => (dispatch) => {
+  dispatch(toggleModal(PROJECT_ADD_PROPOSAL_MODAL, { width: 647, projectId }, true));
 };
