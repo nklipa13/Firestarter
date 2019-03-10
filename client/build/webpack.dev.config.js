@@ -15,7 +15,9 @@ module.exports = {
   devServer: {
     stats: 'minimal',
     contentBase: './dist',
-    open: true
+    open: true,
+    disableHostCheck: true,
+    host: '0.0.0.0'
   },
   module: {
     rules: [
