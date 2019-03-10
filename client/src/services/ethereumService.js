@@ -310,12 +310,12 @@ export const getIfUserHasFundsLockedCall = (projectId, address) => new Promise(a
     console.log(projectId, address);
 
     const contract = await FirestarterContract();
-    const data = await contract.methods.totalFunds(projectId.toString(), address).call();
+    const data = await contract.methods.hasLockedFunds(projectId.toString(), address).call();
 
-    console.log(data);
+    console.log('data: ', data);
 
     resolve({
-      isLocked: parseFloat(data) > 0,
+      isLocked: data,
     });
   } catch (err) {
     console.log('err', err);
