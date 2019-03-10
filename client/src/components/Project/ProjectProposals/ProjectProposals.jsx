@@ -87,8 +87,8 @@ const ProjectProposals = ({
                       </div>
 
                       <div className="vote-item">
-                        <div className="label">Supported by:</div>
-                        <div className="value">{info.yes}</div>
+                        <div className="label">Declined by:</div>
+                        <div className="value">{info.no}</div>
                       </div>
                     </div>
 
