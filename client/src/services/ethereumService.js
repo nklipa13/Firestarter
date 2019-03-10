@@ -365,7 +365,7 @@ export const getProposalInfo = (projectId, proposalId, from) => new Promise(asyn
     const voted = await machineContract.methods.checkVote(proposalId, from).call();
     const info = await machineContract.methods.voteStatus(proposalId).call();
 
-    resolve({ info, voted: parseInt(voted.vote, 10) > 0 });
+    resolve({ info, voted: parseInt(voted.reputation, 10) > 0 });
   } catch (err) {
     reject(err);
   }
