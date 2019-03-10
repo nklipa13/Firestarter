@@ -43,6 +43,10 @@ import {
   SUPPORT_PROPOSAL_REQUEST,
   SUPPORT_PROPOSAL_SUCCESS,
   SUPPORT_PROPOSAL_FAILURE,
+
+  DECLINE_PROPOSAL_REQUEST,
+  DECLINE_PROPOSAL_SUCCESS,
+  DECLINE_PROPOSAL_FAILURE,
 } from '../actionTypes/projectActionTypes';
 import {
   compoundFundApiCall,
@@ -436,9 +440,30 @@ export const supportProposal = (projectId, proposalId, index) => async (dispatch
     // TODO get proposal info
     newProposals[index] = { ...newProposals[index], voted: true };
 
-    dispatch({ type: SUPPORT_PROPOSAL_SUCCESS, payload: proposals });
+    dispatch({ type: SUPPORT_PROPOSAL_SUCCESS, payload: newProposals });
   } catch (err) {
     dispatch({ type: SUPPORT_PROPOSAL_FAILURE, payload: err.message });
+  }
+};
+
+export const declineProposal = (projectId, proposalId, index) => async (dispatch, getState) => {
+  dispatch({ type: DECLINE_PROPOSAL_REQUEST });
+
+  const proxySendHandler = promise => sendTx(promise, 'Decline proposal', dispatch, getState);
+
+  try {
+    const { account } = getState().account;
+    const { proposals } = getState().project;
+
+    await voteProposalContractCall(proxySendHandler, account, projectId, proposalId, false);
+    const newProposals = [...proposals];
+
+    // TODO get proposal info
+    newProposals[index] = { ...newProposals[index], voted: true };
+
+    dispatch({ type: DECLINE_PROPOSAL_SUCCESS, payload: newProposals });
+  } catch (err) {
+    dispatch({ type: DECLINE_PROPOSAL_FAILURE, payload: err.message });
   }
 };
 

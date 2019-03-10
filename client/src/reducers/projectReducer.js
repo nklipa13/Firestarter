@@ -43,6 +43,10 @@ import {
   SUPPORT_PROPOSAL_REQUEST,
   SUPPORT_PROPOSAL_SUCCESS,
   SUPPORT_PROPOSAL_FAILURE,
+
+  DECLINE_PROPOSAL_REQUEST,
+  DECLINE_PROPOSAL_SUCCESS,
+  DECLINE_PROPOSAL_FAILURE,
 } from '../actionTypes/projectActionTypes';
 
 const INITIAL_STATE = {
@@ -303,6 +307,24 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         supportingProposal: false,
         supportingProposalError: payload,
+      };
+
+    case DECLINE_PROPOSAL_REQUEST:
+      return { ...state, decliningProposal: true, decliningProposalError: '' };
+
+    case DECLINE_PROPOSAL_SUCCESS:
+      return {
+        ...state,
+        decliningProposal: false,
+        decliningProposalError: '',
+        proposals: payload,
+      };
+
+    case DECLINE_PROPOSAL_FAILURE:
+      return {
+        ...state,
+        decliningProposal: false,
+        decliningProposalError: payload,
       };
 
     default:

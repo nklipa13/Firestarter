@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { openProjectAddProposalModal } from '../../../actions/modalActions';
-import { getProjectProposals, supportProposal } from '../../../actions/projectActions';
+import { getProjectProposals, supportProposal, declineProposal } from '../../../actions/projectActions';
 import Loader from '../../Loader/Loader';
 
 import './ProjectProposals.scss';
 
 const ProjectProposals = ({
   isOwner, projectId, addingProposal, openProjectAddProposalModal, getProjectProposals,
-  getting, gettingError, data, supporting, supportProposal, declining,
+  getting, gettingError, data, supporting, supportProposal, declining, declineProposal,
 }) => {
   const [mounted, setMounted] = useState(false);
 
@@ -93,6 +93,7 @@ const ProjectProposals = ({
                           <button
                             className="button uppercase"
                             type="button"
+                            onClick={() => { declineProposal(projectId, proposalId, index); }}
                             disabled={supporting || declining || voted}
                           >
                             { declining ? 'Declining' : 'Decline' }
@@ -123,6 +124,7 @@ ProjectProposals.propTypes = {
   supporting: PropTypes.bool.isRequired,
   declining: PropTypes.bool.isRequired,
   supportProposal: PropTypes.func.isRequired,
+  declineProposal: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ project }) => ({
@@ -135,7 +137,7 @@ const mapStateToProps = ({ project }) => ({
 });
 
 const mapDispatchToProps = {
-  openProjectAddProposalModal, getProjectProposals, supportProposal,
+  openProjectAddProposalModal, getProjectProposals, supportProposal, declineProposal,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectProposals);
