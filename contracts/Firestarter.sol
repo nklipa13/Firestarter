@@ -311,7 +311,7 @@ contract Firestarter is Vesting {
 
         for (uint i = 0; i < funds.length; ++i) {
             if (funds[i].fundType == FundType.CompoundType || funds[i].fundType == FundType.VestingType) {
-                if (block.number < funds[i].end && funds[i].canceled != 0) {
+                if (block.number < funds[i].end && funds[i].canceled == 0) {
                     return true;
                 }
             }
@@ -336,6 +336,17 @@ contract Firestarter is Vesting {
 				uint perBlock = amount / 2102400;
 				balance += (getEndBlock(userFunds[i]) - userFunds[i].start) * perBlock;
 			}
+		}
+
+		return balance;
+	}
+
+	function maxReputation(uint _projectId) public view returns(uint) {
+		address[] memory investors = projects[_projectId].investors;
+		uint balance = 0;
+
+		for (uint i=0; i<investors.length; i++) {
+			balance += userFundedProject(_projectId, investors[i]);
 		}
 
 		return balance;

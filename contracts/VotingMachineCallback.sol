@@ -54,13 +54,19 @@ contract VotingMachineCallback is VotingMachineCallbacksInterface, ProposalExecu
 		emit ProposalCreated(proposalId, msg.sender);
 	}
 
+    function checkVote(bytes32 _proposalId, address _voter) public view returns(uint vote, uint reputation) {
+        (vote, reputation) = absoluteVote.voteInfo(_proposalId, _voter);
+    }
+
+    function voteStatus(bytes32 _proposalId) public view returns(uint yes, uint no) {
+        yes = absoluteVote.voteStatus(_proposalId, 1);
+        no = absoluteVote.voteStatus(_proposalId, 0);
+    }
+    
+
     function getTotalReputationSupply(bytes32 _proposalId) external view returns(uint256) {
-    	uint balance;
-    	uint rate;
-
-    	(balance, rate) = IFirestarter(firestarter).getNewBalanceAndRateView(projectId);
-
-    	return balance;
+    	
+    	return IFirestarter(firestarter).maxReputation(projectId);
     }
 
     function reputationOf(address _owner, bytes32 _proposalId) external view returns(uint256) {
