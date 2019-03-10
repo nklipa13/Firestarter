@@ -118,11 +118,12 @@ module.exports.addProjectProposal = async (req, res) => {
 module.exports.getProjectProposals = async (req, res) => {
     try {
         const id = req.params.projectId;
+        const ids = req.params.proposalIds;
 
         const project = await Project.findOne({projectId: id}).exec();
 
         res.status(200);
-        res.json(project.proposals);
+        res.json(project.proposals.filter(proposal => ids.includes(proposal.proposalId)));
         
     } catch(err) {
         console.log(err);
