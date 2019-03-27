@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { formatAcc, calcDaysPassed } from '../../services/utils';
+import { formatAcc, calcDaysPassed, formatNumber } from '../../services/utils';
 import Tabs from '../Tabs/Tabs';
 import ProjectFinance from './ProjectFinance/ProjectFinance';
 import ProjectFAQ from './ProjectFAQ/ProjectFAQ';
@@ -9,6 +9,7 @@ import ProjectChangelog from './ProjectChangelog/ProjectChangelog';
 import ProjectProposals from './ProjectProposals/ProjectProposals';
 import { openProjectWithdrawModal, openProjectFundModal } from '../../actions/modalActions';
 import { cancelFunding } from '../../actions/projectActions';
+import TooltipWrapper from '../TooltipWrapper/TooltipWrapper';
 
 import './Project.scss';
 
@@ -50,7 +51,9 @@ const Project = ({
       <div className="action-wrapper">
         <div className="stats-wrapper">
           <div className="stat text-bold heading-4">{numSupporters} supporters</div>
-          <div className="stat text-bold heading-4">{ethCollected} ETH earned</div>
+          <div className="stat text-bold heading-4">
+            <TooltipWrapper title={ethCollected}>{ formatNumber(ethCollected, 2) } ETH earned</TooltipWrapper>
+          </div>
           <div className="stat text-bold heading-4">{ calcDaysPassed(date) } days passed</div>
         </div>
 
