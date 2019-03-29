@@ -5,11 +5,10 @@ import {
   fireStarterContractAddress,
   VotingMachineContract,
 } from './contractRegistryService';
-import { formatNumber } from './utils';
 
-export const weiToEth = weiVal => window._web3.utils.fromWei(weiVal);
+export const weiToEth = weiVal => window._web3.utils.fromWei(weiVal, 'ether');
 
-export const ethToWei = ethVal => window._web3.utils.toWei(`${ethVal}`);
+export const ethToWei = ethVal => window._web3.utils.toWei(`${ethVal}`, 'ether');
 
 export const getNetwork = () => window._web3.eth.net.getId();
 
@@ -260,20 +259,15 @@ export const getFinance = (id, project) => new Promise(async (resolve, reject) =
       vestedEth,
     } = await contract.methods.getFinance(id).call();
 
-    const { fromWei } = window._web3.utils;
-
-    const getValue = val => formatNumber(fromWei(val)) === '0.000' ? '0' : parseFloat(formatNumber(fromWei(val))).toString(); // eslint-disable-line
-
-    const totallyEarned =
-      (parseFloat(earnedEthOneTime) + parseFloat(earnedEthVested) + parseFloat(weiToEth(earnedDai))).toString();
+    const totallyEarned = (parseFloat(weiToEth(earnedEthOneTime.toString())) + parseFloat(weiToEth(earnedEthVested).toString()) + (weiToEth(earnedDai.toString()) / 138)); // eslint-disable-line
 
     const data = {
-      earnedInCompund: getValue(earnedDai),
-      oneTimePaymentAmount: getValue(earnedEthOneTime),
-      earnedInVesting: getValue(earnedEthVested),
-      lockedInCompound: getValue(vestedDai),
-      lockedInVesting: getValue(vestedEth),
-      ethCollected: getValue(totallyEarned),
+      earnedInCompund: weiToEth(earnedDai),
+      oneTimePaymentAmount: weiToEth(earnedEthOneTime),
+      earnedInVesting: weiToEth(earnedEthVested),
+      lockedInCompound: weiToEth(vestedDai),
+      lockedInVesting: weiToEth(vestedEth),
+      ethCollected: totallyEarned,
     };
 
     resolve({

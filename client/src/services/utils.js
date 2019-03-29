@@ -39,7 +39,7 @@ const countDecimals = (value) => {
   return 0;
 };
 
-export const formatNumber = (_num, fixed = 3) => {
+export const formatNumber = (_num, fixed) => {
   try {
     let num = _num;
 
