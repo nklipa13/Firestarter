@@ -1,27 +1,52 @@
+/* rubik-300 - latin */
 @font-face {
-  font-family: 'Sansation_Light';
-  src: url('fonts/Sansation_Light.eot');
-  src: url('fonts/Sansation_Light.eot') format('embedded-opentype'),
-  url('fonts/Sansation_Light.woff2') format('woff2'),
-  url('fonts/Sansation_Light.woff') format('woff'),
-  url('fonts/Sansation_Light.ttf') format('truetype'),
-  url('fonts/Sansation_Light.svg#Sansation_Light') format('svg');
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 300;
+  src: url('fonts/rubik-v8-latin-300.eot'); /* IE9 Compat Modes */
+  src: local('Rubik Light'), local('Rubik-Light'),
+  url('fonts/rubik-v8-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('fonts/rubik-v8-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+  url('fonts/rubik-v8-latin-300.woff') format('woff'), /* Modern Browsers */
+  url('fonts/rubik-v8-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('fonts/rubik-v8-latin-300.svg#Rubik') format('svg'); /* Legacy iOS */
 }
+/* rubik-regular - latin */
 @font-face {
-  font-family: 'Sansation_Regular';
-  src: url('fonts/Sansation_Regular.eot');
-  src: url('fonts/Sansation_Regular.eot') format('embedded-opentype'),
-  url('fonts/Sansation_Regular.woff2') format('woff2'),
-  url('fonts/Sansation_Regular.woff') format('woff'),
-  url('fonts/Sansation_Regular.ttf') format('truetype'),
-  url('fonts/Sansation_Regular.svg#Sansation_Regular') format('svg');
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 400;
+  src: url('fonts/rubik-v8-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Rubik'), local('Rubik-Regular'),
+  url('fonts/rubik-v8-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('fonts/rubik-v8-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('fonts/rubik-v8-latin-regular.woff') format('woff'), /* Modern Browsers */
+  url('fonts/rubik-v8-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('fonts/rubik-v8-latin-regular.svg#Rubik') format('svg'); /* Legacy iOS */
 }
+/* rubik-500 - latin */
 @font-face {
-  font-family: 'Sansation_Bold';
-  src: url('fonts/Sansation_Bold.eot');
-  src: url('fonts/Sansation_Bold.eot') format('embedded-opentype'),
-  url('fonts/Sansation_Bold.woff2') format('woff2'),
-  url('fonts/Sansation_Bold.woff') format('woff'),
-  url('fonts/Sansation_Bold.ttf') format('truetype'),
-  url('fonts/Sansation_Bold.svg#Sansation_Bold') format('svg');
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 500;
+  src: url('fonts/rubik-v8-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Rubik Medium'), local('Rubik-Medium'),
+  url('fonts/rubik-v8-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('fonts/rubik-v8-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+  url('fonts/rubik-v8-latin-500.woff') format('woff'), /* Modern Browsers */
+  url('fonts/rubik-v8-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('fonts/rubik-v8-latin-500.svg#Rubik') format('svg'); /* Legacy iOS */
+}
+/* rubik-700 - latin */
+@font-face {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  src: url('fonts/rubik-v8-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Rubik Bold'), local('Rubik-Bold'),
+  url('fonts/rubik-v8-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('fonts/rubik-v8-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+  url('fonts/rubik-v8-latin-700.woff') format('woff'), /* Modern Browsers */
+  url('fonts/rubik-v8-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+  url('fonts/rubik-v8-latin-700.svg#Rubik') format('svg'); /* Legacy iOS */
 }
